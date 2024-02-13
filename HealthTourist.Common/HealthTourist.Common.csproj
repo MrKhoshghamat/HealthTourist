@@ -6,4 +6,13 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Folder Include="Constants\" />
+      <Folder Include="Converters\" />
+      <Folder Include="Enumerations\" />
+      <Folder Include="Exceptions\" />
+      <Folder Include="Extensions\" />
+      <Folder Include="Security\" />
+    </ItemGroup>
+
 </Project>
