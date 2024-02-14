@@ -14,6 +14,12 @@ public static class PersistenceServiceRegistration
         {
             options.UseSqlServer(configuration.GetConnectionString("HealthTouristDatabaseConnectionString"));
         });
+
+        services.AddDbContext<HealthTouristDbContext>(options =>
+        {
+            options.UseNpgsql(configuration.GetConnectionString("HealthTouristDatabaseConnectionString"));
+        });
+
         return services;
     }
 }
