@@ -10,4 +10,5 @@ public abstract class BaseEntity<TPrimaryKey>
     public string RemoverId { get; set; }
     public DateTime DeletionDateTime { get; set; }
     public bool IsDeleted { get; set; }
+    public bool IsDisabled { get; set; }
 }

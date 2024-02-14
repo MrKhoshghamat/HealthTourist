@@ -6,4 +6,8 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\HealthTourist.Common\HealthTourist.Common.csproj" />
+    </ItemGroup>
+
 </Project>

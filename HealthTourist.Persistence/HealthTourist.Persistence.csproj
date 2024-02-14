@@ -20,6 +20,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\HealthTourist.Application\HealthTourist.Application.csproj" />
       <ProjectReference Include="..\HealthTourist.Domain\HealthTourist.Domain.csproj" />
     </ItemGroup>
 
