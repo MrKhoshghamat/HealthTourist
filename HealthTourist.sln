@@ -22,7 +22,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthTourist.Api", "Health
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthTourist.Application.Test", "HealthTourist.Application.Test\HealthTourist.Application.Test.csproj", "{451C1025-A12C-4C57-8663-1D3613B08127}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthTourist.Infrastructure.Test", "HealthTourist.Infrastructure.Test\HealthTourist.Infrastructure.Test.csproj", "{B1677634-2AF9-4324-ADE2-C8FD0B7D9267}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthTourist.Persistence.IntegrationTest", "HealthTourist.Persistence.IntegrationTest\HealthTourist.Persistence.IntegrationTest.csproj", "{B1677634-2AF9-4324-ADE2-C8FD0B7D9267}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthTourist.Infrastructure", "HealthTourist.Infrastructure\HealthTourist.Infrastructure.csproj", "{27A1BF2A-2BA3-4FB9-B286-D61DEBDF602F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -40,6 +42,7 @@ Global
 		{ACE55A83-0B73-4414-9AA7-288139F555D1} = {EAB2A81C-5345-4311-BB9D-990BD4A5B1FB}
 		{451C1025-A12C-4C57-8663-1D3613B08127} = {7DE745EF-BC3D-4190-8098-880F2DA37B15}
 		{B1677634-2AF9-4324-ADE2-C8FD0B7D9267} = {7DE745EF-BC3D-4190-8098-880F2DA37B15}
+		{27A1BF2A-2BA3-4FB9-B286-D61DEBDF602F} = {BF605A5D-3714-41BE-A1EE-59F324543F22}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{43720485-274B-4584-A972-A3662FC87C01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -70,5 +73,9 @@ Global
 		{B1677634-2AF9-4324-ADE2-C8FD0B7D9267}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1677634-2AF9-4324-ADE2-C8FD0B7D9267}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B1677634-2AF9-4324-ADE2-C8FD0B7D9267}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27A1BF2A-2BA3-4FB9-B286-D61DEBDF602F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27A1BF2A-2BA3-4FB9-B286-D61DEBDF602F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27A1BF2A-2BA3-4FB9-B286-D61DEBDF602F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27A1BF2A-2BA3-4FB9-B286-D61DEBDF602F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

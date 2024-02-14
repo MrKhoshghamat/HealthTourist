@@ -7,7 +7,7 @@ namespace HealthTourist.Persistence;
 
 public static class PersistenceServiceRegistration
 {
-    public static IServiceCollection AddPersistenceServices(IServiceCollection services,
+    public static IServiceCollection AddPersistenceServices(this IServiceCollection services,
         IConfiguration configuration)
     {
         services.AddDbContext<HealthTouristDbContext>(options =>
