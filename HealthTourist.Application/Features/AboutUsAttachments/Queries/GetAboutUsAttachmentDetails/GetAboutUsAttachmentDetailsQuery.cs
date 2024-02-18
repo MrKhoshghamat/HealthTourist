@@ -1,11 +1,10 @@
+using HealthTourist.Domain.AboutUsPage;
 using HealthTourist.Domain.Common;
 
-namespace HealthTourist.Domain.AboutUsPage;
+namespace HealthTourist.Application.Features.AboutUsAttachments.Queries.GetAboutUsAttachmentDetails;
 
-public class AboutUsAttachment
+public record GetAboutUsAttachmentDetailsQuery()
 {
-    #region Properties
-
     /// <summary>
     /// About Us Id
     /// </summary>
@@ -14,11 +13,7 @@ public class AboutUsAttachment
     /// <summary>
     /// Attachment Id
     /// </summary>
-    public Guid AttachmentId { get; set; }
-
-    #endregion
-
-    #region Relations
+    public int AttachmentId { get; set; }
 
     /// <summary>
     /// About Us 
@@ -29,6 +24,4 @@ public class AboutUsAttachment
     /// Attachment
     /// </summary>
     public virtual Attachment Attachment { get; set; }
-
-    #endregion
 }
