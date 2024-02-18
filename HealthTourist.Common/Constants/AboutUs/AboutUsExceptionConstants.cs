@@ -1,6 +1,6 @@
 namespace HealthTourist.Common.Constants.AboutUs;
 
-public class AboutUsExceptionConstants
+public abstract class AboutUsExceptionConstants
 {
     public const string BadRequestExceptionMessage = "Invalid Request";
 }

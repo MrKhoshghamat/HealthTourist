@@ -1,5 +1,7 @@
 using AutoMapper;
 using HealthTourist.Application.Contracts.AboutUsPage;
+using HealthTourist.Common.Exceptions;
+using HealthTourist.Domain.AboutUsPage;
 using MediatR;
 
 namespace HealthTourist.Application.Features.AboutUsPage.Queries.GetAboutUsRecordDetails;
@@ -16,7 +18,8 @@ public class
         // Fetch About Us Record Details from database
         var aboutUsRecordDetails = await aboutUsRepository.FindAsync(request.Id);
 
-        // TODO check fetched record for null
+        // Check fetched record for null
+        if (aboutUsRecordDetails == null) throw new NotFoundException(nameof(AboutUs), request.Id);
 
         // Map About Us Record Details to required result
         var result = mapper.Map<GetAboutUsRecordDetailsDto>(aboutUsRecordDetails);

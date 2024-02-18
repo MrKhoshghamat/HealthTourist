@@ -9,12 +9,12 @@
     <ItemGroup>
       <Folder Include="Converters\" />
       <Folder Include="Extensions\" />
-      <Folder Include="Security\" />
     </ItemGroup>
 
     <ItemGroup>
       <PackageReference Include="FluentValidation" Version="11.9.0" />
       <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.9.0" />
+      <PackageReference Include="HtmlSanitizer" Version="8.1.839-beta" />
     </ItemGroup>
 
 </Project>
