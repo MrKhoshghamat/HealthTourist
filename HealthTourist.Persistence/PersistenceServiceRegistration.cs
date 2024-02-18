@@ -1,4 +1,4 @@
-using HealthTourist.Persistence.DatabaseContext;
+using HealthTourist.Persistence.DatabaseContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

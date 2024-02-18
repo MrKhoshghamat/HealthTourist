@@ -1,3 +1,4 @@
+using HealthTourist.Domain.AboutUsPage;
 using HealthTourist.Domain.Persistence;
 
 namespace HealthTourist.Domain.Common;
@@ -24,6 +25,11 @@ public class State : BaseEntity<int>
     /// State
     /// </summary>
     public State? Parent { get; set; }
+
+    /// <summary>
+    /// Team Member State Relation
+    /// </summary>
+    public virtual ICollection<TeamMemberState> TeamMemberStates { get; set; }
 
     #endregion
 }

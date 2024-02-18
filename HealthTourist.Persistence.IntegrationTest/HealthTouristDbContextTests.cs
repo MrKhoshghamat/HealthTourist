@@ -1,4 +1,4 @@
-using HealthTourist.Persistence.DatabaseContext;
+using HealthTourist.Persistence.DatabaseContexts;
 using Microsoft.EntityFrameworkCore;
 
 namespace HealthTourist.Persistence.IntegrationTest;
