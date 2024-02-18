@@ -31,6 +31,16 @@ public class TeamMember : BaseEntity<int>
     /// Person
     /// </summary>
     public virtual Person Person { get; set; }
+    
+    /// <summary>
+    /// Team Member State Relation
+    /// </summary>
+    public virtual ICollection<TeamMemberState> TeamMemberStates { get; set; }
+    
+    /// <summary>
+    /// Team Member Social Medias Relation
+    /// </summary>
+    public virtual ICollection<TeamMemberSocialMedia> TeamMemberSocialMedias { get; set; }
 
     #endregion
 }
