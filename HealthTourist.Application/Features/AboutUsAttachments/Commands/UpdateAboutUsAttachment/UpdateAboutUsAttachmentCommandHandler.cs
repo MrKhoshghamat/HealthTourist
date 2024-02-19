@@ -32,7 +32,8 @@ public class UpdateAboutUsAttachmentCommandHandler(
         if (!attachment) throw new NotFoundException(nameof(Attachment), request.AttachmentId);
 
         // Fetch required data from database by Id
-        var aboutUsAttachment = await aboutUsAttachmentRepository.GetAsync(request.AboutUsId, request.AttachmentId);
+        var aboutUsAttachment =
+            await aboutUsAttachmentRepository.GetAboutUsAttachmentAsync(request.AboutUsId, request.AttachmentId);
 
         // Update
         await aboutUsAttachmentRepository.UpdateAsync(aboutUsAttachment);

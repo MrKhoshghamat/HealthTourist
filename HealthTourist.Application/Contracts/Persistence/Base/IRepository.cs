@@ -19,11 +19,13 @@ public partial interface IRepository<TEntity, in TPrimaryKey> where TEntity : Ba
     Task<bool> UpdateAsync(TEntity entity);
     Task<bool> DeleteAsync(TEntity entity);
     Task<bool> DeleteAsync(TPrimaryKey id);
+    Task<bool> DisableAsync(TEntity entity);
+    Task<bool> DisableAsync(TPrimaryKey id);
 
     #endregion
 }
 
-public partial interface IRepository<TEntity> where TEntity : class
+public partial interface IRepository<TEntity>
 {
     #region Asyncronous
 
@@ -33,7 +35,6 @@ public partial interface IRepository<TEntity> where TEntity : class
     Task<IQueryable<TEntity>> GetAllAsQueryableAsync(Expression<Func<TEntity, bool>> predicate);
     Task<TEntity> FindAsync(int id);
     Task<TEntity> FindAsync(Expression<Func<TEntity, bool>> predicate);
-    Task<bool> IsExistAsync(int id);
     Task<bool> IsExistAsync(Expression<Func<TEntity, bool>> predicate);
     Task<bool> CreateAsync(TEntity entity);
     Task<bool> UpdateAsync(TEntity entity);
