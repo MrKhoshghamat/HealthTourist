@@ -1,6 +1,6 @@
 namespace HealthTourist.Domain.Persistence;
 
-public abstract class BaseEntity<TPrimaryKey>
+public abstract partial class BaseEntity<TPrimaryKey>
 {
     public TPrimaryKey Id { get; set; }
     public string CreatorId { get; set; }
