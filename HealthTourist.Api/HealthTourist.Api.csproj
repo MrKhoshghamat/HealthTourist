@@ -32,4 +32,9 @@
         </PackageReference>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\HealthTourist.Application\HealthTourist.Application.csproj" />
+      <ProjectReference Include="..\HealthTourist.Persistence\HealthTourist.Persistence.csproj" />
+    </ItemGroup>
+
 </Project>

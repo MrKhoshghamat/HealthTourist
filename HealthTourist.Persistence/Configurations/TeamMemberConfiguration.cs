@@ -18,5 +18,13 @@ public class TeamMemberConfiguration : IEntityTypeConfiguration<TeamMember>
             .HasForeignKey<TeamMember>(tm => tm.PersonId)
             .IsRequired()
             .OnDelete(DeleteBehavior.Cascade);
+        
+        builder.Property(tm => tm.CareerPosition)
+            .IsRequired()
+            .HasConversion<int>();
+        
+        builder.Property(tm => tm.Prefix)
+            .IsRequired()
+            .HasConversion<int>();
     }
 }
