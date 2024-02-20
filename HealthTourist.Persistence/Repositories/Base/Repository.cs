@@ -116,14 +116,12 @@ public partial class Repository<TEntity, TPrimaryKey> (DbContext context, IAppLo
         }
     }
 
-    public async Task<bool> CreateAsync(TEntity entity)
+    public async Task CreateAsync(TEntity entity)
     {
         try
         {
             await context.Set<TEntity>().AddAsync(entity);
             await context.SaveChangesAsync();
-            
-            return true;
         }
         catch (Exception e)
         {
@@ -132,15 +130,13 @@ public partial class Repository<TEntity, TPrimaryKey> (DbContext context, IAppLo
         }
     }
 
-    public async Task<bool> UpdateAsync(TEntity entity)
+    public async Task UpdateAsync(TEntity entity)
     {
         try
         {
             await Task.FromResult(context.Set<TEntity>().Update(entity));
             await Task.FromResult(context.Entry(entity).State = EntityState.Modified);
             await context.SaveChangesAsync();
-            
-            return true;
         }
         catch (Exception e)
         {
@@ -149,13 +145,12 @@ public partial class Repository<TEntity, TPrimaryKey> (DbContext context, IAppLo
         }
     }
 
-    public async Task<bool> DeleteAsync(TEntity entity)
+    public async Task DeleteAsync(TEntity entity)
     {
         try
         {
             entity.IsDeleted = true;
             await UpdateAsync(entity);
-            return true;
         }
         catch (Exception e)
         {
@@ -164,14 +159,12 @@ public partial class Repository<TEntity, TPrimaryKey> (DbContext context, IAppLo
         }
     }
 
-    public async Task<bool> DeleteAsync(TPrimaryKey id)
+    public async Task DeleteAsync(TPrimaryKey id)
     {
         try
         {
             var entity = await FindAsync(id);
             await DeleteAsync(entity);
-
-            return true;
         }
         catch (Exception e)
         {
@@ -180,14 +173,12 @@ public partial class Repository<TEntity, TPrimaryKey> (DbContext context, IAppLo
         }
     }
 
-    public async Task<bool> DisableAsync(TEntity entity)
+    public async Task DisableAsync(TEntity entity)
     {
         try
         {
             entity.IsDisabled = true;
             await UpdateAsync(entity);
-
-            return true;
         }
         catch (Exception e)
         {
@@ -196,14 +187,12 @@ public partial class Repository<TEntity, TPrimaryKey> (DbContext context, IAppLo
         }
     }
 
-    public async Task<bool> DisableAsync(TPrimaryKey id)
+    public async Task DisableAsync(TPrimaryKey id)
     {
         try
         {
             var entity = await FindAsync(id);
             await DisableAsync(entity);
-
-            return true;
         }
         catch (Exception e)
         {
@@ -309,14 +298,12 @@ public partial class Repository<TEntity> (HealthTouristDbContext context, IAppLo
         }
     }
 
-    public async Task<bool> CreateAsync(TEntity entity)
+    public async Task CreateAsync(TEntity entity)
     {
         try
         {
             await context.Set<TEntity>().AddAsync(entity);
             await context.SaveChangesAsync();
-            
-            return true;
         }
         catch (Exception e)
         {
@@ -325,15 +312,13 @@ public partial class Repository<TEntity> (HealthTouristDbContext context, IAppLo
         }
     }
 
-    public async Task<bool> UpdateAsync(TEntity entity)
+    public async Task UpdateAsync(TEntity entity)
     {
         try
         {
             await Task.FromResult(context.Set<TEntity>().Update(entity));
             await Task.FromResult(context.Entry(entity).State = EntityState.Modified);
             await context.SaveChangesAsync();
-            
-            return true;
         }
         catch (Exception e)
         {
@@ -342,12 +327,11 @@ public partial class Repository<TEntity> (HealthTouristDbContext context, IAppLo
         }
     }
 
-    public async Task<bool> DeleteAsync(TEntity entity)
+    public async Task DeleteAsync(TEntity entity)
     {
         try
         {
             await Task.FromResult(context.Set<TEntity>().Remove(entity));
-            return true;
         }
         catch (Exception e)
         {
@@ -356,14 +340,12 @@ public partial class Repository<TEntity> (HealthTouristDbContext context, IAppLo
         }
     }
 
-    public async Task<bool> DeleteAsync(int id)
+    public async Task DeleteAsync(int id)
     {
         try
         {
             var entity = await FindAsync(id);
             await DeleteAsync(entity);
-
-            return true;
         }
         catch (Exception e)
         {

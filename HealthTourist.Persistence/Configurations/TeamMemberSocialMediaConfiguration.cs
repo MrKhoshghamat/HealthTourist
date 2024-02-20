@@ -19,6 +19,6 @@ public class TeamMemberSocialMediaConfiguration : IEntityTypeConfiguration<TeamM
         // Assume SocialMediaEnum is an enum type
         builder.Property(tmsm => tmsm.SocialMedia)
             .IsRequired()
-            .HasConversion<string>();
+            .HasConversion<int>();
     }
 }

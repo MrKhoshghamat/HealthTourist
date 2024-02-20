@@ -1,12 +1,17 @@
 using AutoMapper;
 using HealthTourist.Application.Contracts.AboutUsPage;
+using HealthTourist.Application.Contracts.Logging;
+using HealthTourist.Common.Constants.AboutUs;
 using HealthTourist.Common.Exceptions;
 using HealthTourist.Domain.AboutUsPage;
 using MediatR;
 
 namespace HealthTourist.Application.Features.AboutUsPage.Queries.GetAboutUsRecords;
 
-public class GetAboutUsRecordsQueryHandler(IAboutUsRepository aboutUsRepository, IMapperBase mapper)
+public class GetAboutUsRecordsQueryHandler(
+    IAboutUsRepository aboutUsRepository,
+    IMapperBase mapper,
+    IAppLogger<GetAboutUsRecordsQueryHandler> logger)
     : IRequestHandler<GetAboutUsRecordsQuery, List<GetAboutUsRecordsDto>>
 {
     #region Handler
@@ -23,6 +28,9 @@ public class GetAboutUsRecordsQueryHandler(IAboutUsRepository aboutUsRepository,
         // Map About Us All Records to list of required result
         var result = mapper.Map<List<GetAboutUsRecordsDto>>(aboutUsRecords);
 
+        // Logging
+        logger.LogInformation(AboutUsLogConstants.GetAboutUsRecordsQueryLogMessage);
+        
         // Return result
         return result;
     }
