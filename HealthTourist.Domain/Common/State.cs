@@ -15,7 +15,7 @@ public class State : BaseEntity<int>
     /// <summary>
     /// Parent Id
     /// </summary>
-    public long? ParentId { get; set; }
+    public int? ParentId { get; set; }
 
     #endregion
 

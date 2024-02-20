@@ -20,5 +20,9 @@ public class PersonAttachmentConfiguration : IEntityTypeConfiguration<PersonAtta
             .WithMany(a => a.PersonAttachments)
             .HasForeignKey(pa => pa.AttachmentId)
             .OnDelete(DeleteBehavior.Cascade);
+        
+        builder.Property(pa => pa.ExtensionType)
+            .IsRequired()
+            .HasConversion<int>();
     }
 }

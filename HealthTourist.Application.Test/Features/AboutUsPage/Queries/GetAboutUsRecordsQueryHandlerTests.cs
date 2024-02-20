@@ -12,7 +12,7 @@ namespace HealthTourist.Application.Test.Features.AboutUsPage.Queries;
 public class GetAboutUsRecordsQueryHandlerTests
 {
     private readonly Mock<IAboutUsRepository> _mockRepo;
-    private readonly IMapperBase _mapper;
+    private readonly IMapper _mapper;
     private readonly Mock<IAppLogger<GetAboutUsRecordsQueryHandler>> _mockAppLogger;
 
     public GetAboutUsRecordsQueryHandlerTests()

@@ -7,7 +7,7 @@ using MediatR;
 namespace HealthTourist.Application.Features.AboutUsPage.Queries.GetAboutUsRecordDetails;
 
 public class
-    GetAboutUsRecordDetailsQueryHandler(IAboutUsRepository aboutUsRepository, IMapperBase mapper)
+    GetAboutUsRecordDetailsQueryHandler(IAboutUsRepository aboutUsRepository, IMapper mapper)
     : IRequestHandler<GetAboutUsRecordDetailsQuery, GetAboutUsRecordDetailsDto>
 {
     #region Handler

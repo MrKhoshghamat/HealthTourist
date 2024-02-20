@@ -1,4 +1,5 @@
 using HealthTourist.Application;
+using HealthTourist.Infrastructure;
 using HealthTourist.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,8 +9,17 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddApplicationServices();
 builder.Services.AddPersistenceServices(builder.Configuration);
+builder.Services.AddInfrastructureServices();
+builder.Services.AddApplicationServices();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("all", policyBuilder => policyBuilder
+        .AllowAnyOrigin()
+        .AllowAnyHeader()
+        .AllowAnyMethod());
+});
 
 var app = builder.Build();
 

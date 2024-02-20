@@ -7,7 +7,7 @@ using MediatR;
 
 namespace HealthTourist.Application.Features.AboutUsPage.Commands.CreateAboutUs;
 
-public class CreateAboutUsCommandHandler(IAboutUsRepository aboutUsRepository, IMapperBase mapper)
+public class CreateAboutUsCommandHandler(IAboutUsRepository aboutUsRepository, IMapper mapper)
     : IRequestHandler<CreateAboutUsCommand, int>
 {
     #region Handler

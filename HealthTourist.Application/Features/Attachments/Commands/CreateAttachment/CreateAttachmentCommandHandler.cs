@@ -7,7 +7,7 @@ using MediatR;
 
 namespace HealthTourist.Application.Features.Attachments.Commands.CreateAttachment;
 
-public class CreateAttachmentCommandHandler(IAttachmentRepository attachmentRepository, IMapperBase mapper)
+public class CreateAttachmentCommandHandler(IAttachmentRepository attachmentRepository, IMapper mapper)
     : IRequestHandler<CreateAttachmentCommand, Guid>
 {
     #region Handler

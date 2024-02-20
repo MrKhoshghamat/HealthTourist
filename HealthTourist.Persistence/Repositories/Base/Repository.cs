@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HealthTourist.Persistence.Repositories.Base;
 
-public partial class Repository<TEntity, TPrimaryKey> (DbContext context, IAppLogger<TEntity> logger) 
+public partial class Repository<TEntity, TPrimaryKey> (HealthTouristDbContext context, IAppLogger<TEntity> logger) 
     : IRepository<TEntity, TPrimaryKey>
     where TEntity : BaseEntity<TPrimaryKey>
 {

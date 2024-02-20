@@ -14,7 +14,7 @@ public class CreateAboutUsAttachmentCommandHandler(
     IAboutUsAttachmentRepository aboutUsAttachmentRepository,
     IAboutUsRepository aboutUsRepository,
     IAttachmentRepository attachmentRepository,
-    IMapperBase mapper)
+    IMapper mapper)
     : IRequestHandler<CreateAboutUsAttachmentCommand, Unit>
 {
     #region Handler

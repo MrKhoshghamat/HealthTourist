@@ -2,12 +2,13 @@ using System.Data;
 using HealthTourist.Application.Contracts.Attachments;
 using HealthTourist.Application.Contracts.Logging;
 using HealthTourist.Domain.Common;
+using HealthTourist.Persistence.DatabaseContexts;
 using HealthTourist.Persistence.Repositories.Base;
 using Microsoft.EntityFrameworkCore;
 
 namespace HealthTourist.Persistence.Repositories.Attachments;
 
-public class AttachmentRepository(DbContext context, IAppLogger<Attachment> logger) 
+public class AttachmentRepository(HealthTouristDbContext context, IAppLogger<Attachment> logger) 
     : Repository<Attachment, Guid>(context, logger), IAttachmentRepository
 {
     public async Task<Guid> CreateAttachmentAndGetIdAsync(Attachment attachment)

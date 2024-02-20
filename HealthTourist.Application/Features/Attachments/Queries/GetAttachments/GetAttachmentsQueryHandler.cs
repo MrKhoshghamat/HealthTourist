@@ -6,7 +6,7 @@ using MediatR;
 
 namespace HealthTourist.Application.Features.Attachments.Queries.GetAttachments;
 
-public class GetAttachmentsQueryHandler(IAttachmentRepository attachmentRepository, IMapperBase mapper)
+public class GetAttachmentsQueryHandler(IAttachmentRepository attachmentRepository, IMapper mapper)
     : IRequestHandler<GetAttachmentsQuery, List<GetAttachmentsDto>>
 {
     #region Handler

@@ -10,12 +10,12 @@ public class PersonAttachment
     /// <summary>
     /// Person Id
     /// </summary>
-    public int PersonId { get; set; }
+    public long PersonId { get; set; }
     
     /// <summary>
     /// Attachment Id
     /// </summary>
-    public long AttachmentId { get; set; }
+    public Guid AttachmentId { get; set; }
 
     /// <summary>
     /// File Type Extension

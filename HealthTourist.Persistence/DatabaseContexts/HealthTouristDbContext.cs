@@ -3,12 +3,16 @@ using HealthTourist.Domain.Account;
 using HealthTourist.Domain.Common;
 using HealthTourist.Domain.Persistence;
 using Microsoft.EntityFrameworkCore;
-using Attachment = System.Net.Mail.Attachment;
 
 namespace HealthTourist.Persistence.DatabaseContexts;
 
-public class HealthTouristDbContext(DbContextOptions<HealthTouristDbContext> options) : DbContext(options)
+public class HealthTouristDbContext : DbContext
 {
+    public HealthTouristDbContext(DbContextOptions<HealthTouristDbContext> options) : base(options)
+    {
+        
+    }
+    
     #region Dbsets
 
     public DbSet<AboutUs> AboutUsDbset { get; set; }

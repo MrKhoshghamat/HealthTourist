@@ -9,7 +9,7 @@ namespace HealthTourist.Application.Features.AboutUsAttachments.Commands.DeleteA
 
 public class DeleteAboutUsAttachmentCommandHandler(
     IAboutUsAttachmentRepository aboutUsAttachmentRepository,
-    IMapperBase mapper) 
+    IMapper mapper) 
     : IRequestHandler<DeleteAboutUsAttachmentCommand, Unit>
 {
     #region Handler

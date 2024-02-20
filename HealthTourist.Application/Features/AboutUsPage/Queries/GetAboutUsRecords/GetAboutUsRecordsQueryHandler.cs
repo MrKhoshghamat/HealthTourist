@@ -10,7 +10,7 @@ namespace HealthTourist.Application.Features.AboutUsPage.Queries.GetAboutUsRecor
 
 public class GetAboutUsRecordsQueryHandler(
     IAboutUsRepository aboutUsRepository,
-    IMapperBase mapper,
+    IMapper mapper,
     IAppLogger<GetAboutUsRecordsQueryHandler> logger)
     : IRequestHandler<GetAboutUsRecordsQuery, List<GetAboutUsRecordsDto>>
 {
