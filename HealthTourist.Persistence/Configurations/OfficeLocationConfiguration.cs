@@ -1,3 +1,4 @@
+using HealthTourist.Common.Constants.OfficeLocations;
 using HealthTourist.Domain.AboutUsPage;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -8,6 +9,9 @@ public class OfficeLocationConfiguration : IEntityTypeConfiguration<OfficeLocati
 {
     public void Configure(EntityTypeBuilder<OfficeLocation> builder)
     {
+        builder.ToTable(OfficeLocationConfigurationConstants.TableName,
+            OfficeLocationConfigurationConstants.SchemaName);
+        
         builder.HasKey(ol => new { ol.OfficeId, ol.LocationId });
 
         builder.HasOne(ol => ol.Office)

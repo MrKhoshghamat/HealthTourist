@@ -1,3 +1,5 @@
+using HealthTourist.Common.Constants.PersonAttachments;
+using HealthTourist.Common.Constants.Persons;
 using HealthTourist.Domain.Account;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -8,6 +10,9 @@ public class PersonAttachmentConfiguration : IEntityTypeConfiguration<PersonAtta
 {
     public void Configure(EntityTypeBuilder<PersonAttachment> builder)
     {
+        builder.ToTable(PersonAttachmentConfigurationConstants.TableName,
+            PersonAttachmentConfigurationConstants.SchemaName);
+
         builder.HasKey(pa => new { pa.PersonId, pa.AttachmentId });
         builder.Property(pa => pa.ExtensionType).IsRequired();
 
@@ -20,7 +25,7 @@ public class PersonAttachmentConfiguration : IEntityTypeConfiguration<PersonAtta
             .WithMany(a => a.PersonAttachments)
             .HasForeignKey(pa => pa.AttachmentId)
             .OnDelete(DeleteBehavior.Cascade);
-        
+
         builder.Property(pa => pa.ExtensionType)
             .IsRequired()
             .HasConversion<int>();

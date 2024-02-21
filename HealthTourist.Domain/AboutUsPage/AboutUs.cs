@@ -34,6 +34,11 @@ public class AboutUs : BaseEntity<int>
     /// About Us Attachments
     /// </summary>
     public virtual ICollection<AboutUsAttachment> AboutUsAttachments { get; set; }
+    
+    /// <summary>
+    /// About Us Offices
+    /// </summary>
+    public virtual ICollection<AboutUsOffice> AboutUsOffices { get; set; }
 
     #endregion
 }

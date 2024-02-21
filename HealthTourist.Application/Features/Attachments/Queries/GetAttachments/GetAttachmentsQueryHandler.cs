@@ -14,7 +14,7 @@ public class GetAttachmentsQueryHandler(IAttachmentRepository attachmentReposito
     public async Task<List<GetAttachmentsDto>> Handle(GetAttachmentsQuery request, CancellationToken cancellationToken)
     {
         // Fetch Attachment Records from database
-        var attachments = await attachmentRepository.GetAllAsync();
+        var attachments = await attachmentRepository.GetAllAsync(x => !x.IsDeleted);
 
         // Check fetched records for null
         if (attachments == null) throw new NotFoundException(nameof(List<Attachment>), request);

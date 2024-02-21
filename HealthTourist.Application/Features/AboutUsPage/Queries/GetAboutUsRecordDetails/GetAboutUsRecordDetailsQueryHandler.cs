@@ -16,7 +16,7 @@ public class
         CancellationToken cancellationToken)
     {
         // Fetch About Us Record Details from database
-        var aboutUsRecordDetails = await aboutUsRepository.FindAsync(request.Id);
+        var aboutUsRecordDetails = await aboutUsRepository.FindAsync(x => x.Id == request.Id && !x.IsDeleted);
 
         // Check fetched record for null
         if (aboutUsRecordDetails == null) throw new NotFoundException(nameof(AboutUs), request.Id);

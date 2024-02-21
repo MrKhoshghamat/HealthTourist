@@ -1,11 +1,13 @@
+using AutoMapper;
 using HealthTourist.Application.Contracts.AboutUsPage;
 using HealthTourist.Common.Constants.AboutUs;
 using HealthTourist.Common.Exceptions;
+using HealthTourist.Domain.AboutUsPage;
 using MediatR;
 
 namespace HealthTourist.Application.Features.AboutUsPage.Commands.UpdateAboutUs;
 
-public class UpdateAboutUsCommandHandler(IAboutUsRepository aboutUsRepository)
+public class UpdateAboutUsCommandHandler(IAboutUsRepository aboutUsRepository, IMapper mapper)
     : IRequestHandler<UpdateAboutUsCommand, Unit>
 {
     #region Handler
@@ -18,9 +20,9 @@ public class UpdateAboutUsCommandHandler(IAboutUsRepository aboutUsRepository)
         if (validationResult.Errors.Count != 0)
             throw new BadRequestException(AboutUsExceptionConstants.BadRequestExceptionMessage, validationResult);
 
-        // Fetch required data from database by Id
-        var aboutUs = await aboutUsRepository.FindAsync(request.Id);
-
+        // Map request to required data
+        var aboutUs = mapper.Map<AboutUs>(request);
+        
         // Update
         await aboutUsRepository.UpdateAsync(aboutUs);
 

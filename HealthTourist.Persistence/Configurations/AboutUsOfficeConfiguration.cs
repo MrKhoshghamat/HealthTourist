@@ -1,3 +1,4 @@
+using HealthTourist.Common.Constants.AboutUsOffices;
 using HealthTourist.Domain.AboutUsPage;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -8,15 +9,17 @@ public class AboutUsOfficeConfiguration : IEntityTypeConfiguration<AboutUsOffice
 {
     public void Configure(EntityTypeBuilder<AboutUsOffice> builder)
     {
+        builder.ToTable(AboutUsOfficeConfigurationConstants.TableName, AboutUsOfficeConfigurationConstants.SchemaName);
+        
         builder.HasKey(aoo => new { aoo.AboutUsId, aoo.OfficeId });
 
         builder.HasOne(aoo => aoo.AboutUs)
-            .WithMany()
+            .WithMany(ao=>ao.AboutUsOffices)
             .HasForeignKey(aoo => aoo.AboutUsId)
             .OnDelete(DeleteBehavior.Cascade);
 
         builder.HasOne(aoo => aoo.Office)
-            .WithMany()
+            .WithMany(ao=>ao.AboutUsOffices)
             .HasForeignKey(aoo => aoo.OfficeId)
             .OnDelete(DeleteBehavior.Cascade);
     }

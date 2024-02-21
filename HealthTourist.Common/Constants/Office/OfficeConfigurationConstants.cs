@@ -1,7 +1,10 @@
 namespace HealthTourist.Common.Constants.Office;
 
-public class OfficeConfigurationConstants
+public abstract class OfficeConfigurationConstants
 {
+    public const string SchemaName = "Main";
+    public const string TableName = "Office";
+    
     public const int NameMaxLength = 50;
     public const int TitleMaxLength = 50;
     public const int PhoneNumber1MaxLength = 13;

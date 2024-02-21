@@ -29,7 +29,7 @@ public class AttachmentRepository(HealthTouristDbContext context, IAppLogger<Att
     {
         try
         {
-            return await IsExistAsync(x => x.Id == id && x.IsDeleted);
+            return await IsExistAsync(x => x.Id == id && !x.IsDeleted);
         }
         catch (Exception e)
         {

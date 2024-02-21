@@ -20,7 +20,7 @@ public class GetAboutUsRecordsQueryHandler(
         CancellationToken cancellationToken)
     {
         // Fetch About Us All Records from database
-        var aboutUsRecords = await aboutUsRepository.GetAllAsync();
+        var aboutUsRecords = await aboutUsRepository.GetAllAsync(x => !x.IsDeleted);
 
         // Check fetched records for null
         if (aboutUsRecords == null) throw new NotFoundException(nameof(List<AboutUs>), request);
@@ -30,7 +30,7 @@ public class GetAboutUsRecordsQueryHandler(
 
         // Logging
         logger.LogInformation(AboutUsLogConstants.GetAboutUsRecordsQueryLogMessage);
-        
+
         // Return result
         return result;
     }

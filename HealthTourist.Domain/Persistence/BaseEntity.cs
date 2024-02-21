@@ -9,6 +9,6 @@ public abstract partial class BaseEntity<TPrimaryKey>
     public DateTime ModificationDateTime { get; set; }
     public string RemoverId { get; set; }
     public DateTime DeletionDateTime { get; set; }
-    public bool IsDeleted { get; set; }
-    public bool IsDisabled { get; set; }
+    public bool IsDeleted { get; set; } = false;
+    public bool IsDisabled { get; set; } = false;
 }
