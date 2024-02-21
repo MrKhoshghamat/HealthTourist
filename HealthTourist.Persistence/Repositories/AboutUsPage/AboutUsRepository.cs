@@ -28,7 +28,7 @@ public class AboutUsRepository(HealthTouristDbContext context, IAppLogger<AboutU
     {
         try
         {
-            return await IsExistAsync(x => x.Id == id && x.IsDeleted);
+            return await IsExistAsync(x => x.Id == id && !x.IsDeleted);
         }
         catch (Exception e)
         {

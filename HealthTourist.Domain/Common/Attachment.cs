@@ -1,3 +1,4 @@
+using HealthTourist.Domain.AboutUsPage;
 using HealthTourist.Domain.Account;
 using HealthTourist.Domain.Persistence;
 
@@ -25,6 +26,11 @@ public class Attachment : BaseEntity<Guid>
     /// Person Attachments
     /// </summary>
     public virtual ICollection<PersonAttachment> PersonAttachments { get; set; }
+    
+    /// <summary>
+    /// About Us Attachment
+    /// </summary>
+    public virtual ICollection<AboutUsAttachment> AboutUsAttachments { get; set; }
 
     #endregion
 }

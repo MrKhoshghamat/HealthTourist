@@ -60,5 +60,10 @@ public class Office : BaseEntity<int>
     /// </summary>
     public virtual ICollection<OfficeLocation> OfficeLocations { get; set; }
 
+    /// <summary>
+    /// About Us Offices
+    /// </summary>
+    public virtual ICollection<AboutUsOffice> AboutUsOffices { get; set; }
+
     #endregion
 }

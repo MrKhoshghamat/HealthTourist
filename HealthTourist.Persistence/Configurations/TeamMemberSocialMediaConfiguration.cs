@@ -1,3 +1,4 @@
+using HealthTourist.Common.Constants.TeamMemberSocialMedias;
 using HealthTourist.Common.Enumerations.AboutUs;
 using HealthTourist.Domain.AboutUsPage;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +10,9 @@ public class TeamMemberSocialMediaConfiguration : IEntityTypeConfiguration<TeamM
 {
     public void Configure(EntityTypeBuilder<TeamMemberSocialMedia> builder)
     {
+        builder.ToTable(TeamMemberSocialMediaConfigurationConstants.TableName,
+            TeamMemberSocialMediaConfigurationConstants.SchemaName);
+        
         builder.HasKey(tmsm => new { tmsm.TeamMemberId, tmsm.SocialMedia });
 
         builder.HasOne(tmsm => tmsm.TeamMember)

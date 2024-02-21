@@ -12,7 +12,7 @@ public class DeleteAboutUsCommandValidator : AbstractValidator<DeleteAboutUsComm
         RuleFor(x => x.Id)
             .NotNull().WithMessage(AboutUsValidationConstants.NotNullMessage)
             .NotEmpty().WithMessage(AboutUsValidationConstants.NotEmptyMessage);
-
+        var test = AboutUsAlreadyDeleted(new DeleteAboutUsCommand() { Id = 1 }, default);
         RuleFor(x => x)
             .MustAsync(AboutUsAlreadyDeleted)
             .WithMessage(AboutUsValidationConstants.AboutUsAlreadyIsDeletedMessage);

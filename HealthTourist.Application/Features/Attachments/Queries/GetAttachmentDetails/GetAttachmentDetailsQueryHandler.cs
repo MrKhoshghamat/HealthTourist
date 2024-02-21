@@ -15,7 +15,7 @@ public class GetAttachmentDetailsQueryHandler(IAttachmentRepository attachmentRe
         CancellationToken cancellationToken)
     {
         // Fetch Attachment Records from database
-        var attachmentDetails = await attachmentRepository.FindAsync(request.Id);
+        var attachmentDetails = await attachmentRepository.FindAsync(x => x.Id == request.Id && !x.IsDeleted);
 
         // Check fetched records for null
         if (attachmentDetails == null) throw new NotFoundException(nameof(Attachment), request.Id);

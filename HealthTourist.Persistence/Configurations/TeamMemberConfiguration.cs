@@ -1,3 +1,4 @@
+using HealthTourist.Common.Constants.TeamMembers;
 using HealthTourist.Domain.AboutUsPage;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -8,6 +9,8 @@ public class TeamMemberConfiguration : IEntityTypeConfiguration<TeamMember>
 {
     public void Configure(EntityTypeBuilder<TeamMember> builder)
     {
+        builder.ToTable(TeamMemberConfigurationConstants.TableName, TeamMemberConfigurationConstants.SchemaName);
+
         builder.HasKey(tm => tm.Id);
         builder.Property(tm => tm.CareerPosition).IsRequired();
         builder.Property(tm => tm.Prefix).IsRequired();
@@ -18,13 +21,23 @@ public class TeamMemberConfiguration : IEntityTypeConfiguration<TeamMember>
             .HasForeignKey<TeamMember>(tm => tm.PersonId)
             .IsRequired()
             .OnDelete(DeleteBehavior.Cascade);
-        
+
         builder.Property(tm => tm.CareerPosition)
             .IsRequired()
             .HasConversion<int>();
-        
+
         builder.Property(tm => tm.Prefix)
             .IsRequired()
             .HasConversion<int>();
+
+        builder.HasMany(tm => tm.TeamMemberStates)
+            .WithOne(tms => tms.TeamMember)
+            .HasForeignKey(tms => tms.TeamMemberId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        builder.HasMany(tm => tm.TeamMemberSocialMedias)
+            .WithOne(tmsm => tmsm.TeamMember)
+            .HasForeignKey(tmsm => tmsm.TeamMemberId)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

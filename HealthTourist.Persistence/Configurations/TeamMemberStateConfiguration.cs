@@ -1,3 +1,4 @@
+using HealthTourist.Common.Constants.TeamMemberStates;
 using HealthTourist.Domain.AboutUsPage;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -8,6 +9,9 @@ public class TeamMemberStateConfiguration : IEntityTypeConfiguration<TeamMemberS
 {
     public void Configure(EntityTypeBuilder<TeamMemberState> builder)
     {
+        builder.ToTable(TeamMemberStateConfigurationConstants.TableName,
+            TeamMemberStateConfigurationConstants.SchemaName);
+        
         // Define composite primary key
         builder.HasKey(tms => new { tms.TeamMemberId, tms.StateId });
 
@@ -19,7 +23,7 @@ public class TeamMemberStateConfiguration : IEntityTypeConfiguration<TeamMemberS
 
         // Define foreign key relationship with State
         builder.HasOne(tms => tms.State)
-            .WithMany()
+            .WithMany(s=>s.TeamMemberStates)
             .HasForeignKey(tms => tms.StateId)
             .IsRequired();
     }

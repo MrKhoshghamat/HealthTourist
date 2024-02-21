@@ -10,6 +10,12 @@ public class PersonConfiguration : IEntityTypeConfiguration<Person>
 {
     public void Configure(EntityTypeBuilder<Person> builder)
     {
+        builder.ToTable(PersonConfigurationConstants.TableName, PersonConfigurationConstants.SchemaName);
+        
+        builder.Property(x => x.CreatorId).IsRequired(false);
+        builder.Property(x => x.ModifierId).IsRequired(false);
+        builder.Property(x => x.RemoverId).IsRequired(false);
+        
         builder.HasKey(p => p.Id);
         builder.Property(p => p.NationalCode)
             .HasMaxLength(PersonConfigurationConstants.NationalCodeMaxLength);
@@ -31,6 +37,11 @@ public class PersonConfiguration : IEntityTypeConfiguration<Person>
             .WithOne(tm => tm.Person)
             .HasForeignKey<TeamMember>(tm => tm.PersonId)
             .IsRequired(false)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        builder.HasMany(p => p.PersonAttachments)
+            .WithOne(pa => pa.Person)
+            .HasForeignKey(pa => pa.PersonId)
             .OnDelete(DeleteBehavior.Cascade);
     }
 }

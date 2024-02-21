@@ -1,6 +1,6 @@
 namespace HealthTourist.Application.Features.AboutUsPage.Queries.GetAboutUsRecords;
 
-public abstract class GetAboutUsRecordsDto
+public class GetAboutUsRecordsDto
 {
     /// <summary>
     /// Title

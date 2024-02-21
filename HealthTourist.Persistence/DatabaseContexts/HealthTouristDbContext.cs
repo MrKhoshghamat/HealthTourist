@@ -10,9 +10,8 @@ public class HealthTouristDbContext : DbContext
 {
     public HealthTouristDbContext(DbContextOptions<HealthTouristDbContext> options) : base(options)
     {
-        
     }
-    
+
     #region Dbsets
 
     public DbSet<AboutUs> AboutUsDbset { get; set; }
@@ -35,38 +34,105 @@ public class HealthTouristDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(HealthTouristDbContext).Assembly);
-        
+
         base.OnModelCreating(modelBuilder);
     }
 
     public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess,
-        CancellationToken cancellationToken = new CancellationToken())
+        CancellationToken cancellationToken = default)
     {
-        foreach (var entry in base.ChangeTracker.Entries<BaseEntity<int>>()
-                     .Where(q => q.State is EntityState.Added or EntityState.Modified))
+        try
         {
-            entry.Entity.ModificationDateTime = DateTime.Now;
-
-            if (entry.State == EntityState.Added) entry.Entity.CreationDateTime = DateTime.Now;
+            SetTimestamps();
+            return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
         }
-        
-        foreach (var entry in base.ChangeTracker.Entries<BaseEntity<long>>()
-                     .Where(q => q.State is EntityState.Added or EntityState.Modified))
+        catch (Exception e)
         {
-            entry.Entity.ModificationDateTime = DateTime.Now;
-
-            if (entry.State == EntityState.Added) entry.Entity.CreationDateTime = DateTime.Now;
+            Console.WriteLine(e);
+            throw;
         }
-        
-        foreach (var entry in base.ChangeTracker.Entries<BaseEntity<Guid>>()
-                     .Where(q => q.State is EntityState.Added or EntityState.Modified))
+    }
+
+    private void SetTimestamps()
+    {
+        foreach (var entry in ChangeTracker.Entries())
         {
-            entry.Entity.ModificationDateTime = DateTime.Now;
+            switch (entry.Entity)
+            {
+                case BaseEntity<int> intEntity:
+                    switch (entry.State)
+                    {
+                        case EntityState.Added:
+                            intEntity.CreationDateTime = DateTime.UtcNow;
+                            intEntity.CreatorId = "1";
+                            break;
+                        case EntityState.Modified:
+                            intEntity.ModificationDateTime = DateTime.UtcNow;
+                            intEntity.ModifierId = "1";
+                            break;
+                        case EntityState.Deleted:
+                            intEntity.DeletionDateTime = DateTime.UtcNow;
+                            intEntity.RemoverId = "1";
+                            break;
+                        case EntityState.Detached:
+                            break;
+                        case EntityState.Unchanged:
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException();
+                    }
 
-            if (entry.State == EntityState.Added) entry.Entity.CreationDateTime = DateTime.Now;
+                    break;
+                case BaseEntity<long> longEntity:
+                    switch (entry.State)
+                    {
+                        case EntityState.Added:
+                            longEntity.CreationDateTime = DateTime.UtcNow;
+                            longEntity.CreatorId = "1";
+                            break;
+                        case EntityState.Modified:
+                            longEntity.ModificationDateTime = DateTime.UtcNow;
+                            longEntity.ModifierId = "1";
+                            break;
+                        case EntityState.Deleted:
+                            longEntity.DeletionDateTime = DateTime.UtcNow;
+                            longEntity.RemoverId = "1";
+                            break;
+                        case EntityState.Detached:
+                            break;
+                        case EntityState.Unchanged:
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException();
+                    }
+
+                    break;
+                case BaseEntity<Guid> guidEntity:
+                    switch (entry.State)
+                    {
+                        case EntityState.Added:
+                            guidEntity.CreationDateTime = DateTime.UtcNow;
+                            guidEntity.CreatorId = "1";
+                            break;
+                        case EntityState.Modified:
+                            guidEntity.ModificationDateTime = DateTime.UtcNow;
+                            guidEntity.ModifierId = "1";
+                            break;
+                        case EntityState.Deleted:
+                            guidEntity.DeletionDateTime = DateTime.UtcNow;
+                            guidEntity.RemoverId = "1";
+                            break;
+                        case EntityState.Detached:
+                            break;
+                        case EntityState.Unchanged:
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException();
+                    }
+
+                    break;
+            }
         }
-
-        return base.SaveChangesAsync(cancellationToken);
     }
 
     #endregion
