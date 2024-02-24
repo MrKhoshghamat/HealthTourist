@@ -11,4 +11,14 @@ public class GetAboutUsRecordDetailsDto
     /// Description
     /// </summary>
     public string Description { get; set; }
+    
+    /// <summary>
+    /// Team Member Id
+    /// </summary>
+    public int TeamMemberId { get; set; }
+
+    /// <summary>
+    /// Office Id
+    /// </summary>
+    public int OfficeId { get; set; }
 }

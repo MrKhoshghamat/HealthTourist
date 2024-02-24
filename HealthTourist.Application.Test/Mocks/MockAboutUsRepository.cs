@@ -15,22 +15,16 @@ public class MockAboutUsRepository
             {
                 Title = "Our Company1",
                 Description = "We are a leading company in our industry.",
-                TeamMembers = [],
-                Offices = []
             },
             new AboutUs
             {
                 Title = "Our Company2",
                 Description = "We are a leading company in our industry.",
-                TeamMembers = [],
-                Offices = []
             },
             new AboutUs
             {
                 Title = "Our Company3",
                 Description = "We are a leading company in our industry.",
-                TeamMembers = [],
-                Offices = []
             }
         };
 

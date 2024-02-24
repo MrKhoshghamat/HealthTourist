@@ -1,8 +1,9 @@
 using HealthTourist.Domain.AboutUsPage;
+using HealthTourist.Domain.Common;
 
-namespace HealthTourist.Application.Features.AboutUsPage.Queries.GetAboutUsRecords;
+namespace HealthTourist.Application.Features.AboutUsPage.Queries.GetCurrentAboutUs;
 
-public class GetAboutUsRecordsDto
+public class GetCurrentAboutUsDto
 {
     /// <summary>
     /// Title
@@ -13,14 +14,19 @@ public class GetAboutUsRecordsDto
     /// Description
     /// </summary>
     public string Description { get; set; }
-
+    
     /// <summary>
-    /// Team Members
+    /// List of Attachments
+    /// </summary>
+    public List<Attachment> Attachments { get; set; }
+    
+    /// <summary>
+    /// List of Team Members
     /// </summary>
     public List<TeamMember> TeamMembers { get; set; }
-
+    
     /// <summary>
-    /// Offices
+    /// List of Offices
     /// </summary>
     public List<Office> Offices { get; set; }
 }

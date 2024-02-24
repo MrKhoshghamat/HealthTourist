@@ -35,5 +35,11 @@ public class AboutUsConfiguration : IEntityTypeConfiguration<AboutUs>
             .HasForeignKey(auo => auo.AboutUsId)
             .IsRequired()
             .OnDelete(DeleteBehavior.Cascade);
+
+        builder.HasMany(a => a.AboutUsTeamMembers)
+            .WithOne(atm => atm.AboutUs)
+            .HasForeignKey(atm => atm.AboutUsId)
+            .IsRequired(false)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

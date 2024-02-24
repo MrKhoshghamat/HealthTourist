@@ -12,12 +12,12 @@ public class TeamMember : BaseEntity<int>
     /// Person Id
     /// </summary>
     public long PersonId { get; set; }
-    
+
     /// <summary>
     /// Career Position and Side
     /// </summary>
     public CareerPositionEnum CareerPosition { get; set; }
-    
+
     /// <summary>
     /// Career Position Prefix like Dr.
     /// </summary>
@@ -31,16 +31,21 @@ public class TeamMember : BaseEntity<int>
     /// Person
     /// </summary>
     public virtual Person Person { get; set; }
-    
+
     /// <summary>
     /// Team Member State Relation
     /// </summary>
     public virtual ICollection<TeamMemberState> TeamMemberStates { get; set; }
-    
+
     /// <summary>
     /// Team Member Social Medias Relation
     /// </summary>
     public virtual ICollection<TeamMemberSocialMedia> TeamMemberSocialMedias { get; set; }
+
+    /// <summary>
+    /// About Us Team Members
+    /// </summary>
+    public virtual ICollection<AboutUsTeamMember> AboutUsTeamMembers { get; set; }
 
     #endregion
 }
