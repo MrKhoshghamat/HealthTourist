@@ -1,4 +1,3 @@
-using AutoMapper;
 using HealthTourist.Application.Contracts.AboutUsPage;
 using HealthTourist.Application.Contracts.Attachments;
 using HealthTourist.Application.Contracts.Offices;
@@ -13,21 +12,20 @@ public class GetCurrentAboutUsQueryHandler(
     IAboutUsRepository aboutUsRepository,
     IAttachmentRepository attachmentRepository,
     ITeamMemberRepository teamMemberRepository,
-    IOfficeRepository officeRepository,
-    IMapper mapper)
+    IOfficeRepository officeRepository)
     : IRequestHandler<GetCurrentAboutUsQuery, GetCurrentAboutUsDto>
 {
     public async Task<GetCurrentAboutUsDto> Handle(GetCurrentAboutUsQuery request, CancellationToken cancellationToken)
     {
         // Fetch last About Us Record with every relations
         var currentAboutUs = await aboutUsRepository.GetCurrentAboutUs();
-        
+
         // Initial new list of Attachment model
         var attachments = new List<Attachment>();
-        
+
         // Initial new list of TeamMember model
         var teamMembers = new List<TeamMember>();
-        
+
         // Initial new list of Office model
         var offices = new List<Office>();
 
