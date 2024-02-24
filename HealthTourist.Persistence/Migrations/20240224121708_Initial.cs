@@ -25,6 +25,29 @@ namespace HealthTourist.Persistence.Migrations
                 name: "Identity");
 
             migrationBuilder.CreateTable(
+                name: "AboutUs",
+                schema: "Main",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Title = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    Description = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
+                    CreatorId = table.Column<string>(type: "text", nullable: true),
+                    CreationDateTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    ModifierId = table.Column<string>(type: "text", nullable: true),
+                    ModificationDateTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    RemoverId = table.Column<string>(type: "text", nullable: true),
+                    DeletionDateTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false),
+                    IsDisabled = table.Column<bool>(type: "boolean", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AboutUs", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Attachment",
                 schema: "dbo",
                 columns: table => new
@@ -159,33 +182,57 @@ namespace HealthTourist.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AboutUs",
-                schema: "Main",
+                name: "AboutUsAttachment",
+                schema: "Interface",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Title = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
-                    Description = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
-                    OfficeId = table.Column<int>(type: "integer", nullable: true),
-                    CreatorId = table.Column<string>(type: "text", nullable: true),
-                    CreationDateTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    ModifierId = table.Column<string>(type: "text", nullable: true),
-                    ModificationDateTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    RemoverId = table.Column<string>(type: "text", nullable: true),
-                    DeletionDateTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false),
-                    IsDisabled = table.Column<bool>(type: "boolean", nullable: false)
+                    AboutUsId = table.Column<int>(type: "integer", nullable: false),
+                    AttachmentId = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AboutUs", x => x.Id);
+                    table.PrimaryKey("PK_AboutUsAttachment", x => new { x.AboutUsId, x.AttachmentId });
                     table.ForeignKey(
-                        name: "FK_AboutUs_Office_OfficeId",
+                        name: "FK_AboutUsAttachment_AboutUs_AboutUsId",
+                        column: x => x.AboutUsId,
+                        principalSchema: "Main",
+                        principalTable: "AboutUs",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AboutUsAttachment_Attachment_AttachmentId",
+                        column: x => x.AttachmentId,
+                        principalSchema: "dbo",
+                        principalTable: "Attachment",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AboutUsOffice",
+                schema: "Interface",
+                columns: table => new
+                {
+                    AboutUsId = table.Column<int>(type: "integer", nullable: false),
+                    OfficeId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AboutUsOffice", x => new { x.AboutUsId, x.OfficeId });
+                    table.ForeignKey(
+                        name: "FK_AboutUsOffice_AboutUs_AboutUsId",
+                        column: x => x.AboutUsId,
+                        principalSchema: "Main",
+                        principalTable: "AboutUs",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AboutUsOffice_Office_OfficeId",
                         column: x => x.OfficeId,
                         principalSchema: "Main",
                         principalTable: "Office",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -277,60 +324,6 @@ namespace HealthTourist.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AboutUsAttachment",
-                schema: "Interface",
-                columns: table => new
-                {
-                    AboutUsId = table.Column<int>(type: "integer", nullable: false),
-                    AttachmentId = table.Column<Guid>(type: "uuid", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AboutUsAttachment", x => new { x.AboutUsId, x.AttachmentId });
-                    table.ForeignKey(
-                        name: "FK_AboutUsAttachment_AboutUs_AboutUsId",
-                        column: x => x.AboutUsId,
-                        principalSchema: "Main",
-                        principalTable: "AboutUs",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_AboutUsAttachment_Attachment_AttachmentId",
-                        column: x => x.AttachmentId,
-                        principalSchema: "dbo",
-                        principalTable: "Attachment",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AboutUsOffice",
-                schema: "Interface",
-                columns: table => new
-                {
-                    AboutUsId = table.Column<int>(type: "integer", nullable: false),
-                    OfficeId = table.Column<int>(type: "integer", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AboutUsOffice", x => new { x.AboutUsId, x.OfficeId });
-                    table.ForeignKey(
-                        name: "FK_AboutUsOffice_AboutUs_AboutUsId",
-                        column: x => x.AboutUsId,
-                        principalSchema: "Main",
-                        principalTable: "AboutUs",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_AboutUsOffice_Office_OfficeId",
-                        column: x => x.OfficeId,
-                        principalSchema: "Main",
-                        principalTable: "Office",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "AboutUsTeamMember",
                 schema: "Interface",
                 columns: table => new
@@ -403,12 +396,6 @@ namespace HealthTourist.Persistence.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AboutUs_OfficeId",
-                schema: "Main",
-                table: "AboutUs",
-                column: "OfficeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AboutUsAttachment_AttachmentId",
@@ -500,6 +487,10 @@ namespace HealthTourist.Persistence.Migrations
                 schema: "dbo");
 
             migrationBuilder.DropTable(
+                name: "Office",
+                schema: "Main");
+
+            migrationBuilder.DropTable(
                 name: "Attachment",
                 schema: "dbo");
 
@@ -509,10 +500,6 @@ namespace HealthTourist.Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "TeamMember",
-                schema: "Main");
-
-            migrationBuilder.DropTable(
-                name: "Office",
                 schema: "Main");
 
             migrationBuilder.DropTable(

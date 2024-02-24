@@ -26,14 +26,14 @@ public class AboutUs : BaseEntity<int>
     public virtual ICollection<AboutUsAttachment> AboutUsAttachments { get; set; }
     
     /// <summary>
-    /// About Us Offices
-    /// </summary>
-    public virtual ICollection<AboutUsOffice> AboutUsOffices { get; set; }
-
-    /// <summary>
     /// About Us Team Members
     /// </summary>
     public virtual ICollection<AboutUsTeamMember> AboutUsTeamMembers { get; set; }
+    
+    /// <summary>
+    /// About Us Offices
+    /// </summary>
+    public virtual ICollection<AboutUsOffice> AboutUsOffices { get; set; }
 
     #endregion
 }

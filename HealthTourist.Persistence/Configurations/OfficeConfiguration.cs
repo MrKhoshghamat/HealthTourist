@@ -36,7 +36,7 @@ public class OfficeConfiguration : IEntityTypeConfiguration<Office>
         builder.HasMany(o => o.AboutUsOffices)
             .WithOne(auo => auo.Office)
             .HasForeignKey(auo => auo.OfficeId)
-            .IsRequired()
+            .IsRequired(false)
             .OnDelete(DeleteBehavior.Cascade);
     }
 }

@@ -17,11 +17,13 @@ public class AboutUsAttachmentConfiguration : IEntityTypeConfiguration<AboutUsAt
         builder.HasOne(aua => aua.AboutUs)
             .WithMany(au => au.AboutUsAttachments)
             .HasForeignKey(aua => aua.AboutUsId)
+            .IsRequired(false)
             .OnDelete(DeleteBehavior.Cascade);
 
         builder.HasOne(aua => aua.Attachment)
             .WithMany(au=> au.AboutUsAttachments)
             .HasForeignKey(aua => aua.AttachmentId)
+            .IsRequired(false)
             .OnDelete(DeleteBehavior.Cascade);
     }
 }

@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HealthTourist.Persistence.Migrations
 {
     [DbContext(typeof(HealthTouristDbContext))]
-    [Migration("20240224072206_Initial")]
+    [Migration("20240224121708_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -59,9 +59,6 @@ namespace HealthTourist.Persistence.Migrations
                     b.Property<string>("ModifierId")
                         .HasColumnType("text");
 
-                    b.Property<int?>("OfficeId")
-                        .HasColumnType("integer");
-
                     b.Property<string>("RemoverId")
                         .HasColumnType("text");
 
@@ -71,8 +68,6 @@ namespace HealthTourist.Persistence.Migrations
                         .HasColumnType("character varying(50)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("OfficeId");
 
                     b.ToTable("AboutUs", "Main");
                 });
@@ -536,26 +531,17 @@ namespace HealthTourist.Persistence.Migrations
                     b.ToTable("State", "dbo");
                 });
 
-            modelBuilder.Entity("HealthTourist.Domain.AboutUsPage.AboutUs", b =>
-                {
-                    b.HasOne("HealthTourist.Domain.AboutUsPage.Office", null)
-                        .WithMany("AboutUsCollection")
-                        .HasForeignKey("OfficeId");
-                });
-
             modelBuilder.Entity("HealthTourist.Domain.AboutUsPage.AboutUsAttachment", b =>
                 {
                     b.HasOne("HealthTourist.Domain.AboutUsPage.AboutUs", "AboutUs")
                         .WithMany("AboutUsAttachments")
                         .HasForeignKey("AboutUsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("HealthTourist.Domain.Common.Attachment", "Attachment")
                         .WithMany("AboutUsAttachments")
                         .HasForeignKey("AttachmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("AboutUs");
 
@@ -567,14 +553,12 @@ namespace HealthTourist.Persistence.Migrations
                     b.HasOne("HealthTourist.Domain.AboutUsPage.AboutUs", "AboutUs")
                         .WithMany("AboutUsOffices")
                         .HasForeignKey("AboutUsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("HealthTourist.Domain.AboutUsPage.Office", "Office")
                         .WithMany("AboutUsOffices")
                         .HasForeignKey("OfficeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("AboutUs");
 
@@ -698,8 +682,6 @@ namespace HealthTourist.Persistence.Migrations
 
             modelBuilder.Entity("HealthTourist.Domain.AboutUsPage.Office", b =>
                 {
-                    b.Navigation("AboutUsCollection");
-
                     b.Navigation("AboutUsOffices");
 
                     b.Navigation("OfficeLocations");
