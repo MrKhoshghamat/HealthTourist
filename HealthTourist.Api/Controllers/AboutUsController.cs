@@ -3,6 +3,7 @@ using HealthTourist.Application.Features.AboutUsPage.Commands.DeleteAboutUs;
 using HealthTourist.Application.Features.AboutUsPage.Commands.UpdateAboutUs;
 using HealthTourist.Application.Features.AboutUsPage.Queries.GetAboutUsRecordDetails;
 using HealthTourist.Application.Features.AboutUsPage.Queries.GetAboutUsRecords;
+using HealthTourist.Application.Features.AboutUsPage.Queries.GetCurrentAboutUs;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,9 +14,9 @@ namespace HealthTourist.Api.Controllers
     {
         // GET: api/<AboutUsController>
         [HttpGet]
-        public async Task<ActionResult<List<GetAboutUsRecordsDto>>> Get()
+        public async Task<ActionResult<GetCurrentAboutUsDto>> Get()
         {
-            var aboutUsRecords = await mediator.Send(new GetAboutUsRecordsQuery());
+            var aboutUsRecords = await mediator.Send(new GetCurrentAboutUsQuery());
             return aboutUsRecords;
         }
 

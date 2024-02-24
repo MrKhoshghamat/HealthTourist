@@ -15,16 +15,6 @@ public class AboutUs : BaseEntity<int>
     /// Description
     /// </summary>
     public string Description { get; set; }
-    
-    /// <summary>
-    /// List Of Team Members
-    /// </summary>
-    public List<TeamMember> TeamMembers { get; set; }
-    
-    /// <summary>
-    /// List Of Offices
-    /// </summary>
-    public List<Office> Offices { get; set; }
 
     #endregion
 
@@ -39,6 +29,11 @@ public class AboutUs : BaseEntity<int>
     /// About Us Offices
     /// </summary>
     public virtual ICollection<AboutUsOffice> AboutUsOffices { get; set; }
+
+    /// <summary>
+    /// About Us Team Members
+    /// </summary>
+    public virtual ICollection<AboutUsTeamMember> AboutUsTeamMembers { get; set; }
 
     #endregion
 }
