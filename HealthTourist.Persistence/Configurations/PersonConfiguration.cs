@@ -1,6 +1,7 @@
 using HealthTourist.Common.Constants.Persons;
 using HealthTourist.Domain.AboutUsPage;
 using HealthTourist.Domain.Account;
+using HealthTourist.Domain.Department;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -43,5 +44,14 @@ public class PersonConfiguration : IEntityTypeConfiguration<Person>
             .WithOne(pa => pa.Person)
             .HasForeignKey(pa => pa.PersonId)
             .OnDelete(DeleteBehavior.Cascade);
+
+        builder.HasOne(p => p.Patient)
+            .WithOne(pa => pa.Person)
+            .HasForeignKey<Patient>(pa => pa.PersonId)
+            .OnDelete(DeleteBehavior.Cascade);
+        
+        builder.Property(p=>p.Gender)
+            .IsRequired()
+            .HasConversion<byte>();
     }
 }

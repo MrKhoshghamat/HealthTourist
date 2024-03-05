@@ -1,14 +1,9 @@
 using HealthTourist.Common.Enumerations.Common;
-using HealthTourist.Domain.AboutUsPage;
-using HealthTourist.Domain.Department;
-using HealthTourist.Domain.Persistence;
 
-namespace HealthTourist.Domain.Account;
+namespace HealthTourist.Application.Features.Triage.Queries.GetPatients;
 
-public class Person : BaseEntity<long>
+public class GetPatientsDto
 {
-    #region Properties
-
     /// <summary>
     /// National Code 
     /// </summary>
@@ -49,24 +44,18 @@ public class Person : BaseEntity<long>
     /// </summary>
     public string Address { get; set; }
 
-    #endregion
-
-    #region Relations
-
     /// <summary>
-    /// Person Attachments
+    /// Height
     /// </summary>
-    public virtual ICollection<PersonAttachment> PersonAttachments { get; set; }
+    public string Height { get; set; }
     
     /// <summary>
-    /// Team Member
+    /// Weight
     /// </summary>
-    public virtual TeamMember TeamMember { get; set; }
-
+    public string Weight { get; set; }
+    
     /// <summary>
-    /// Patient
+    /// Description in Triage Form
     /// </summary>
-    public virtual Patient Patient { get; set; }
-
-    #endregion
+    public string Description { get; set; }
 }

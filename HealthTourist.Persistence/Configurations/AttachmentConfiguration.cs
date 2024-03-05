@@ -27,8 +27,13 @@ public class AttachmentConfiguration : IEntityTypeConfiguration<Attachment>
             .OnDelete(DeleteBehavior.Cascade);
         
         builder.HasMany(a => a.AboutUsAttachments)
-            .WithOne(pa => pa.Attachment)
+            .WithOne(aa => aa.Attachment)
             .HasForeignKey(pa => pa.AttachmentId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        builder.HasMany(a => a.PatientAttachments)
+            .WithOne(paa => paa.Attachment)
+            .HasForeignKey(paa => paa.AttachmentId)
             .OnDelete(DeleteBehavior.Cascade);
     }
 }

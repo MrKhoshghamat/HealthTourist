@@ -1,6 +1,7 @@
 using HealthTourist.Domain.AboutUsPage;
 using HealthTourist.Domain.Account;
 using HealthTourist.Domain.Common;
+using HealthTourist.Domain.Department;
 using HealthTourist.Domain.Persistence;
 using Microsoft.EntityFrameworkCore;
 
@@ -26,6 +27,8 @@ public class HealthTouristDbContext : DbContext
     public DbSet<PersonAttachment> PersonAttachments { get; set; }
     public DbSet<Location> Locations { get; set; }
     public DbSet<State> States { get; set; }
+    public DbSet<Patient?> Patients { get; set; }
+    public DbSet<PatientAttachment> PatientAttachments { get; set; }
 
     #endregion
 

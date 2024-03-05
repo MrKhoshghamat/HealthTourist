@@ -47,7 +47,7 @@ public class GetCurrentAboutUsQueryHandler(
             offices.Add(await officeRepository.FindAsync(office.OfficeId));
         }
 
-        // Flat required result with datas
+        // Flat required result with data
         var getCurrentAboutUsDto = new GetCurrentAboutUsDto()
         {
             Title = currentAboutUs.Title,

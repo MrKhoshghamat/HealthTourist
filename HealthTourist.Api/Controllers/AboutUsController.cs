@@ -11,7 +11,11 @@ namespace HealthTourist.Api.Controllers
     [ApiController]
     public class AboutUsController(IMediator mediator) : BaseController
     {
-        // GET: api/<AboutUsController>
+        /// <summary>
+        /// Get
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="BadHttpRequestException"></exception>
         [HttpGet]
         public async Task<ActionResult<GetCurrentAboutUsDto>> Get()
         {
