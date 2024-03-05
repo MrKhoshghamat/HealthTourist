@@ -134,6 +134,7 @@ namespace HealthTourist.Persistence.Migrations
                     FirstName = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
                     LastName = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
                     BirthDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Gender = table.Column<byte>(type: "smallint", nullable: false),
                     PhoneNumber = table.Column<string>(type: "character varying(13)", maxLength: 13, nullable: false),
                     Email = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                     Address = table.Column<string>(type: "text", nullable: true),
@@ -265,6 +266,38 @@ namespace HealthTourist.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Patient",
+                schema: "Main",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    PersonId = table.Column<long>(type: "bigint", nullable: false),
+                    Height = table.Column<string>(type: "character varying(3)", maxLength: 3, nullable: false),
+                    Weight = table.Column<string>(type: "character varying(3)", maxLength: 3, nullable: false),
+                    Description = table.Column<string>(type: "text", nullable: false),
+                    CreatorId = table.Column<string>(type: "text", nullable: false),
+                    CreationDateTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    ModifierId = table.Column<string>(type: "text", nullable: false),
+                    ModificationDateTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    RemoverId = table.Column<string>(type: "text", nullable: false),
+                    DeletionDateTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false),
+                    IsDisabled = table.Column<bool>(type: "boolean", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Patient", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Patient_Person_PersonId",
+                        column: x => x.PersonId,
+                        principalSchema: "Identity",
+                        principalTable: "Person",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "PersonAttachment",
                 schema: "Interface",
                 columns: table => new
@@ -319,6 +352,33 @@ namespace HealthTourist.Persistence.Migrations
                         column: x => x.PersonId,
                         principalSchema: "Identity",
                         principalTable: "Person",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PatientAttachment",
+                schema: "Interface",
+                columns: table => new
+                {
+                    PatientId = table.Column<long>(type: "bigint", nullable: false),
+                    AttachmentId = table.Column<Guid>(type: "uuid", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PatientAttachment", x => new { x.PatientId, x.AttachmentId });
+                    table.ForeignKey(
+                        name: "FK_PatientAttachment_Attachment_AttachmentId",
+                        column: x => x.AttachmentId,
+                        principalSchema: "dbo",
+                        principalTable: "Attachment",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PatientAttachment_Patient_PatientId",
+                        column: x => x.PatientId,
+                        principalSchema: "Main",
+                        principalTable: "Patient",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -422,6 +482,19 @@ namespace HealthTourist.Persistence.Migrations
                 column: "LocationId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Patient_PersonId",
+                schema: "Main",
+                table: "Patient",
+                column: "PersonId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PatientAttachment_AttachmentId",
+                schema: "Interface",
+                table: "PatientAttachment",
+                column: "AttachmentId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_PersonAttachment_AttachmentId",
                 schema: "Interface",
                 table: "PersonAttachment",
@@ -467,6 +540,10 @@ namespace HealthTourist.Persistence.Migrations
                 schema: "Interface");
 
             migrationBuilder.DropTable(
+                name: "PatientAttachment",
+                schema: "Interface");
+
+            migrationBuilder.DropTable(
                 name: "PersonAttachment",
                 schema: "Interface");
 
@@ -488,6 +565,10 @@ namespace HealthTourist.Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "Office",
+                schema: "Main");
+
+            migrationBuilder.DropTable(
+                name: "Patient",
                 schema: "Main");
 
             migrationBuilder.DropTable(

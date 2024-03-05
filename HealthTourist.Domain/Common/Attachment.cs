@@ -1,5 +1,7 @@
+using System.Collections;
 using HealthTourist.Domain.AboutUsPage;
 using HealthTourist.Domain.Account;
+using HealthTourist.Domain.Department;
 using HealthTourist.Domain.Persistence;
 
 namespace HealthTourist.Domain.Common;
@@ -31,6 +33,11 @@ public class Attachment : BaseEntity<Guid>
     /// About Us Attachment
     /// </summary>
     public virtual ICollection<AboutUsAttachment> AboutUsAttachments { get; set; }
+
+    /// <summary>
+    /// Patient Attachments
+    /// </summary>
+    public virtual ICollection<PatientAttachment> PatientAttachments { get; set; }
 
     #endregion
 }

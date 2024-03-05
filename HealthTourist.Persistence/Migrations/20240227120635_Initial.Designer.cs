@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HealthTourist.Persistence.Migrations
 {
     [DbContext(typeof(HealthTouristDbContext))]
-    [Migration("20240224121708_Initial")]
+    [Migration("20240227120635_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -333,6 +333,9 @@ namespace HealthTourist.Persistence.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
 
+                    b.Property<byte>("Gender")
+                        .HasColumnType("smallint");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
 
@@ -531,6 +534,81 @@ namespace HealthTourist.Persistence.Migrations
                     b.ToTable("State", "dbo");
                 });
 
+            modelBuilder.Entity("HealthTourist.Domain.Department.Patient", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTime>("CreationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CreatorId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("DeletionDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Height")
+                        .IsRequired()
+                        .HasMaxLength(3)
+                        .HasColumnType("character varying(3)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsDisabled")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("ModificationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("ModifierId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<long>("PersonId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("RemoverId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Weight")
+                        .IsRequired()
+                        .HasMaxLength(3)
+                        .HasColumnType("character varying(3)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PersonId")
+                        .IsUnique();
+
+                    b.ToTable("Patient", "Main");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Department.PatientAttachment", b =>
+                {
+                    b.Property<long>("PatientId")
+                        .HasColumnType("bigint");
+
+                    b.Property<Guid>("AttachmentId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("PatientId", "AttachmentId");
+
+                    b.HasIndex("AttachmentId");
+
+                    b.ToTable("PatientAttachment", "Interface");
+                });
+
             modelBuilder.Entity("HealthTourist.Domain.AboutUsPage.AboutUsAttachment", b =>
                 {
                     b.HasOne("HealthTourist.Domain.AboutUsPage.AboutUs", "AboutUs")
@@ -671,6 +749,36 @@ namespace HealthTourist.Persistence.Migrations
                     b.Navigation("Parent");
                 });
 
+            modelBuilder.Entity("HealthTourist.Domain.Department.Patient", b =>
+                {
+                    b.HasOne("HealthTourist.Domain.Account.Person", "Person")
+                        .WithOne("Patient")
+                        .HasForeignKey("HealthTourist.Domain.Department.Patient", "PersonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Person");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Department.PatientAttachment", b =>
+                {
+                    b.HasOne("HealthTourist.Domain.Common.Attachment", "Attachment")
+                        .WithMany("PatientAttachments")
+                        .HasForeignKey("AttachmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HealthTourist.Domain.Department.Patient", "Patient")
+                        .WithMany("PatientAttachments")
+                        .HasForeignKey("PatientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Attachment");
+
+                    b.Navigation("Patient");
+                });
+
             modelBuilder.Entity("HealthTourist.Domain.AboutUsPage.AboutUs", b =>
                 {
                     b.Navigation("AboutUsAttachments");
@@ -698,6 +806,9 @@ namespace HealthTourist.Persistence.Migrations
 
             modelBuilder.Entity("HealthTourist.Domain.Account.Person", b =>
                 {
+                    b.Navigation("Patient")
+                        .IsRequired();
+
                     b.Navigation("PersonAttachments");
 
                     b.Navigation("TeamMember")
@@ -707,6 +818,8 @@ namespace HealthTourist.Persistence.Migrations
             modelBuilder.Entity("HealthTourist.Domain.Common.Attachment", b =>
                 {
                     b.Navigation("AboutUsAttachments");
+
+                    b.Navigation("PatientAttachments");
 
                     b.Navigation("PersonAttachments");
                 });
@@ -719,6 +832,11 @@ namespace HealthTourist.Persistence.Migrations
             modelBuilder.Entity("HealthTourist.Domain.Common.State", b =>
                 {
                     b.Navigation("TeamMemberStates");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Department.Patient", b =>
+                {
+                    b.Navigation("PatientAttachments");
                 });
 #pragma warning restore 612, 618
         }
