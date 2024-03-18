@@ -1,6 +1,6 @@
 using HealthTourist.Application.Contracts.Logging;
 using HealthTourist.Application.Contracts.Offices;
-using HealthTourist.Domain.AboutUsPage;
+using HealthTourist.Domain;
 using HealthTourist.Persistence.DatabaseContexts;
 using HealthTourist.Persistence.Repositories.Base;
 

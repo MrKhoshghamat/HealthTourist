@@ -11,6 +11,11 @@ namespace HealthTourist.Api.Controllers
     [ApiController]
     public class TriageController(IMediator mediator) : BaseController
     {
+        /// <summary>
+        /// Get Patients List
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="BadHttpRequestException"></exception>
         [HttpGet]
         public async Task<ActionResult<List<GetPatientsDto>>> Get()
         {
@@ -18,6 +23,11 @@ namespace HealthTourist.Api.Controllers
             return patients ?? throw new BadHttpRequestException("Not Found");
         }
 
+        /// <summary>
+        /// Get Patient Detail by Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<GetPatientDetailsDto>> Get(long id)
         {
@@ -25,6 +35,11 @@ namespace HealthTourist.Api.Controllers
             return patient;
         }
 
+        /// <summary>
+        /// Post Patient Information through Triage form
+        /// </summary>
+        /// <param name="patient"></param>
+        /// <returns></returns>
         [HttpPost]
         [ProducesResponseType(201)]
         [ProducesResponseType(400)]
@@ -34,6 +49,11 @@ namespace HealthTourist.Api.Controllers
             return CreatedAtAction(nameof(Get), new { id = response });
         }
 
+        /// <summary>
+        /// Put or Edit Patient Information through Triage form
+        /// </summary>
+        /// <param name="patient"></param>
+        /// <returns></returns>
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(400)]
@@ -45,6 +65,11 @@ namespace HealthTourist.Api.Controllers
             return CreatedAtAction(nameof(Get), response);
         }
 
+        /// <summary>
+        /// Delete Patient Information
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

@@ -1,4 +1,4 @@
-using HealthTourist.Domain.AboutUsPage;
+using HealthTourist.Domain;
 
 namespace HealthTourist.Application.Features.AboutUsPage.Queries.GetAboutUsRecords;
 

@@ -1,5 +1,5 @@
 using HealthTourist.Common.Constants.AboutUsTeamMembers;
-using HealthTourist.Domain.AboutUsPage;
+using HealthTourist.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

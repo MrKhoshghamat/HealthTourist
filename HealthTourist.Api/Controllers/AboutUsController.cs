@@ -12,7 +12,7 @@ namespace HealthTourist.Api.Controllers
     public class AboutUsController(IMediator mediator) : BaseController
     {
         /// <summary>
-        /// Get
+        /// Get AboutUs Page Info
         /// </summary>
         /// <returns></returns>
         /// <exception cref="BadHttpRequestException"></exception>
@@ -23,7 +23,11 @@ namespace HealthTourist.Api.Controllers
             return aboutUsRecords ?? throw new BadHttpRequestException("Not Found");
         }
 
-        // GET api/<AboutUsController>/5
+        /// <summary>
+        /// Get AboutUs Details by Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<GetAboutUsRecordDetailsDto>> Get(int id)
         {
@@ -31,7 +35,11 @@ namespace HealthTourist.Api.Controllers
             return aboutUsRecordDetails;
         }
 
-        // POST api/<AboutUsController>
+        /// <summary>
+        /// Post AboutUs Information
+        /// </summary>
+        /// <param name="aboutUs"></param>
+        /// <returns></returns>
         [HttpPost]
         [ProducesResponseType(201)]
         [ProducesResponseType(400)]
@@ -41,7 +49,11 @@ namespace HealthTourist.Api.Controllers
             return CreatedAtAction(nameof(Get), new { id = response });
         }
 
-        // PUT api/<AboutUsController>/5
+        /// <summary>
+        /// Put or Edit AboutUs Information
+        /// </summary>
+        /// <param name="aboutUs"></param>
+        /// <returns></returns>
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(400)]
@@ -53,7 +65,11 @@ namespace HealthTourist.Api.Controllers
             return CreatedAtAction(nameof(Get), response);
         }
 
-        // DELETE api/<AboutUsController>/5
+        /// <summary>
+        /// Delete AboutUs Information
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

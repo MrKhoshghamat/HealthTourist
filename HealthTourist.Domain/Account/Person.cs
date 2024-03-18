@@ -1,5 +1,4 @@
 using HealthTourist.Common.Enumerations.Common;
-using HealthTourist.Domain.AboutUsPage;
 using HealthTourist.Domain.Department;
 using HealthTourist.Domain.Persistence;
 

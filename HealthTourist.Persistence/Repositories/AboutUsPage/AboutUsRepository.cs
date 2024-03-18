@@ -1,7 +1,7 @@
 using System.Data;
 using HealthTourist.Application.Contracts.AboutUsPage;
 using HealthTourist.Application.Contracts.Logging;
-using HealthTourist.Domain.AboutUsPage;
+using HealthTourist.Domain;
 using HealthTourist.Persistence.DatabaseContexts;
 using HealthTourist.Persistence.Repositories.Base;
 using Microsoft.EntityFrameworkCore;

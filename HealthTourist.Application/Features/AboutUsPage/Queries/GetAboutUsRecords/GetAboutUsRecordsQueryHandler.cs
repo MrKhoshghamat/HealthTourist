@@ -3,7 +3,7 @@ using HealthTourist.Application.Contracts.AboutUsPage;
 using HealthTourist.Application.Contracts.Logging;
 using HealthTourist.Common.Constants.AboutUs;
 using HealthTourist.Common.Exceptions;
-using HealthTourist.Domain.AboutUsPage;
+using HealthTourist.Domain;
 using MediatR;
 
 namespace HealthTourist.Application.Features.AboutUsPage.Queries.GetAboutUsRecords;

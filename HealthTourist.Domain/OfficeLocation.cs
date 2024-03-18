@@ -1,6 +1,6 @@
 using HealthTourist.Domain.Common;
 
-namespace HealthTourist.Domain.AboutUsPage;
+namespace HealthTourist.Domain;
 
 public class OfficeLocation
 {

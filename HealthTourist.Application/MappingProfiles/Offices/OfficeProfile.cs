@@ -4,7 +4,7 @@ using HealthTourist.Application.Features.Offices.Commands.DeleteOffice;
 using HealthTourist.Application.Features.Offices.Commands.UpdateOffice;
 using HealthTourist.Application.Features.Offices.Queries.GetOfficeDetails;
 using HealthTourist.Application.Features.Offices.Queries.GetOffices;
-using HealthTourist.Domain.AboutUsPage;
+using HealthTourist.Domain;
 
 namespace HealthTourist.Application.MappingProfiles.Offices;
 

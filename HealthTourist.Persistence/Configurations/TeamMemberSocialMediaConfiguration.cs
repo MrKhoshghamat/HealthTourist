@@ -1,6 +1,6 @@
 using HealthTourist.Common.Constants.TeamMemberSocialMedias;
 using HealthTourist.Common.Enumerations.AboutUs;
-using HealthTourist.Domain.AboutUsPage;
+using HealthTourist.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

@@ -1,4 +1,4 @@
-using HealthTourist.Domain.AboutUsPage;
+using HealthTourist.Domain;
 using HealthTourist.Domain.Account;
 using HealthTourist.Domain.Common;
 using HealthTourist.Domain.Department;

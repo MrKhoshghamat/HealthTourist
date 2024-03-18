@@ -4,7 +4,7 @@ using HealthTourist.Application.Features.AboutUsPage.Commands.DeleteAboutUs;
 using HealthTourist.Application.Features.AboutUsPage.Commands.UpdateAboutUs;
 using HealthTourist.Application.Features.AboutUsPage.Queries.GetAboutUsRecordDetails;
 using HealthTourist.Application.Features.AboutUsPage.Queries.GetAboutUsRecords;
-using HealthTourist.Domain.AboutUsPage;
+using HealthTourist.Domain;
 
 namespace HealthTourist.Application.MappingProfiles.AboutUsPage;
 

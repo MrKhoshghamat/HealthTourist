@@ -1,4 +1,4 @@
-namespace HealthTourist.Domain.AboutUsPage;
+namespace HealthTourist.Domain;
 
 public class AboutUsOffice
 {

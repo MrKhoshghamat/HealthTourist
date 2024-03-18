@@ -1,6 +1,6 @@
 using HealthTourist.Application.Contracts.AboutUsPage;
 using HealthTourist.Common.Enumerations.AboutUs;
-using HealthTourist.Domain.AboutUsPage;
+using HealthTourist.Domain;
 using Moq;
 
 namespace HealthTourist.Application.Test.Mocks;

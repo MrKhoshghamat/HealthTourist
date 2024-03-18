@@ -1,5 +1,5 @@
 using HealthTourist.Application.Contracts.Persistence.Base;
-using HealthTourist.Domain.AboutUsPage;
+using HealthTourist.Domain;
 
 namespace HealthTourist.Application.Contracts.AboutUsPage;
 

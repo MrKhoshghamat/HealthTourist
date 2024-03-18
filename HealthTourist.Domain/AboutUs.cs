@@ -1,6 +1,6 @@
 using HealthTourist.Domain.Persistence;
 
-namespace HealthTourist.Domain.AboutUsPage;
+namespace HealthTourist.Domain;
 
 public class AboutUs : BaseEntity<int>
 {

@@ -2,7 +2,7 @@ using HealthTourist.Common.Enumerations.AboutUs;
 using HealthTourist.Domain.Account;
 using HealthTourist.Domain.Persistence;
 
-namespace HealthTourist.Domain.AboutUsPage;
+namespace HealthTourist.Domain;
 
 public class TeamMember : BaseEntity<int>
 {

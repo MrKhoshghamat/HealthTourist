@@ -1,8 +1,6 @@
-using HealthTourist.Domain.Common;
+namespace HealthTourist.Domain;
 
-namespace HealthTourist.Domain.AboutUsPage;
-
-public class AboutUsAttachment
+public class AboutUsTeamMember
 {
     #region Properties
 
@@ -10,25 +8,25 @@ public class AboutUsAttachment
     /// About Us Id
     /// </summary>
     public int AboutUsId { get; set; }
-    
+
     /// <summary>
-    /// Attachment Id
+    /// Team Member Id
     /// </summary>
-    public Guid AttachmentId { get; set; }
+    public int TeamMemberId { get; set; }
 
     #endregion
 
     #region Relations
 
     /// <summary>
-    /// About Us 
+    /// About Us
     /// </summary>
     public virtual AboutUs AboutUs { get; set; }
     
     /// <summary>
-    /// Attachment
+    /// Team Member
     /// </summary>
-    public virtual Attachment Attachment { get; set; }
+    public virtual TeamMember TeamMember { get; set; }
 
     #endregion
 }

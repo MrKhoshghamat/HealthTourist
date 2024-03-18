@@ -1,28 +1,25 @@
-namespace HealthTourist.Domain.AboutUsPage;
+using HealthTourist.Common.Enumerations.AboutUs;
 
-public class AboutUsTeamMember
+namespace HealthTourist.Domain;
+
+public class TeamMemberSocialMedia
 {
     #region Properties
-
-    /// <summary>
-    /// About Us Id
-    /// </summary>
-    public int AboutUsId { get; set; }
 
     /// <summary>
     /// Team Member Id
     /// </summary>
     public int TeamMemberId { get; set; }
+    
+    /// <summary>
+    /// Social Media Title
+    /// </summary>
+    public SocialMediaEnum SocialMedia { get; set; }
 
     #endregion
 
     #region Relations
 
-    /// <summary>
-    /// About Us
-    /// </summary>
-    public virtual AboutUs AboutUs { get; set; }
-    
     /// <summary>
     /// Team Member
     /// </summary>

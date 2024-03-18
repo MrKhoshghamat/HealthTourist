@@ -2,7 +2,7 @@ using HealthTourist.Application.Contracts.AboutUsPage;
 using HealthTourist.Application.Contracts.Attachments;
 using HealthTourist.Application.Contracts.Offices;
 using HealthTourist.Application.Contracts.TeamMembers;
-using HealthTourist.Domain.AboutUsPage;
+using HealthTourist.Domain;
 using HealthTourist.Domain.Common;
 using MediatR;
 

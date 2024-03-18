@@ -1,5 +1,4 @@
 using System.Collections;
-using HealthTourist.Domain.AboutUsPage;
 using HealthTourist.Domain.Account;
 using HealthTourist.Domain.Department;
 using HealthTourist.Domain.Persistence;

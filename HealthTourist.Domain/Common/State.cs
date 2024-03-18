@@ -1,4 +1,3 @@
-using HealthTourist.Domain.AboutUsPage;
 using HealthTourist.Domain.Persistence;
 
 namespace HealthTourist.Domain.Common;
