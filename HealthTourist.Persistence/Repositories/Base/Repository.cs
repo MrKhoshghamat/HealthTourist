@@ -2,7 +2,7 @@ using System.Data;
 using System.Linq.Expressions;
 using HealthTourist.Application.Contracts.Logging;
 using HealthTourist.Application.Contracts.Persistence.Base;
-using HealthTourist.Domain.Persistence;
+using HealthTourist.Domain;
 using HealthTourist.Persistence.DatabaseContexts;
 using Microsoft.EntityFrameworkCore;
 

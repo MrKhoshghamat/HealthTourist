@@ -1,5 +1,5 @@
 using System.Linq.Expressions;
-using HealthTourist.Domain.Persistence;
+using HealthTourist.Domain;
 
 namespace HealthTourist.Application.Contracts.Persistence.Base;
 
