@@ -25,4 +25,8 @@
       <ProjectReference Include="..\HealthTourist.Domain\HealthTourist.Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Configurations\" />
+    </ItemGroup>
+
 </Project>

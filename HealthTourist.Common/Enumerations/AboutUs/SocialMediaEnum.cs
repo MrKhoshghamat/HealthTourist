@@ -1,4 +1,4 @@
-using HealthTourist.Common.Constants.AboutUs;
+using HealthTourist.Common.Constants.Common;
 
 namespace HealthTourist.Common.Enumerations.AboutUs;
 

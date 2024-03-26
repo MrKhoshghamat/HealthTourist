@@ -1,4 +1,4 @@
-namespace HealthTourist.Common.Constants.AboutUs;
+namespace HealthTourist.Common.Constants.Common;
 
 public abstract class SocialMediaConstants
 {

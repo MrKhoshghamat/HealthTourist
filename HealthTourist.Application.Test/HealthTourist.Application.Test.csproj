@@ -25,12 +25,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Features\AboutUsAttachments\" />
-      <Folder Include="Features\AboutUsPage\Commands\" />
-      <Folder Include="Features\Attachments\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\HealthTourist.Application\HealthTourist.Application.csproj" />
     </ItemGroup>
 
