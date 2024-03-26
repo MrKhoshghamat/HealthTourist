@@ -1,4 +1,4 @@
-namespace HealthTourist.Domain.Persistence;
+namespace HealthTourist.Domain;
 
 public abstract partial class BaseEntity<TPrimaryKey>
 {

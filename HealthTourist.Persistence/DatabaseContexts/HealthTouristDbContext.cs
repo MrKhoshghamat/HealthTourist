@@ -1,8 +1,4 @@
 using HealthTourist.Domain;
-using HealthTourist.Domain.Account;
-using HealthTourist.Domain.Common;
-using HealthTourist.Domain.Department;
-using HealthTourist.Domain.Persistence;
 using Microsoft.EntityFrameworkCore;
 
 namespace HealthTourist.Persistence.DatabaseContexts;
@@ -14,21 +10,6 @@ public class HealthTouristDbContext : DbContext
     }
 
     #region Dbsets
-
-    public DbSet<AboutUs> AboutUsDbset { get; set; }
-    public DbSet<Attachment> Attachments { get; set; }
-    public DbSet<AboutUsAttachment> AboutUsAttachments { get; set; }
-    public DbSet<Office> Offices { get; set; }
-    public DbSet<OfficeLocation> OfficeLocations { get; set; }
-    public DbSet<TeamMember> TeamMembers { get; set; }
-    public DbSet<TeamMemberSocialMedia> TeamMemberSocialMedias { get; set; }
-    public DbSet<TeamMemberState> TeamMemberStates { get; set; }
-    public DbSet<Person> Persons { get; set; }
-    public DbSet<PersonAttachment> PersonAttachments { get; set; }
-    public DbSet<Location> Locations { get; set; }
-    public DbSet<State> States { get; set; }
-    public DbSet<Patient?> Patients { get; set; }
-    public DbSet<PatientAttachment> PatientAttachments { get; set; }
 
     #endregion
 

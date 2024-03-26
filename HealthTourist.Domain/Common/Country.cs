@@ -1,6 +1,6 @@
 namespace HealthTourist.Domain.Common;
 
-public class Attachment : BaseEntity<Guid>
+public class Country : BaseEntity<int>
 {
     
 }
