@@ -1,4 +1,5 @@
 using HealthTourist.Domain.Common;
+using HealthTourist.Domain.Interface;
 
 namespace HealthTourist.Domain.Main;
 
@@ -17,6 +18,8 @@ public class Sightseen : BaseEntity<int>
     #region Relations
 
     public virtual City City { get; set; }
+    public virtual ICollection<SightseenAttachment> SightseenAttachments { get; set; }
+    public virtual ICollection<SightseenCategory> SightseenCategories { get; set; }
 
     #endregion
 }

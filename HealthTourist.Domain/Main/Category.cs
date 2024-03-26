@@ -1,3 +1,5 @@
+using HealthTourist.Domain.Interface;
+
 namespace HealthTourist.Domain.Main;
 
 public class Category : BaseEntity<int>
@@ -11,7 +13,7 @@ public class Category : BaseEntity<int>
 
     #region Relations
 
-    
+    public virtual ICollection<SightseenCategory> SightseenCategories { get; set; }
 
     #endregion
 }

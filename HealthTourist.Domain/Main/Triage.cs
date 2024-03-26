@@ -1,3 +1,5 @@
+using HealthTourist.Domain.Interface;
+
 namespace HealthTourist.Domain.Main;
 
 public class Triage : BaseEntity<Guid>
@@ -15,6 +17,7 @@ public class Triage : BaseEntity<Guid>
 
     public virtual Patient Patient { get; set; }
     public virtual Treatment Treatment { get; set; }
+    public virtual ICollection<TriageAttachment> TriageAttachments { get; set; }
 
     #endregion
 }

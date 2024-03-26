@@ -1,3 +1,5 @@
+using HealthTourist.Domain.Interface;
+
 namespace HealthTourist.Domain.Main;
 
 public class Tag : BaseEntity<int>
@@ -11,7 +13,8 @@ public class Tag : BaseEntity<int>
 
     #region Relations
 
-    
+    public virtual ICollection<HospitalTag> HospitalTags { get; set; }
+    public virtual ICollection<HotelTag> HotelTags { get; set; }
 
     #endregion
 }

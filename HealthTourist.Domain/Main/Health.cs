@@ -1,3 +1,5 @@
+using HealthTourist.Domain.Interface;
+
 namespace HealthTourist.Domain.Main;
 
 public class Health : BaseEntity<Guid>
@@ -17,6 +19,7 @@ public class Health : BaseEntity<Guid>
     public virtual Doctor Doctor { get; set; }
     public virtual ICollection<HealthCost> HealthCosts { get; set; }
     public virtual ICollection<Invoice> Invoices { get; set; }
+    public virtual ICollection<HealthAttachment> HealthAttachments { get; set; }
 
     #endregion
 }

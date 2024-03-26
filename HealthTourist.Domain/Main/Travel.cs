@@ -1,3 +1,5 @@
+using HealthTourist.Domain.Interface;
+
 namespace HealthTourist.Domain.Main;
 
 public class Travel : BaseEntity<Guid>
@@ -20,6 +22,8 @@ public class Travel : BaseEntity<Guid>
     public virtual AirLine AirLine { get; set; }
     public virtual ICollection<Invoice> Invoices { get; set; }
     public virtual ICollection<TravelCost> TravelCosts { get; set; }
+    public virtual ICollection<TravelAttachment> TravelAttachments { get; set; }
+    public virtual ICollection<TravelGuest> TravelGuests { get; set; }
 
     #endregion
 }
