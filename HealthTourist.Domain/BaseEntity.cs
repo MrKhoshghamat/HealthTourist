@@ -1,0 +1,14 @@
+namespace HealthTourist.Domain;
+
+public abstract partial class BaseEntity<TPrimaryKey>
+{
+    public TPrimaryKey Id { get; set; }
+    public string CreatorId { get; set; }
+    public DateTime CreationDateTime { get; set; }
+    public string ModifierId { get; set; }
+    public DateTime ModificationDateTime { get; set; }
+    public string RemoverId { get; set; }
+    public DateTime DeletionDateTime { get; set; }
+    public bool IsDeleted { get; set; } = false;
+    public bool IsDisabled { get; set; } = false;
+}
