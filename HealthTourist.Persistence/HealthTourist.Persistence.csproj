@@ -26,7 +26,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Configurations\" />
+      <Folder Include="Configurations\Account\" />
+      <Folder Include="Configurations\Common\" />
+      <Folder Include="Configurations\Interface\" />
     </ItemGroup>
 
 </Project>
