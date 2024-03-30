@@ -20,8 +20,8 @@ public class Hotel : BaseEntity<int>
     public string PhoneNumber3 { get; set; }
     public string Website { get; set; }
     public string Email { get; set; }
-    public string CheckInTime { get; set; }
-    public string CheckOutTime { get; set; }
+    public TimeOnly CheckInTime { get; set; }
+    public TimeOnly CheckOutTime { get; set; }
     public int NumberOfRooms { get; set; }
     public string Description { get; set; }
     public DateOnly EstablishmentDate { get; set; }

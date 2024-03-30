@@ -27,11 +27,16 @@ public class HospitalConfiguration : IEntityTypeConfiguration<Hospital>
             .HasColumnType(HospitalConfigurationConstants.NVarcharColumnType);
         builder.Property(h => h.Lat).IsRequired();
         builder.Property(h => h.Long).IsRequired();
-        builder.Property(h => h.PostalCode).HasMaxLength(HospitalConfigurationConstants.PostalCodeMaxLength);
-        builder.Property(h => h.PhoneNumber1).HasMaxLength(HospitalConfigurationConstants.PhoneNumber1MaxLength);
-        builder.Property(h => h.PhoneNumber2).HasMaxLength(HospitalConfigurationConstants.PhoneNumber2MaxLength);
-        builder.Property(h => h.PhoneNumber3).HasMaxLength(HospitalConfigurationConstants.PhoneNumber3MaxLength);
-        builder.Property(h => h.Email).HasMaxLength(HospitalConfigurationConstants.EmailMaxLength);
+        builder.Property(h => h.PostalCode).HasMaxLength(HospitalConfigurationConstants.PostalCodeMaxLength)
+            .HasColumnType(HospitalConfigurationConstants.VarcharColumnType);
+        builder.Property(h => h.PhoneNumber1).HasMaxLength(HospitalConfigurationConstants.PhoneNumber1MaxLength)
+            .HasColumnType(HospitalConfigurationConstants.VarcharColumnType);
+        builder.Property(h => h.PhoneNumber2).HasMaxLength(HospitalConfigurationConstants.PhoneNumber2MaxLength)
+            .HasColumnType(HospitalConfigurationConstants.VarcharColumnType);
+        builder.Property(h => h.PhoneNumber3).HasMaxLength(HospitalConfigurationConstants.PhoneNumber3MaxLength)
+            .HasColumnType(HospitalConfigurationConstants.VarcharColumnType);
+        builder.Property(h => h.Email).HasMaxLength(HospitalConfigurationConstants.EmailMaxLength)
+            .HasColumnType(HospitalConfigurationConstants.VarcharColumnType);
         builder.Property(h => h.NumberOfBeds).IsRequired();
         builder.Property(h => h.Description).HasMaxLength(HospitalConfigurationConstants.DescriptionMaxLength)
             .HasColumnType(HospitalConfigurationConstants.NVarcharColumnType);

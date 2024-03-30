@@ -15,7 +15,7 @@ public abstract class HospitalConfigurationConstants
     public const int PhoneNumber1MaxLength = 13;
     public const int PhoneNumber2MaxLength = 13;
     public const int PhoneNumber3MaxLength = 13;
-    public const int EmailMaxLength = 13;
+    public const int EmailMaxLength = 100;
     public const int DescriptionMaxLength = 500;
 
     public const string NameIndex = "IX_Hospital_Name";
