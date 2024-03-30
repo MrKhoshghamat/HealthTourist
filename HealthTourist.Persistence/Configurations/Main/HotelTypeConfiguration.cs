@@ -17,15 +17,13 @@ public class HotelTypeConfiguration : IEntityTypeConfiguration<HotelType>
         builder.HasKey(ht => ht.Id);
 
         // Configure properties
-        builder.Property(ht => ht.Name).IsRequired().HasMaxLength(HotelTypeConfigurationConstants.NameMaxLength)
-            .HasColumnType(HotelTypeConfigurationConstants.VarcharColumnType);
-        builder.Property(ht => ht.Title).IsRequired().HasMaxLength(HotelTypeConfigurationConstants.TitleMaxLength)
-            .HasColumnType(HotelTypeConfigurationConstants.NVarcharColumnType);
+        builder.Property(ht => ht.Name).IsRequired().HasMaxLength(HotelTypeConfigurationConstants.NameMaxLength);
+        builder.Property(ht => ht.Title).IsRequired().HasMaxLength(HotelTypeConfigurationConstants.TitleMaxLength);
 
         // Configure indexes
-        builder.HasIndex(a => a.Name).IsClustered(false).IsUnique(false)
+        builder.HasIndex(a => a.Name).IsClustered(false)
             .HasName(HotelTypeConfigurationConstants.NameIndex);
-        builder.HasIndex(a => a.Title).IsClustered(false).IsUnique(false)
+        builder.HasIndex(a => a.Title).IsClustered(false)
             .HasName(HotelTypeConfigurationConstants.TitleIndex);
 
         // Configure relationships

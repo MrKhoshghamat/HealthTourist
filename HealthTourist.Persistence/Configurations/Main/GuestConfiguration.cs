@@ -20,8 +20,8 @@ public class GuestConfiguration : IEntityTypeConfiguration<Guest>
 
         // Configure relationships
         builder.HasOne(g => g.Person)
-            .WithMany()
-            .HasForeignKey(g => g.PersonId);
+            .WithOne(p=>p.Guest)
+            .HasForeignKey<Guest>(g => g.PersonId);
 
         builder.HasMany(g => g.TravelGuests)
             .WithOne(tg => tg.Guest)

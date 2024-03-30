@@ -18,42 +18,33 @@ public class HospitalConfiguration : IEntityTypeConfiguration<Hospital>
 
         // Configure properties
         builder.Property(h => h.HospitalTypeId).IsRequired();
-        builder.Property(h => h.Name).IsRequired().HasMaxLength(HospitalConfigurationConstants.NameMaxLength)
-            .HasColumnType(HospitalConfigurationConstants.VarcharColumnType);
-        builder.Property(h => h.Title).IsRequired().HasMaxLength(HospitalConfigurationConstants.TitleMaxLength)
-            .HasColumnType(HospitalConfigurationConstants.NVarcharColumnType);
+        builder.Property(h => h.Name).IsRequired().HasMaxLength(HospitalConfigurationConstants.NameMaxLength);
+        builder.Property(h => h.Title).IsRequired().HasMaxLength(HospitalConfigurationConstants.TitleMaxLength);
         builder.Property(h => h.CityId).IsRequired();
-        builder.Property(h => h.Address).IsRequired().HasMaxLength(HospitalConfigurationConstants.AddressMaxLength)
-            .HasColumnType(HospitalConfigurationConstants.NVarcharColumnType);
+        builder.Property(h => h.Address).IsRequired().HasMaxLength(HospitalConfigurationConstants.AddressMaxLength);
         builder.Property(h => h.Lat).IsRequired();
         builder.Property(h => h.Long).IsRequired();
-        builder.Property(h => h.PostalCode).HasMaxLength(HospitalConfigurationConstants.PostalCodeMaxLength)
-            .HasColumnType(HospitalConfigurationConstants.VarcharColumnType);
-        builder.Property(h => h.PhoneNumber1).HasMaxLength(HospitalConfigurationConstants.PhoneNumber1MaxLength)
-            .HasColumnType(HospitalConfigurationConstants.VarcharColumnType);
-        builder.Property(h => h.PhoneNumber2).HasMaxLength(HospitalConfigurationConstants.PhoneNumber2MaxLength)
-            .HasColumnType(HospitalConfigurationConstants.VarcharColumnType);
-        builder.Property(h => h.PhoneNumber3).HasMaxLength(HospitalConfigurationConstants.PhoneNumber3MaxLength)
-            .HasColumnType(HospitalConfigurationConstants.VarcharColumnType);
-        builder.Property(h => h.Email).HasMaxLength(HospitalConfigurationConstants.EmailMaxLength)
-            .HasColumnType(HospitalConfigurationConstants.VarcharColumnType);
+        builder.Property(h => h.PostalCode).HasMaxLength(HospitalConfigurationConstants.PostalCodeMaxLength);
+        builder.Property(h => h.PhoneNumber1).HasMaxLength(HospitalConfigurationConstants.PhoneNumber1MaxLength);
+        builder.Property(h => h.PhoneNumber2).HasMaxLength(HospitalConfigurationConstants.PhoneNumber2MaxLength);
+        builder.Property(h => h.PhoneNumber3).HasMaxLength(HospitalConfigurationConstants.PhoneNumber3MaxLength);
+        builder.Property(h => h.Email).HasMaxLength(HospitalConfigurationConstants.EmailMaxLength);
         builder.Property(h => h.NumberOfBeds).IsRequired();
-        builder.Property(h => h.Description).HasMaxLength(HospitalConfigurationConstants.DescriptionMaxLength)
-            .HasColumnType(HospitalConfigurationConstants.NVarcharColumnType);
-        builder.Property(h => h.EstablishmentDate).IsRequired(false);
+        builder.Property(h => h.Description).HasMaxLength(HospitalConfigurationConstants.DescriptionMaxLength);
+        builder.Property(h => h.EstablishmentDate).IsRequired();
 
         // Configure indexes
-        builder.HasIndex(a => a.Name).IsClustered(false).IsUnique(false)
+        builder.HasIndex(a => a.Name).IsClustered(false)
             .HasName(HospitalConfigurationConstants.NameIndex);
-        builder.HasIndex(a => a.Name).IsClustered(false).IsUnique(false)
+        builder.HasIndex(a => a.Name).IsClustered(false)
             .HasName(HospitalConfigurationConstants.TitleIndex);
-        builder.HasIndex(a => a.PhoneNumber1).IsClustered(false).IsUnique(false)
+        builder.HasIndex(a => a.PhoneNumber1).IsClustered(false)
             .HasName(HospitalConfigurationConstants.PhoneNumber1Index);
-        builder.HasIndex(a => a.PhoneNumber2).IsClustered(false).IsUnique(false)
+        builder.HasIndex(a => a.PhoneNumber2).IsClustered(false)
             .HasName(HospitalConfigurationConstants.PhoneNumber2Index);
-        builder.HasIndex(a => a.PhoneNumber3).IsClustered(false).IsUnique(false)
+        builder.HasIndex(a => a.PhoneNumber3).IsClustered(false)
             .HasName(HospitalConfigurationConstants.PhoneNumber3Index);
-        builder.HasIndex(a => a.Address).IsClustered(false).IsUnique(false)
+        builder.HasIndex(a => a.Address).IsClustered(false)
             .HasName(HospitalConfigurationConstants.AddressIndex);
 
         // Configure relationships

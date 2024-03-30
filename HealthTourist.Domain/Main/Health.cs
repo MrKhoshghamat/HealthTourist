@@ -8,7 +8,7 @@ public class Health : BaseEntity<Guid>
 
     public Guid TriageNo { get; set; }
     public int HospitalId { get; set; }
-    public int DoctorId { get; set; }
+    public long DoctorId { get; set; }
     public string Cost { get; set; }
 
     #endregion

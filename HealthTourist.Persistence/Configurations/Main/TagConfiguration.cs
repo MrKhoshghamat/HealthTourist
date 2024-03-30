@@ -16,10 +16,8 @@ public class TagConfiguration : IEntityTypeConfiguration<Tag>
         builder.HasKey(t => t.Id);
 
         // Configure properties
-        builder.Property(t => t.Name).IsRequired().HasMaxLength(TagConfigurationConstants.NameMaxLength)
-            .HasColumnType(TagConfigurationConstants.VarcharColumnType);
-        builder.Property(t => t.Title).IsRequired().HasMaxLength(TagConfigurationConstants.TitleMaxLength)
-            .HasColumnType(TagConfigurationConstants.NVarcharColumnType);
+        builder.Property(t => t.Name).IsRequired().HasMaxLength(TagConfigurationConstants.NameMaxLength);
+        builder.Property(t => t.Title).IsRequired().HasMaxLength(TagConfigurationConstants.TitleMaxLength);
 
         // Configure relationships
         builder.HasMany(t => t.HospitalTags)

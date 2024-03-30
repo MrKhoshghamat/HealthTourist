@@ -19,8 +19,7 @@ public class TriageConfiguration : IEntityTypeConfiguration<Triage>
         builder.Property(t => t.TriageNo).IsRequired();
         builder.Property(t => t.PatientId).IsRequired();
         builder.Property(t => t.TreatmentId).IsRequired();
-        builder.Property(t => t.Description).HasMaxLength(TriageConfigurationConstants.DescriptionMaxLength)
-            .HasColumnType(TriageConfigurationConstants.NVarcharColumnType);
+        builder.Property(t => t.Description).HasMaxLength(TriageConfigurationConstants.DescriptionMaxLength);
 
         // Configure relationships
         builder.HasOne(t => t.Patient)

@@ -24,7 +24,7 @@ public class HealthConfiguration : IEntityTypeConfiguration<Health>
             .HasMaxLength(HealthConfigurationConstants.CostMaxLength); // Adjust the length as per your needs
 
         // Configure indexes
-        builder.HasIndex(h => h.TriageNo).IsClustered(false).IsUnique(false)
+        builder.HasIndex(h => h.TriageNo).IsClustered(false)
             .HasName(HealthConfigurationConstants.TriageNoIndex);
 
         // Configure relationships

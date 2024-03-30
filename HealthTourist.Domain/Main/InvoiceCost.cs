@@ -4,7 +4,7 @@ public class InvoiceCost : BaseEntity<int>
 {
     #region Properties
 
-    public int InvoiceId { get; set; }
+    public long InvoiceId { get; set; }
     public int CostDetailsId { get; set; }
     public string Cost { get; set; }
 

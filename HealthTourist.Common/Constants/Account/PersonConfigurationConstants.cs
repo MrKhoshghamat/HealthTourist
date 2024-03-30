@@ -5,8 +5,8 @@ public abstract class PersonConfigurationConstants
     public const string SchemaName = "Account";
     public const string TableName = "Person";
 
-    public const string VarcharColumnType = "varchar";
-    public const string NVarcharColumnType = "nvarchar";
+    public const string VarcharColumnType = "VARCHAR";
+    public const string NVarcharColumnType = "NVARCHAR";
 
     public const int FirstNameMaxLength = 50;
     public const int LastNameMaxLength = 50;

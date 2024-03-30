@@ -20,10 +20,8 @@ public class TravelConfiguration : IEntityTypeConfiguration<Travel>
         builder.Property(t => t.PatientId).IsRequired();
         builder.Property(t => t.HotelId).IsRequired();
         builder.Property(t => t.AirLineId).IsRequired();
-        builder.Property(t => t.Description).HasMaxLength(TravelConfigurationConstants.DescriptionMaxLength)
-            .HasColumnType(TravelConfigurationConstants.VarcharColumnType);
-        builder.Property(t => t.Cost).HasMaxLength(TravelConfigurationConstants.CostMaxLength)
-            .HasColumnType(TravelConfigurationConstants.VarcharColumnType);
+        builder.Property(t => t.Description).HasMaxLength(TravelConfigurationConstants.DescriptionMaxLength);
+        builder.Property(t => t.Cost).HasMaxLength(TravelConfigurationConstants.CostMaxLength);
 
         // Configure relationships
         builder.HasOne(t => t.Patient)

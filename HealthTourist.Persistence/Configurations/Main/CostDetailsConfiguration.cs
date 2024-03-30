@@ -17,15 +17,13 @@ public class CostDetailsConfiguration : IEntityTypeConfiguration<CostDetails>
         builder.HasKey(cd => cd.Id);
 
         // Configure properties
-        builder.Property(cd => cd.Name).IsRequired().HasMaxLength(CostDetailsConfigurationConstants.NameMaxLength)
-            .HasColumnType(CostDetailsConfigurationConstants.VarcharColumnType);
-        builder.Property(cd => cd.Title).IsRequired().HasMaxLength(CostDetailsConfigurationConstants.TitleMaxLength)
-            .HasColumnType(CostDetailsConfigurationConstants.NVarcharColumnType);
+        builder.Property(cd => cd.Name).IsRequired().HasMaxLength(CostDetailsConfigurationConstants.NameMaxLength);
+        builder.Property(cd => cd.Title).IsRequired().HasMaxLength(CostDetailsConfigurationConstants.TitleMaxLength);
 
         // Configure indexes
-        builder.HasIndex(cd => cd.Name).IsClustered(false).IsUnique(false)
+        builder.HasIndex(cd => cd.Name).IsClustered(false)
             .HasName(CostDetailsConfigurationConstants.NameIndex);
-        builder.HasIndex(cd => cd.Title).IsClustered(false).IsUnique(false)
+        builder.HasIndex(cd => cd.Title).IsClustered(false)
             .HasName(CostDetailsConfigurationConstants.TitleIndex);
 
         // Configure relationships

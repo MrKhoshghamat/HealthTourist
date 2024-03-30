@@ -17,15 +17,13 @@ public class CategoryConfiguration : IEntityTypeConfiguration<Category>
         builder.HasKey(c => c.Id);
 
         // Configure properties
-        builder.Property(c => c.Name).IsRequired().HasMaxLength(CategoryConfigurationConstants.NameMaxLength)
-            .HasColumnType(CategoryConfigurationConstants.VarcharColumnType);
-        builder.Property(c => c.Title).IsRequired().HasMaxLength(CategoryConfigurationConstants.TitleMaxLength)
-            .HasColumnType(CategoryConfigurationConstants.NVarcharColumnType);
+        builder.Property(c => c.Name).IsRequired().HasMaxLength(CategoryConfigurationConstants.NameMaxLength);
+        builder.Property(c => c.Title).IsRequired().HasMaxLength(CategoryConfigurationConstants.TitleMaxLength);
 
         // Configure indexes
-        builder.HasIndex(c => c.Name).IsClustered(false).IsUnique(false)
+        builder.HasIndex(c => c.Name).IsClustered(false)
             .HasName(CategoryConfigurationConstants.NameIndex);
-        builder.HasIndex(c => c.Title).IsClustered(false).IsUnique(false)
+        builder.HasIndex(c => c.Title).IsClustered(false)
             .HasName(CategoryConfigurationConstants.TitleIndex);
 
         // Configure relationships

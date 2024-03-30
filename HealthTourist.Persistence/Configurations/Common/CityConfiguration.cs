@@ -17,13 +17,11 @@ public class CityConfiguration : IEntityTypeConfiguration<City>
         builder.HasKey(c => c.Id);
 
         // Configure properties
-        builder.Property(c => c.Name).IsRequired().HasMaxLength(CityConfigurationConstants.NameMaxlength)
-            .HasColumnType(CityConfigurationConstants.VarcharColumnType);
-        builder.Property(c => c.Title).IsRequired().HasMaxLength(CityConfigurationConstants.TitleMaxlength)
-            .HasColumnType(CityConfigurationConstants.NVarcharColumnType);
+        builder.Property(c => c.Name).IsRequired().HasMaxLength(CityConfigurationConstants.NameMaxlength);
+        builder.Property(c => c.Title).IsRequired().HasMaxLength(CityConfigurationConstants.TitleMaxlength);
 
         // Configure indexes
-        builder.HasIndex(c => c.Name).IsClustered(false).IsUnique(false)
+        builder.HasIndex(c => c.Name).IsClustered(false)
             .HasName(CityConfigurationConstants.NameIndex);
 
         // Configure relationships

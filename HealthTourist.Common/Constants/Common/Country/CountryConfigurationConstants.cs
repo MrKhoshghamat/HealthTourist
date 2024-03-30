@@ -5,8 +5,8 @@ public abstract class CountryConfigurationConstants
     public const string SchemaName = "dbo";
     public const string TableName = "Country";
 
-    public const string VarcharColumnType = "varchar";
-    public const string NVarcharColumnType = "nvarchar";
+    public const string VarcharColumnType = "VARCHAR";
+    public const string NVarcharColumnType = "NVARCHAR";
 
     public const int NameMaxLength = 100;
     public const int TitleMaxLength = 100;

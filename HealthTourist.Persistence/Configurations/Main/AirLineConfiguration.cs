@@ -17,15 +17,13 @@ public class AirLineConfiguration : IEntityTypeConfiguration<AirLine>
         builder.HasKey(a => a.Id);
 
         // Configure properties
-        builder.Property(a => a.Name).IsRequired().HasMaxLength(AirLineConfigurationConstants.NameMaxLength)
-            .HasColumnType(AirLineConfigurationConstants.VarcharColumnType);
-        builder.Property(a => a.Title).IsRequired().HasMaxLength(AirLineConfigurationConstants.TitleMaxLength)
-            .HasColumnType(AirLineConfigurationConstants.NVarcharColumnType);
+        builder.Property(a => a.Name).IsRequired().HasMaxLength(AirLineConfigurationConstants.NameMaxLength);
+        builder.Property(a => a.Title).IsRequired().HasMaxLength(AirLineConfigurationConstants.TitleMaxLength);
 
         // Configure indexes
-        builder.HasIndex(a => a.Name).IsClustered(false).IsUnique(false)
+        builder.HasIndex(a => a.Name).IsClustered(false)
             .HasName(AirLineConfigurationConstants.NameIndex);
-        builder.HasIndex(a => a.Title).IsClustered(false).IsUnique(false)
+        builder.HasIndex(a => a.Title).IsClustered(false)
             .HasName(AirLineConfigurationConstants.TitleIndex);
 
         // Configure relationships

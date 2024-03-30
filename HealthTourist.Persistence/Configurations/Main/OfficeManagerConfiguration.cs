@@ -14,21 +14,21 @@ public class OfficeManagerConfiguration : IEntityTypeConfiguration<OfficeManager
 
         // Configure primary key
         builder.HasKey(om => om.Id);
-        
+
         // Configure properties
         builder.Property(om => om.PersonId).IsRequired();
         builder.Property(om => om.OfficeId).IsRequired();
 
         // Configure relations
         builder.HasOne(om => om.Person)
-            .WithMany()
-            .HasForeignKey(om => om.PersonId)
+            .WithOne(p => p.OfficeManager)
+            .HasForeignKey<OfficeManager>(om => om.PersonId)
             .IsRequired()
             .OnDelete(DeleteBehavior.Cascade);
 
         builder.HasOne(om => om.Office)
-            .WithMany()
-            .HasForeignKey(om => om.OfficeId)
+            .WithOne(o => o.OfficeManager)
+            .HasForeignKey<OfficeManager>(om => om.OfficeId)
             .IsRequired()
             .OnDelete(DeleteBehavior.Cascade);
     }

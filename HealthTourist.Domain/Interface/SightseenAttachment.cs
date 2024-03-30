@@ -8,7 +8,7 @@ public class SightseenAttachment
     #region Properties
 
     public int SightseenId { get; set; }
-    public int AttachmentId { get; set; }
+    public Guid AttachmentId { get; set; }
 
     #endregion
 

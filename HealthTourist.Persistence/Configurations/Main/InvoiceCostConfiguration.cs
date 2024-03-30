@@ -18,8 +18,7 @@ public class InvoiceCostConfiguration : IEntityTypeConfiguration<InvoiceCost>
         // Configure properties
         builder.Property(ic => ic.InvoiceId).IsRequired();
         builder.Property(ic => ic.CostDetailsId).IsRequired();
-        builder.Property(ic => ic.Cost).IsRequired().HasMaxLength(InvoiceCostConfigurationConstants.CostMaxLength)
-            .HasColumnType(InvoiceCostConfigurationConstants.VarcharColumnType);
+        builder.Property(ic => ic.Cost).IsRequired().HasMaxLength(InvoiceCostConfigurationConstants.CostMaxLength);
 
         // Configure relationships
         builder.HasOne(ic => ic.Invoice)

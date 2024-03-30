@@ -18,15 +18,13 @@ public class TreatmentConfiguration : IEntityTypeConfiguration<Treatment>
 
         // Configure properties
         builder.Property(t => t.TreatmentTypeId).IsRequired();
-        builder.Property(t => t.Name).IsRequired().HasMaxLength(TreatmentConfigurationConstants.NameMaxLength)
-            .HasColumnType(TreatmentConfigurationConstants.VarcharColumnType);
-        builder.Property(t => t.Title).IsRequired().HasMaxLength(TreatmentConfigurationConstants.TitleMaxLength)
-            .HasColumnType(TreatmentConfigurationConstants.NVarcharColumnType);
+        builder.Property(t => t.Name).IsRequired().HasMaxLength(TreatmentConfigurationConstants.NameMaxLength);
+        builder.Property(t => t.Title).IsRequired().HasMaxLength(TreatmentConfigurationConstants.TitleMaxLength);
 
         // Configure indexes
-        builder.HasIndex(t => t.Name).IsClustered(false).IsUnique(false)
+        builder.HasIndex(t => t.Name).IsClustered(false)
             .HasName(TreatmentConfigurationConstants.NameIndex);
-        builder.HasIndex(t => t.Name).IsClustered(false).IsUnique(false)
+        builder.HasIndex(t => t.Name).IsClustered(false)
             .HasName(TreatmentConfigurationConstants.TitleIndex);
         
         // Configure relationships

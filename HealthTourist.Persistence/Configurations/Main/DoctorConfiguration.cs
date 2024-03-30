@@ -1,4 +1,5 @@
 using HealthTourist.Common.Constants.Main.Doctor;
+using HealthTourist.Domain.Account;
 using HealthTourist.Domain.Main;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -22,8 +23,8 @@ public class DoctorConfiguration : IEntityTypeConfiguration<Doctor>
 
         // Configure relationships
         builder.HasOne(d => d.Person)
-            .WithMany()
-            .HasForeignKey(d => d.PersonId);
+            .WithOne(p=>p.Doctor)
+            .HasForeignKey<Doctor>(d => d.PersonId);
 
         builder.HasOne(d => d.Hospital)
             .WithMany()

@@ -17,15 +17,13 @@ public class PatientConfiguration : IEntityTypeConfiguration<Patient>
 
         // Configure properties
         builder.Property(p => p.PersonId).IsRequired();
-        builder.Property(p => p.Height).HasMaxLength(PatientConfigurationConstants.HeightMaxLength)
-            .HasColumnType(PatientConfigurationConstants.VarcharColumnType);
-        builder.Property(p => p.Weight).HasMaxLength(PatientConfigurationConstants.WeightMaxLength)
-            .HasColumnType(PatientConfigurationConstants.VarcharColumnType);
+        builder.Property(p => p.Height).HasMaxLength(PatientConfigurationConstants.HeightMaxLength);
+        builder.Property(p => p.Weight).HasMaxLength(PatientConfigurationConstants.WeightMaxLength);
 
         // Configure relationships
         builder.HasOne(p => p.Person)
-            .WithMany()
-            .HasForeignKey(p => p.PersonId);
+            .WithOne(p=>p.Patient)
+            .HasForeignKey<Patient>(p => p.PersonId);
 
         builder.HasMany(p => p.Travels)
             .WithOne(t => t.Patient)

@@ -18,18 +18,15 @@ public class FaqConfiguration : IEntityTypeConfiguration<Faq>
 
         // Configure properties
         builder.Property(f => f.FaqTypeId).IsRequired();
-        builder.Property(f => f.Name).IsRequired().HasMaxLength(FaqConfigurationConstants.NameMaxLength)
-            .HasColumnType(FaqConfigurationConstants.VarcharColumnType);
-        builder.Property(f => f.Title).IsRequired().HasMaxLength(FaqConfigurationConstants.TitleMaxLength)
-            .HasColumnType(FaqConfigurationConstants.NVarcharColumnType);
-        builder.Property(f => f.Description).IsRequired().HasMaxLength(FaqConfigurationConstants.DescriptionMaxLength)
-            .HasColumnType(FaqConfigurationConstants.NVarcharColumnType);
+        builder.Property(f => f.Name).IsRequired().HasMaxLength(FaqConfigurationConstants.NameMaxLength);
+        builder.Property(f => f.Title).IsRequired().HasMaxLength(FaqConfigurationConstants.TitleMaxLength);
+        builder.Property(f => f.Description).IsRequired().HasMaxLength(FaqConfigurationConstants.DescriptionMaxLength);
         builder.Property(f => f.Priority).IsRequired();
         builder.Property(f => f.IsFirstPage).IsRequired();
 
         // Configure indexes
-        builder.HasIndex(f => f.Name).IsClustered(false).IsUnique(false).HasName(FaqConfigurationConstants.NameIndex);
-        builder.HasIndex(f => f.Name).IsClustered(false).IsUnique(false).HasName(FaqConfigurationConstants.TitleIndex);
+        builder.HasIndex(f => f.Name).IsClustered(false).HasName(FaqConfigurationConstants.NameIndex);
+        builder.HasIndex(f => f.Name).IsClustered(false).HasName(FaqConfigurationConstants.TitleIndex);
 
         // Configure relationships
         builder.HasOne(f => f.FaqType)

@@ -18,10 +18,8 @@ public class AttachmentConfiguration : IEntityTypeConfiguration<Attachment>
 
         // Configure properties
         builder.Property(a => a.Content).IsRequired();
-        builder.Property(a => a.Name).IsRequired().HasMaxLength(AttachmentConfigurationConstants.NameMaxlength)
-            .HasColumnType(AttachmentConfigurationConstants.VarcharColumnType);
-        builder.Property(a => a.Extension).IsRequired()
-            .HasColumnType(AttachmentConfigurationConstants.VarcharColumnType);
+        builder.Property(a => a.Name).IsRequired().HasMaxLength(AttachmentConfigurationConstants.NameMaxlength);
+        builder.Property(a => a.Extension).IsRequired();
 
         // Configure enums
         builder.Property(a => a.Extension)
@@ -29,7 +27,7 @@ public class AttachmentConfiguration : IEntityTypeConfiguration<Attachment>
             .HasConversion<int>(); // Convert enum to int
 
         // Configure indexes
-        builder.HasIndex(a => a.Name).IsClustered(false).IsUnique(false)
+        builder.HasIndex(a => a.Name).IsClustered(false)
             .HasName(AttachmentConfigurationConstants.NameIndex);
 
         // Configure relationships

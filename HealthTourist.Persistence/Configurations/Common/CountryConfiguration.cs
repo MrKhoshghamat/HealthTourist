@@ -17,19 +17,16 @@ public class CountryConfiguration : IEntityTypeConfiguration<Country>
         builder.HasKey(c => c.Id);
 
         // Configure properties
-        builder.Property(c => c.Name).IsRequired().HasMaxLength(CountryConfigurationConstants.NameMaxLength)
-            .HasColumnType(CountryConfigurationConstants.VarcharColumnType);
-        builder.Property(c => c.Title).IsRequired().HasMaxLength(CountryConfigurationConstants.TitleMaxLength)
-            .HasColumnType(CountryConfigurationConstants.NVarcharColumnType);
-        builder.Property(c => c.Code).IsRequired().HasMaxLength(CountryConfigurationConstants.CodeMaxLength)
-            .HasColumnType(CountryConfigurationConstants.VarcharColumnType);
+        builder.Property(c => c.Name).IsRequired().HasMaxLength(CountryConfigurationConstants.NameMaxLength);
+        builder.Property(c => c.Title).IsRequired().HasMaxLength(CountryConfigurationConstants.TitleMaxLength);
+        builder.Property(c => c.Code).IsRequired().HasMaxLength(CountryConfigurationConstants.CodeMaxLength);
 
         // Configure indexes
-        builder.HasIndex(c => c.Name).IsClustered(false).IsUnique(false)
+        builder.HasIndex(c => c.Name).IsClustered(false)
             .HasName(CountryConfigurationConstants.NameIndex);
-        builder.HasIndex(c => c.Title).IsClustered(false).IsUnique(false)
+        builder.HasIndex(c => c.Title).IsClustered(false)
             .HasName(CountryConfigurationConstants.TitleIndex);
-        builder.HasIndex(c => c.Code).IsClustered(false).IsUnique(false)
+        builder.HasIndex(c => c.Code).IsClustered(false)
             .HasName(CountryConfigurationConstants.CodeIndex);
 
         // Configure relationships

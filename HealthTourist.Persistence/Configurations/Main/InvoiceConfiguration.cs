@@ -19,8 +19,7 @@ public class InvoiceConfiguration : IEntityTypeConfiguration<Invoice>
         builder.Property(i => i.HealthId).IsRequired();
         builder.Property(i => i.TravelId).IsRequired();
         builder.Property(i => i.TotalPrice).IsRequired()
-            .HasMaxLength(InvoiceConfigurationConstants.TotalPriceMaxLength)
-            .HasColumnType(InvoiceConfigurationConstants.VarcharColumnType); // Adjust the length as per your needs
+            .HasMaxLength(InvoiceConfigurationConstants.TotalPriceMaxLength);
 
         // Configure relationships
         builder.HasOne(i => i.Health)

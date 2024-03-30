@@ -17,15 +17,13 @@ public class StateConfiguration : IEntityTypeConfiguration<State>
         builder.HasKey(s => s.Id);
 
         // Configure properties
-        builder.Property(s => s.Name).IsRequired().HasMaxLength(StateConfigurationConstants.NameMaxLength)
-            .HasColumnType(StateConfigurationConstants.VarcharColumnType);
-        builder.Property(s => s.Title).IsRequired().HasMaxLength(StateConfigurationConstants.TitleMaxLength)
-            .HasColumnType(StateConfigurationConstants.NVarcharColumnType);
+        builder.Property(s => s.Name).IsRequired().HasMaxLength(StateConfigurationConstants.NameMaxLength);
+        builder.Property(s => s.Title).IsRequired().HasMaxLength(StateConfigurationConstants.TitleMaxLength);
 
         // Configure indexes
-        builder.HasIndex(s => s.Name).IsClustered(false).IsUnique(false)
+        builder.HasIndex(s => s.Name).IsClustered(false)
             .HasName(StateConfigurationConstants.NameIndex);
-        builder.HasIndex(s => s.Title).IsClustered(false).IsUnique(false)
+        builder.HasIndex(s => s.Title).IsClustered(false)
             .HasName(StateConfigurationConstants.TitleIndex);
 
         // Configure relations

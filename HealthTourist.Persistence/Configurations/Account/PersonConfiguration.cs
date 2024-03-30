@@ -20,34 +20,29 @@ public class PersonConfiguration : IEntityTypeConfiguration<Person>
         // Configure properties
         builder.Property(p => p.FirstName)
             .IsRequired()
-            .HasMaxLength(PersonConfigurationConstants.FirstNameMaxLength)
-            .HasColumnType(PersonConfigurationConstants.NVarcharColumnType);
+            .HasMaxLength(PersonConfigurationConstants.FirstNameMaxLength);
         builder.Property(p => p.LastName)
             .IsRequired()
-            .HasMaxLength(PersonConfigurationConstants.LastNameMaxLength)
-            .HasColumnType(PersonConfigurationConstants.NVarcharColumnType);
+            .HasMaxLength(PersonConfigurationConstants.LastNameMaxLength);
         builder.Property(p => p.BirthDate)
             .IsRequired();
         builder.Property(p => p.PhoneNumber)
-            .HasMaxLength(PersonConfigurationConstants.PhoneNumberMaxLength)
-            .HasColumnType(PersonConfigurationConstants.VarcharColumnType);
+            .HasMaxLength(PersonConfigurationConstants.PhoneNumberMaxLength);
         builder.Property(p => p.Email)
-            .HasMaxLength(PersonConfigurationConstants.EmailMaxLength)
-            .HasColumnType(PersonConfigurationConstants.VarcharColumnType);
+            .HasMaxLength(PersonConfigurationConstants.EmailMaxLength);
         builder.Property(p => p.Address)
-            .HasMaxLength(PersonConfigurationConstants.AddressMaxLength)
-            .HasColumnType(PersonConfigurationConstants.NVarcharColumnType);
+            .HasMaxLength(PersonConfigurationConstants.AddressMaxLength);
 
         // Configure indexes
-        builder.HasIndex(p => p.FirstName).IsClustered(false).IsUnique(false)
+        builder.HasIndex(p => p.FirstName).IsClustered(false)
             .HasName(PersonConfigurationConstants.FirstNameIndex);
-        builder.HasIndex(p => p.LastName).IsClustered(false).IsUnique(false)
+        builder.HasIndex(p => p.LastName).IsClustered(false)
             .HasName(PersonConfigurationConstants.LastNameIndex);
-        builder.HasIndex(p => p.PhoneNumber).IsClustered(false).IsUnique(false)
+        builder.HasIndex(p => p.PhoneNumber).IsClustered(false)
             .HasName(PersonConfigurationConstants.PhoneNumberIndex);
-        builder.HasIndex(p => p.Email).IsClustered(false).IsUnique(false)
+        builder.HasIndex(p => p.Email).IsClustered(false)
             .HasName(PersonConfigurationConstants.EmailIndex);
-        builder.HasIndex(p => p.Address).IsClustered(false).IsUnique(false)
+        builder.HasIndex(p => p.Address).IsClustered(false)
             .HasName(PersonConfigurationConstants.AddressIndex);
         
         // Configure relations

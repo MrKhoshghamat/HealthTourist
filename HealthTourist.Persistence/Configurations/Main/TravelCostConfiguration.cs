@@ -18,8 +18,7 @@ public class TravelCostConfiguration : IEntityTypeConfiguration<TravelCost>
         // Configure properties
         builder.Property(tc => tc.TravelId).IsRequired();
         builder.Property(tc => tc.CostDetailsId).IsRequired();
-        builder.Property(tc => tc.Cost).IsRequired().HasMaxLength(TravelCostConfigurationConstants.CostMaxLength)
-            .HasColumnType(TravelCostConfigurationConstants.VarcharColumnType); // Adjust the length as per your needs
+        builder.Property(tc => tc.Cost).IsRequired().HasMaxLength(TravelCostConfigurationConstants.CostMaxLength);
 
         // Configure relationships
         builder.HasOne(tc => tc.Travel)

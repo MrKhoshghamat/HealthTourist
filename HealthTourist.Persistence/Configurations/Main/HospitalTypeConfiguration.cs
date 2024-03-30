@@ -17,15 +17,13 @@ public class HospitalTypeConfiguration : IEntityTypeConfiguration<HospitalType>
         builder.HasKey(ht => ht.Id);
 
         // Configure properties
-        builder.Property(ht => ht.Name).IsRequired().HasMaxLength(HospitalTypeConfigurationConstants.NameMaxLength)
-            .HasColumnType(HospitalTypeConfigurationConstants.VarcharColumnType);
-        builder.Property(ht => ht.Title).IsRequired().HasMaxLength(HospitalTypeConfigurationConstants.TitleMaxLength)
-            .HasColumnType(HospitalTypeConfigurationConstants.NVarcharColumnType);
+        builder.Property(ht => ht.Name).IsRequired().HasMaxLength(HospitalTypeConfigurationConstants.NameMaxLength);
+        builder.Property(ht => ht.Title).IsRequired().HasMaxLength(HospitalTypeConfigurationConstants.TitleMaxLength);
 
         // Configure indexes
-        builder.HasIndex(a => a.Name).IsClustered(false).IsUnique(false)
+        builder.HasIndex(a => a.Name).IsClustered(false)
             .HasName(HospitalTypeConfigurationConstants.NameIndex);
-        builder.HasIndex(a => a.Title).IsClustered(false).IsUnique(false)
+        builder.HasIndex(a => a.Title).IsClustered(false)
             .HasName(HospitalTypeConfigurationConstants.TitleIndex);
 
         // Configure relationships

@@ -22,8 +22,8 @@ public class TeamMemberConfiguration : IEntityTypeConfiguration<TeamMember>
 
         // Configure relationships
         builder.HasOne(tm => tm.Person)
-            .WithMany()
-            .HasForeignKey(tm => tm.PersonId);
+            .WithOne(p=>p.TeamMember)
+            .HasForeignKey<TeamMember>(tm => tm.PersonId);
 
         builder.HasOne(tm => tm.Doctor)
             .WithMany(d => d.TeamMembers)

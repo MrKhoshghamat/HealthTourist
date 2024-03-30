@@ -5,8 +5,8 @@ public abstract class CityConfigurationConstants
     public const string SchemaName = "dbo";
     public const string TableName = "City";
 
-    public const string VarcharColumnType = "varchar";
-    public const string NVarcharColumnType = "nvarchar";
+    public const string VarcharColumnType = "VARCHAR";
+    public const string NVarcharColumnType = "NVARCHAR";
 
     public const int NameMaxlength = 50;
     public const int TitleMaxlength = 50;

@@ -18,17 +18,15 @@ public class SightseenConfiguration : IEntityTypeConfiguration<Sightseen>
 
         // Configure properties
         builder.Property(s => s.CityId).IsRequired();
-        builder.Property(s => s.Name).IsRequired().HasMaxLength(SightseenConfigurationConstants.NameMaxLength)
-            .HasColumnType(SightseenConfigurationConstants.VarcharColumnType);
-        builder.Property(s => s.Title).IsRequired().HasMaxLength(SightseenConfigurationConstants.TitleMaxLength)
-            .HasColumnType(SightseenConfigurationConstants.NVarcharColumnType);
+        builder.Property(s => s.Name).IsRequired().HasMaxLength(SightseenConfigurationConstants.NameMaxLength);
+        builder.Property(s => s.Title).IsRequired().HasMaxLength(SightseenConfigurationConstants.TitleMaxLength);
         builder.Property(s => s.Lat).IsRequired();
         builder.Property(s => s.Long).IsRequired();
 
         // Configure indexes
-        builder.HasIndex(s => s.Name).IsClustered(false).IsUnique(false)
+        builder.HasIndex(s => s.Name).IsClustered(false)
             .HasName(SightseenConfigurationConstants.NameIndex);
-        builder.HasIndex(s => s.Title).IsClustered(false).IsUnique(false)
+        builder.HasIndex(s => s.Title).IsClustered(false)
             .HasName(SightseenConfigurationConstants.TitleIndex);
 
         // Configure relationships
