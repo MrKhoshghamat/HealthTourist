@@ -7,6 +7,7 @@ namespace HealthTourist.Persistence.Configurations.Main;
 
 public class HealthConfiguration : IEntityTypeConfiguration<Health>
 {
+    [Obsolete("Obsolete")]
     public void Configure(EntityTypeBuilder<Health> builder)
     {
         // Configure table name and schema name
@@ -21,6 +22,10 @@ public class HealthConfiguration : IEntityTypeConfiguration<Health>
         builder.Property(h => h.DoctorId).IsRequired();
         builder.Property(h => h.Cost).IsRequired()
             .HasMaxLength(HealthConfigurationConstants.CostMaxLength); // Adjust the length as per your needs
+
+        // Configure indexes
+        builder.HasIndex(h => h.TriageNo).IsClustered(false).IsUnique(false)
+            .HasName(HealthConfigurationConstants.TriageNoIndex);
 
         // Configure relationships
         builder.HasOne(h => h.Hospital)

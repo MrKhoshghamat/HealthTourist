@@ -12,4 +12,5 @@ public abstract class AirLineConfigurationConstants
     public const int TitleMaxLength = 100;
 
     public const string NameIndex = "IX_AirLine_Name";
+    public const string TitleIndex = "IX_AirLine_Title";
 }

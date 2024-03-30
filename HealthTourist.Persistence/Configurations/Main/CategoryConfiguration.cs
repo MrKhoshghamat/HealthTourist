@@ -25,6 +25,8 @@ public class CategoryConfiguration : IEntityTypeConfiguration<Category>
         // Configure indexes
         builder.HasIndex(c => c.Name).IsClustered(false).IsUnique(false)
             .HasName(CategoryConfigurationConstants.NameIndex);
+        builder.HasIndex(c => c.Title).IsClustered(false).IsUnique(false)
+            .HasName(CategoryConfigurationConstants.TitleIndex);
 
         // Configure relationships
         builder.HasMany(c => c.SightseenCategories)

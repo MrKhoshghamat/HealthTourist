@@ -25,6 +25,8 @@ public class CostDetailsConfiguration : IEntityTypeConfiguration<CostDetails>
         // Configure indexes
         builder.HasIndex(cd => cd.Name).IsClustered(false).IsUnique(false)
             .HasName(CostDetailsConfigurationConstants.NameIndex);
+        builder.HasIndex(cd => cd.Title).IsClustered(false).IsUnique(false)
+            .HasName(CostDetailsConfigurationConstants.TitleIndex);
 
         // Configure relationships
         builder.HasMany(cd => cd.HealthCosts)

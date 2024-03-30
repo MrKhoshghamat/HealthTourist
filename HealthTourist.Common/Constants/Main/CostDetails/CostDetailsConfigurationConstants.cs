@@ -12,4 +12,5 @@ public abstract class CostDetailsConfigurationConstants
     public const int TitleMaxLength = 100;
 
     public const string NameIndex = "IX_CostDetails_Name";
+    public const string TitleIndex = "IX_CostDetails_Title";
 }

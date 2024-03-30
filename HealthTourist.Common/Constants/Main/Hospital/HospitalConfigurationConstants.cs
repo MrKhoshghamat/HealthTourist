@@ -19,6 +19,7 @@ public abstract class HospitalConfigurationConstants
     public const int DescriptionMaxLength = 500;
 
     public const string NameIndex = "IX_Hospital_Name";
+    public const string TitleIndex = "IX_Hospital_Title";
     public const string PhoneNumber1Index = "IX_Hospital_PhoneNumber1";
     public const string PhoneNumber2Index = "IX_Hospital_PhoneNumber2";
     public const string PhoneNumber3Index = "IX_Hospital_PhoneNumber3";

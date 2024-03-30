@@ -29,6 +29,7 @@ public class FaqConfiguration : IEntityTypeConfiguration<Faq>
 
         // Configure indexes
         builder.HasIndex(f => f.Name).IsClustered(false).IsUnique(false).HasName(FaqConfigurationConstants.NameIndex);
+        builder.HasIndex(f => f.Name).IsClustered(false).IsUnique(false).HasName(FaqConfigurationConstants.TitleIndex);
 
         // Configure relationships
         builder.HasOne(f => f.FaqType)

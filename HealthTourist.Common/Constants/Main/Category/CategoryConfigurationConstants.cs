@@ -12,4 +12,5 @@ public abstract class CategoryConfigurationConstants
     public const int TitleMaxLength = 100;
 
     public const string NameIndex = "IX_Category_Name";
+    public const string TitleIndex = "IX_Category_Title";
 }

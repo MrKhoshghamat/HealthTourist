@@ -45,6 +45,8 @@ public class HospitalConfiguration : IEntityTypeConfiguration<Hospital>
         // Configure indexes
         builder.HasIndex(a => a.Name).IsClustered(false).IsUnique(false)
             .HasName(HospitalConfigurationConstants.NameIndex);
+        builder.HasIndex(a => a.Name).IsClustered(false).IsUnique(false)
+            .HasName(HospitalConfigurationConstants.TitleIndex);
         builder.HasIndex(a => a.PhoneNumber1).IsClustered(false).IsUnique(false)
             .HasName(HospitalConfigurationConstants.PhoneNumber1Index);
         builder.HasIndex(a => a.PhoneNumber2).IsClustered(false).IsUnique(false)

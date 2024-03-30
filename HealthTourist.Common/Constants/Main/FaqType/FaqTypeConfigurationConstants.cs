@@ -13,4 +13,5 @@ public abstract class FaqTypeConfigurationConstants
     public const int DescriptionMaxLength = 500;
 
     public const string NameIndex = "IX_FaqType_Name";
+    public const string TitleIndex = "IX_FaqType_Title";
 }

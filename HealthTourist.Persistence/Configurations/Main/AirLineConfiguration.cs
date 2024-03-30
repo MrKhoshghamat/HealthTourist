@@ -25,6 +25,8 @@ public class AirLineConfiguration : IEntityTypeConfiguration<AirLine>
         // Configure indexes
         builder.HasIndex(a => a.Name).IsClustered(false).IsUnique(false)
             .HasName(AirLineConfigurationConstants.NameIndex);
+        builder.HasIndex(a => a.Title).IsClustered(false).IsUnique(false)
+            .HasName(AirLineConfigurationConstants.TitleIndex);
 
         // Configure relationships
         builder.HasMany(a => a.Travels)
