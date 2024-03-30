@@ -19,16 +19,16 @@ public class FaqConfiguration : IEntityTypeConfiguration<Faq>
         // Configure properties
         builder.Property(f => f.FaqTypeId).IsRequired();
         builder.Property(f => f.Name).IsRequired().HasMaxLength(FaqConfigurationConstants.NameMaxLength)
-            .HasColumnType("varchar");
+            .HasColumnType(FaqConfigurationConstants.VarcharColumnType);
         builder.Property(f => f.Title).IsRequired().HasMaxLength(FaqConfigurationConstants.TitleMaxLength)
-            .HasColumnType("nvarchar");
+            .HasColumnType(FaqConfigurationConstants.NVarcharColumnType);
         builder.Property(f => f.Description).IsRequired().HasMaxLength(FaqConfigurationConstants.DescriptionMaxLength)
-            .HasColumnType("nvarchar");
+            .HasColumnType(FaqConfigurationConstants.NVarcharColumnType);
         builder.Property(f => f.Priority).IsRequired();
         builder.Property(f => f.IsFirstPage).IsRequired();
-        
+
         // Configure indexes
-        builder.HasIndex(f => f.Name).IsClustered(false).IsUnique(false).HasName("IX_Faq_Name");
+        builder.HasIndex(f => f.Name).IsClustered(false).IsUnique(false).HasName(FaqConfigurationConstants.NameIndex);
 
         // Configure relationships
         builder.HasOne(f => f.FaqType)

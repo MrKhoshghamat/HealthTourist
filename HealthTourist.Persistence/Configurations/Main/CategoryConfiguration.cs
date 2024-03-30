@@ -18,12 +18,13 @@ public class CategoryConfiguration : IEntityTypeConfiguration<Category>
 
         // Configure properties
         builder.Property(c => c.Name).IsRequired().HasMaxLength(CategoryConfigurationConstants.NameMaxLength)
-            .HasColumnType("varchar");
+            .HasColumnType(CategoryConfigurationConstants.VarcharColumnType);
         builder.Property(c => c.Title).IsRequired().HasMaxLength(CategoryConfigurationConstants.TitleMaxLength)
-            .HasColumnType("nvarchar");
+            .HasColumnType(CategoryConfigurationConstants.NVarcharColumnType);
 
         // Configure indexes
-        builder.HasIndex(c => c.Name).IsClustered(false).IsUnique(false).HasName("IX_Category_Name");
+        builder.HasIndex(c => c.Name).IsClustered(false).IsUnique(false)
+            .HasName(CategoryConfigurationConstants.NameIndex);
 
         // Configure relationships
         builder.HasMany(c => c.SightseenCategories)

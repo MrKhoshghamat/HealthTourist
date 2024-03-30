@@ -18,12 +18,13 @@ public class AirLineConfiguration : IEntityTypeConfiguration<AirLine>
 
         // Configure properties
         builder.Property(a => a.Name).IsRequired().HasMaxLength(AirLineConfigurationConstants.NameMaxLength)
-            .HasColumnType("varchar");
+            .HasColumnType(AirLineConfigurationConstants.VarcharColumnType);
         builder.Property(a => a.Title).IsRequired().HasMaxLength(AirLineConfigurationConstants.TitleMaxLength)
-            .HasColumnType("nvarchar");
+            .HasColumnType(AirLineConfigurationConstants.NVarcharColumnType);
 
         // Configure indexes
-        builder.HasIndex(a => a.Name).IsClustered(false).IsUnique(false).HasName("IX_AirLine_Name");
+        builder.HasIndex(a => a.Name).IsClustered(false).IsUnique(false)
+            .HasName(AirLineConfigurationConstants.NameIndex);
 
         // Configure relationships
         builder.HasMany(a => a.Travels)

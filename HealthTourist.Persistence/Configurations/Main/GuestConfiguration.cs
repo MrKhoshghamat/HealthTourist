@@ -11,7 +11,7 @@ public class GuestConfiguration : IEntityTypeConfiguration<Guest>
     {
         // Configure table name and schema name
         builder.ToTable(GuestConfigurationConstants.TableName, GuestConfigurationConstants.SchemaName);
-        
+
         // Configure primary key
         builder.HasKey(g => g.Id);
 

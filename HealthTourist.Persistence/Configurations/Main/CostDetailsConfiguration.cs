@@ -18,12 +18,13 @@ public class CostDetailsConfiguration : IEntityTypeConfiguration<CostDetails>
 
         // Configure properties
         builder.Property(cd => cd.Name).IsRequired().HasMaxLength(CostDetailsConfigurationConstants.NameMaxLength)
-            .HasColumnType("varchar");
+            .HasColumnType(CostDetailsConfigurationConstants.VarcharColumnType);
         builder.Property(cd => cd.Title).IsRequired().HasMaxLength(CostDetailsConfigurationConstants.TitleMaxLength)
-            .HasColumnType("nvarchar");
+            .HasColumnType(CostDetailsConfigurationConstants.NVarcharColumnType);
 
         // Configure indexes
-        builder.HasIndex(cd => cd.Name).IsClustered(false).IsUnique(false).HasName("IX_CostDetails_Name");
+        builder.HasIndex(cd => cd.Name).IsClustered(false).IsUnique(false)
+            .HasName(CostDetailsConfigurationConstants.NameIndex);
 
         // Configure relationships
         builder.HasMany(cd => cd.HealthCosts)
