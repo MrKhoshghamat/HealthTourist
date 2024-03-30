@@ -65,6 +65,10 @@ public class OfficeConfiguration : IEntityTypeConfiguration<Office>
         builder.HasOne(o => o.City)
             .WithMany()
             .HasForeignKey(o => o.CityId);
+        
+        builder.HasOne(o => o.OfficeManager)
+            .WithOne(om => om.Office)
+            .HasForeignKey<OfficeManager>(tm => tm.OfficeId);
 
         builder.HasMany(o => o.OfficeAttachments)
             .WithOne(oa => oa.Office)

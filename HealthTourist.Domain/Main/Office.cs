@@ -28,6 +28,7 @@ public class Office : BaseEntity<int>
 
     public virtual Country Country { get; set; }
     public virtual City City { get; set; }
+    public virtual OfficeManager OfficeManager { get; set; }
     public virtual ICollection<OfficeAttachment> OfficeAttachments { get; set; }
 
     #endregion

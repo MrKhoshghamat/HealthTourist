@@ -66,5 +66,9 @@ public class PersonConfiguration : IEntityTypeConfiguration<Person>
         builder.HasOne(p => p.TeamMember)
             .WithOne(tm => tm.Person)
             .HasForeignKey<TeamMember>(tm => tm.PersonId);
+        
+        builder.HasOne(p => p.OfficeManager)
+            .WithOne(om => om.Person)
+            .HasForeignKey<OfficeManager>(om => om.PersonId);
     }
 }

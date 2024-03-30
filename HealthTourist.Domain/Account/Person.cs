@@ -27,6 +27,7 @@ public class Person : BaseEntity<long>
     public virtual Guest Guest { get; set; }
     public virtual Patient Patient { get; set; }
     public virtual TeamMember TeamMember { get; set; }
+    public virtual OfficeManager OfficeManager { get; set; }
 
     #endregion
 }
