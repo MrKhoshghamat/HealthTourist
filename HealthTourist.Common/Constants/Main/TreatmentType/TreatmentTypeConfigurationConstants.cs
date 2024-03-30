@@ -1,7 +1,16 @@
 namespace HealthTourist.Common.Constants.Main.TreatmentType;
 
-public class TreatmentTypeConfigurationConstants
+public abstract class TreatmentTypeConfigurationConstants
 {
     public const string SchemaName = "Main";
     public const string TableName = "TreatmentType";
+    
+    public const string VarcharColumnType = "varchar";
+    public const string NVarcharColumnType = "nvarchar";
+
+    public const int NameMaxLength = 100;
+    public const int TitleMaxLength = 100;
+    
+    public const string NameIndex = "IX_TreatmentType_Name";
+    public const string TitleIndex = "IX_TreatmentType_Title";
 }
