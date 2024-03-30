@@ -3,7 +3,6 @@ using HealthTourist.Domain.Main;
 
 namespace HealthTourist.Application.Contracts.Main;
 
-public interface IAirLineRepository : IRepository<AirLine, int>
+public interface ITriageRepository : IRepository<Triage, Guid>
 {
-    
 }
