@@ -24,5 +24,4 @@ public abstract class HospitalConfigurationConstants
     public const string PhoneNumber2Index = "IX_Hospital_PhoneNumber2";
     public const string PhoneNumber3Index = "IX_Hospital_PhoneNumber3";
     public const string AddressIndex = "IX_Hospital_Address";
-
 }

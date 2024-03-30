@@ -19,8 +19,8 @@ public class Office : BaseEntity<int>
     public string PhoneNumber2 { get; set; }
     public string PhoneNumber3 { get; set; }
     public string Email { get; set; }
-    public string OwnerCommision { get; set; }
-    public string PresentedCommision { get; set; }
+    public string OwnerCommission { get; set; }
+    public string PresentedCommission { get; set; }
 
     #endregion
 
