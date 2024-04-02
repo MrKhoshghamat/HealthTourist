@@ -21,8 +21,6 @@
       <Folder Include="Features\Account\Person\Commands\CreatePerson\" />
       <Folder Include="Features\Account\Person\Commands\DeletePerson\" />
       <Folder Include="Features\Account\Person\Commands\UpdatePerson\" />
-      <Folder Include="Features\Account\Person\Queries\GetPersons\" />
-      <Folder Include="Features\Account\Person\Queries\GetPersonDetails\" />
       <Folder Include="Features\Common\Attachment\Commands\CreateAttachment\" />
       <Folder Include="Features\Common\Attachment\Commands\DeleteAttachment\" />
       <Folder Include="Features\Common\Attachment\Commands\UpdateAttachment\" />
