@@ -11,5 +11,5 @@ public class GetFaqsDto
     public int Priority { get; set; }
     public bool IsFirstPage { get; set; }
 
-    public virtual FaqType FaqType { get; set; }
+    public virtual Domain.Main.FaqType FaqType { get; set; }
 }

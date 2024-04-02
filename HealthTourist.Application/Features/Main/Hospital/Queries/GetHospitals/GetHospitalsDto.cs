@@ -28,7 +28,7 @@ public class GetHospitalsDto
 
     #region Relations
 
-    public virtual HospitalType HospitalType { get; set; }
+    public virtual Domain.Main.HospitalType HospitalType { get; set; }
     public virtual City City { get; set; }
     public virtual ICollection<Domain.Main.Doctor> Doctors { get; set; }
     public virtual ICollection<Health> Healths { get; set; }

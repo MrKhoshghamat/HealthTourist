@@ -16,10 +16,10 @@ public class GetDoctorsDto
     #region Relations
 
     public virtual Person Person { get; set; }
-    public virtual Hospital Hospital { get; set; }
+    public virtual Domain.Main.Hospital Hospital { get; set; }
     public virtual Treatment Treatment { get; set; }
     public virtual ICollection<Health> Healths { get; set; }
-    public virtual ICollection<TeamMember> TeamMembers { get; set; }
+    public virtual ICollection<Domain.Main.TeamMember> TeamMembers { get; set; }
 
     #endregion
 }
