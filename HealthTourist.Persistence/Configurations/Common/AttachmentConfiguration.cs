@@ -66,5 +66,13 @@ public class AttachmentConfiguration : IEntityTypeConfiguration<Attachment>
         builder.HasMany(a => a.TriageAttachments)
             .WithOne(ta => ta.Attachment)
             .HasForeignKey(ta => ta.AttachmentId);
+        
+        builder.HasMany(a => a.FaqTypeAttachments)
+            .WithOne(fta => fta.Attachment)
+            .HasForeignKey(fta => fta.AttachmentId);
+        
+        builder.HasMany(a => a.TreatmentTypeAttachments)
+            .WithOne(tta => tta.Attachment)
+            .HasForeignKey(tta => tta.AttachmentId);
     }
 }

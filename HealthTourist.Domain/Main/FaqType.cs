@@ -1,3 +1,5 @@
+using HealthTourist.Domain.Interface;
+
 namespace HealthTourist.Domain.Main;
 
 public class FaqType : BaseEntity<int>
@@ -14,6 +16,7 @@ public class FaqType : BaseEntity<int>
     #region Relations
 
     public virtual ICollection<Faq> Faqs { get; set; }
+    public virtual ICollection<FaqTypeAttachment> FaqTypeAttachments { get; set; }
 
     #endregion
 }

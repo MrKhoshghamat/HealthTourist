@@ -30,5 +30,9 @@ public class TreatmentTypeConfiguration : IEntityTypeConfiguration<TreatmentType
         builder.HasMany(tt => tt.Treatments)
             .WithOne(t => t.TreatmentType)
             .HasForeignKey(t => t.TreatmentTypeId);
+        
+        builder.HasMany(tt => tt.TreatmentTypeAttachments)
+            .WithOne(tta => tta.TreatmentType)
+            .HasForeignKey(tta => tta.TreatmentTypeId);
     }
 }

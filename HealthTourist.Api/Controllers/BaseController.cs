@@ -1,8 +1,10 @@
+using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HealthTourist.Api.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[controller]/[action]")]
     [ApiController]
     public class BaseController : ControllerBase
     {
