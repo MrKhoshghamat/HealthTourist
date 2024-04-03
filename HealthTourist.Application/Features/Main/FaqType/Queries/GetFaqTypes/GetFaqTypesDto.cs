@@ -1,3 +1,5 @@
+using HealthTourist.Domain.Interface;
+
 namespace HealthTourist.Application.Features.Main.FaqType.Queries.GetFaqTypes;
 
 public class GetFaqTypesDto
@@ -14,6 +16,7 @@ public class GetFaqTypesDto
     #region Relations
 
     public virtual ICollection<Domain.Main.Faq> Faqs { get; set; }
+    public virtual ICollection<FaqTypeAttachment> FaqTypeAttachments { get; set; }
 
     #endregion
 }

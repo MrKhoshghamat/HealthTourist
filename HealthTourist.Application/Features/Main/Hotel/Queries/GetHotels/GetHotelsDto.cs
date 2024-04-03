@@ -31,9 +31,9 @@ public class GetHotelsDto
 
     #region Relations
 
-    public virtual HotelRank HotelRank { get; set; }
+    public virtual Domain.Main.HotelRank HotelRank { get; set; }
     public virtual City City { get; set; }
-    public virtual ICollection<Travel> Travels { get; set; }
+    public virtual ICollection<Domain.Main.Travel> Travels { get; set; }
     public virtual ICollection<HotelAttachment> HotelAttachments { get; set; }
     public virtual ICollection<HotelGallery> HotelGalleries { get; set; }
     public virtual ICollection<HotelTag> HotelTags { get; set; }

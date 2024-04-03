@@ -33,5 +33,9 @@ public class FaqTypeConfiguration : IEntityTypeConfiguration<FaqType>
         builder.HasMany(ft => ft.Faqs)
             .WithOne(f => f.FaqType)
             .HasForeignKey(f => f.FaqTypeId);
+        
+        builder.HasMany(ft => ft.FaqTypeAttachments)
+            .WithOne(fta => fta.FaqType)
+            .HasForeignKey(f => f.FaqTypeId);
     }
 }

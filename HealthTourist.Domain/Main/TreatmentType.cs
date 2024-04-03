@@ -1,3 +1,5 @@
+using HealthTourist.Domain.Interface;
+
 namespace HealthTourist.Domain.Main;
 
 public class TreatmentType : BaseEntity<int>
@@ -12,6 +14,7 @@ public class TreatmentType : BaseEntity<int>
     #region Relations
 
     public virtual ICollection<Treatment> Treatments { get; set; }
+    public virtual ICollection<TreatmentTypeAttachment> TreatmentTypeAttachments { get; set; }
 
     #endregion
 }

@@ -17,7 +17,7 @@ public class GetTeamMembersDto
 
     public virtual Person Person { get; set; }
     public virtual Domain.Main.Doctor Doctor { get; set; }
-    public virtual Treatment Treatment { get; set; }
+    public virtual Domain.Main.Treatment Treatment { get; set; }
 
     #endregion
 }

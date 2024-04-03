@@ -31,7 +31,7 @@ public class GetHospitalsDto
     public virtual Domain.Main.HospitalType HospitalType { get; set; }
     public virtual City City { get; set; }
     public virtual ICollection<Domain.Main.Doctor> Doctors { get; set; }
-    public virtual ICollection<Health> Healths { get; set; }
+    public virtual ICollection<Domain.Main.Health> Healths { get; set; }
     public virtual ICollection<HospitalAttachment> HospitalAttachments { get; set; }
     public virtual ICollection<HospitalGallery> HospitalGalleries { get; set; }
     public virtual ICollection<HospitalTag> HospitalTags { get; set; }
