@@ -22,114 +22,27 @@ namespace HealthTourist.Persistence.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("HealthTourist.Domain.AboutUsPage.AboutUs", b =>
+            modelBuilder.Entity("HealthTourist.Domain.Account.Person", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("bigint");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreationDateTime")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("CreatorId")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("DeletionDateTime")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("character varying(255)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("IsDisabled")
-                        .HasColumnType("boolean");
-
-                    b.Property<DateTime>("ModificationDateTime")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("ModifierId")
-                        .HasColumnType("text");
-
-                    b.Property<string>("RemoverId")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AboutUs", "Main");
-                });
-
-            modelBuilder.Entity("HealthTourist.Domain.AboutUsPage.AboutUsAttachment", b =>
-                {
-                    b.Property<int>("AboutUsId")
-                        .HasColumnType("integer");
-
-                    b.Property<Guid>("AttachmentId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("AboutUsId", "AttachmentId");
-
-                    b.HasIndex("AttachmentId");
-
-                    b.ToTable("AboutUsAttachment", "Interface");
-                });
-
-            modelBuilder.Entity("HealthTourist.Domain.AboutUsPage.AboutUsOffice", b =>
-                {
-                    b.Property<int>("AboutUsId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("OfficeId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("AboutUsId", "OfficeId");
-
-                    b.HasIndex("OfficeId");
-
-                    b.ToTable("AboutUsOffice", "Interface");
-                });
-
-            modelBuilder.Entity("HealthTourist.Domain.AboutUsPage.AboutUsTeamMember", b =>
-                {
-                    b.Property<int>("AboutUsId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("TeamMemberId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("AboutUsId", "TeamMemberId");
-
-                    b.HasIndex("TeamMemberId");
-
-                    b.ToTable("AboutUsTeamMember", "Interface");
-                });
-
-            modelBuilder.Entity("HealthTourist.Domain.AboutUsPage.Office", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<string>("Address")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<DateTime>("BirthDate")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<DateTime>("CreationDateTime")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("CreatorId")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTime>("DeletionDateTime")
@@ -140,10 +53,100 @@ namespace HealthTourist.Persistence.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
 
-                    b.Property<string>("FaxNumber")
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<int>("Gender")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("IsAdmin")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsDisabled")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsDoctor")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsGuest")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsPatient")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<DateTime>("ModificationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("ModifierId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasMaxLength(13)
                         .HasColumnType("character varying(13)");
+
+                    b.Property<string>("RemoverId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Address")
+                        .HasDatabaseName("IX_Person_Address")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.HasIndex("Email")
+                        .HasDatabaseName("IX_Person_Email")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.HasIndex("FirstName")
+                        .HasDatabaseName("IX_Person_FirstName")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.HasIndex("LastName")
+                        .HasDatabaseName("IX_Person_LastName")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.HasIndex("PhoneNumber")
+                        .HasDatabaseName("IX_Person_PhoneNumber")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.ToTable("Person", "Account");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Common.Attachment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<byte[]>("Content")
+                        .IsRequired()
+                        .HasColumnType("bytea");
+
+                    b.Property<DateTime>("CreationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CreatorId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("DeletionDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Extension")
+                        .HasColumnType("integer");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
@@ -155,12 +158,1019 @@ namespace HealthTourist.Persistence.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("ModifierId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
+
+                    b.Property<string>("RemoverId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .HasDatabaseName("IX_Attachment_Name")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.ToTable("Attachment", "dbo");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Common.City", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CreatorId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("DeletionDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsDisabled")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("ModificationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("ModifierId")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
+
+                    b.Property<string>("RemoverId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("StateId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .HasDatabaseName("IX_City_Name")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.HasIndex("StateId");
+
+                    b.ToTable("City", "dbo");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Common.Country", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasMaxLength(3)
+                        .HasColumnType("character varying(3)");
+
+                    b.Property<DateTime>("CreationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CreatorId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("DeletionDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsDisabled")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("ModificationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("ModifierId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("RemoverId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Code")
+                        .HasDatabaseName("IX_Country_Code")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.HasIndex("Name")
+                        .HasDatabaseName("IX_Country_Name")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.HasIndex("Title")
+                        .HasDatabaseName("IX_Country_Title")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.ToTable("Country", "dbo");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Common.State", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CountryId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("CreationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CreatorId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("DeletionDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsDisabled")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("ModificationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("ModifierId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("RemoverId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CountryId");
+
+                    b.HasIndex("Name")
+                        .HasDatabaseName("IX_State_Name")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.HasIndex("Title")
+                        .HasDatabaseName("IX_State_Title")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.ToTable("State", "dbo");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Interface.HealthAttachment", b =>
+                {
+                    b.Property<Guid>("HealthId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("AttachmentId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("HealthId", "AttachmentId");
+
+                    b.HasIndex("AttachmentId");
+
+                    b.ToTable("HealthAttachment", "Interface");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Interface.HospitalAttachment", b =>
+                {
+                    b.Property<int>("HospitalId")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("AttachmentId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("HospitalId", "AttachmentId");
+
+                    b.HasIndex("AttachmentId");
+
+                    b.ToTable("HospitalAttachment", "Interface");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Interface.HospitalGallery", b =>
+                {
+                    b.Property<int>("HospitalId")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("AttachmentId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("HospitalId", "AttachmentId");
+
+                    b.HasIndex("AttachmentId");
+
+                    b.ToTable("HospitalGallery", "Interface");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Interface.HospitalTag", b =>
+                {
+                    b.Property<int>("HospitalId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("TagId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("HospitalId", "TagId");
+
+                    b.HasIndex("TagId");
+
+                    b.ToTable("HospitalTag", "Interface");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Interface.HotelAttachment", b =>
+                {
+                    b.Property<int>("HotelId")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("AttachmentId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("HotelId", "AttachmentId");
+
+                    b.HasIndex("AttachmentId");
+
+                    b.ToTable("HotelAttachment", "Interface");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Interface.HotelGallery", b =>
+                {
+                    b.Property<int>("HotelId")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("AttachmentId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("HotelId", "AttachmentId");
+
+                    b.HasIndex("AttachmentId");
+
+                    b.ToTable("HotelGallery", "Interface");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Interface.HotelTag", b =>
+                {
+                    b.Property<int>("HotelId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("TagId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("HotelId", "TagId");
+
+                    b.HasIndex("TagId");
+
+                    b.ToTable("HotelTag", "Interface");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Interface.OfficeAttachment", b =>
+                {
+                    b.Property<int>("OfficeId")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("AttachmentId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("OfficeId", "AttachmentId");
+
+                    b.HasIndex("AttachmentId");
+
+                    b.ToTable("OfficeAttachment", "Interface");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Interface.SightseenAttachment", b =>
+                {
+                    b.Property<int>("SightseenId")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("AttachmentId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("SightseenId", "AttachmentId");
+
+                    b.HasIndex("AttachmentId");
+
+                    b.ToTable("SightseenAttachment", "Interface");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Interface.SightseenCategory", b =>
+                {
+                    b.Property<int>("SightseenId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("SightseenId", "CategoryId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("SightseenCategory", "Interface");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Interface.TravelAttachment", b =>
+                {
+                    b.Property<Guid>("TravelId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("AttachmentId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("TravelId", "AttachmentId");
+
+                    b.HasIndex("AttachmentId");
+
+                    b.ToTable("TravelAttachment", "Interface");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Interface.TravelGuest", b =>
+                {
+                    b.Property<Guid>("TravelId")
+                        .HasColumnType("uuid");
+
+                    b.Property<long>("GuestId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("TravelId", "GuestId");
+
+                    b.HasIndex("GuestId");
+
+                    b.ToTable("TravelGuest", "Interface");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Interface.TriageAttachment", b =>
+                {
+                    b.Property<Guid>("TriageId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("AttachmentId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("TriageId", "AttachmentId");
+
+                    b.HasIndex("AttachmentId");
+
+                    b.ToTable("TriageAttachment", "Interface");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.AirLine", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CreatorId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("DeletionDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsDisabled")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("ModificationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("ModifierId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("RemoverId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .HasDatabaseName("IX_AirLine_Name")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.HasIndex("Title")
+                        .HasDatabaseName("IX_AirLine_Title")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.ToTable("AirLine", "Main");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CreatorId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("DeletionDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsDisabled")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("ModificationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("ModifierId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("RemoverId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .HasDatabaseName("IX_Category_Name")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.HasIndex("Title")
+                        .HasDatabaseName("IX_Category_Title")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.ToTable("Category", "Main");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.CostDetails", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CreatorId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("DeletionDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsDisabled")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("ModificationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("ModifierId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("RemoverId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .HasDatabaseName("IX_CostDetails_Name")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.HasIndex("Title")
+                        .HasDatabaseName("IX_CostDetails_Title")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.ToTable("CostDetails", "Main");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.Doctor", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTime>("CreationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CreatorId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("DeletionDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("HospitalId")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsDisabled")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("ModificationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("ModifierId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<long>("PersonId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("RemoverId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("TreatmentId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HospitalId");
+
+                    b.HasIndex("PersonId")
+                        .IsUnique();
+
+                    b.HasIndex("TreatmentId");
+
+                    b.ToTable("Doctor", "Main");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.Faq", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CreatorId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("DeletionDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(2000)
+                        .HasColumnType("character varying(2000)");
+
+                    b.Property<int>("FaqTypeId")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsDisabled")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsFirstPage")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("ModificationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("ModifierId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<int>("Priority")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("RemoverId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FaqTypeId");
+
+                    b.HasIndex("Name")
+                        .HasDatabaseName("IX_Faq_Title")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.ToTable("Faq", "Main");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.FaqType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CreatorId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("DeletionDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsDisabled")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("ModificationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("ModifierId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<int>("Priority")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("RemoverId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .HasDatabaseName("IX_FaqType_Name")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.HasIndex("Title")
+                        .HasDatabaseName("IX_FaqType_Title")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.ToTable("FaqType", "Main");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.Guest", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTime>("CreationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CreatorId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("DeletionDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsDisabled")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("ModificationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("ModifierId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<long>("PersonId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("RemoverId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PersonId")
+                        .IsUnique();
+
+                    b.ToTable("Guest", "Main");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.Health", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Cost")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<DateTime>("CreationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CreatorId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("DeletionDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<long>("DoctorId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DoctorId1")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("HospitalId")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsDisabled")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("ModificationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("ModifierId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("RemoverId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("TriageNo")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DoctorId");
+
+                    b.HasIndex("DoctorId1");
+
+                    b.HasIndex("HospitalId");
+
+                    b.HasIndex("TriageNo")
+                        .HasDatabaseName("IX_Health_TriageNo")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.ToTable("Health", "Main");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.HealthCost", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Cost")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<int>("CostDetailsId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("CostDetailsId1")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("CreationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CreatorId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("DeletionDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid>("HealthId")
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsDisabled")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("ModificationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("ModifierId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("RemoverId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CostDetailsId");
+
+                    b.HasIndex("CostDetailsId1");
+
+                    b.HasIndex("HealthId");
+
+                    b.ToTable("HealthCost", "Main");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.Hospital", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<int>("CityId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("CityId1")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("CreationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CreatorId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("DeletionDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<DateOnly>("EstablishmentDate")
+                        .HasColumnType("date");
+
+                    b.Property<int>("HospitalTypeId")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsDisabled")
+                        .HasColumnType("boolean");
+
+                    b.Property<long>("Lat")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("Long")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("ModificationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("ModifierId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<int>("NumberOfBeds")
+                        .HasColumnType("integer");
 
                     b.Property<string>("PhoneNumber1")
                         .IsRequired()
@@ -183,42 +1193,46 @@ namespace HealthTourist.Persistence.Migrations
                         .HasColumnType("character varying(10)");
 
                     b.Property<string>("RemoverId")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Office", "Main");
+                    b.HasIndex("Address")
+                        .HasDatabaseName("IX_Hospital_Address")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.HasIndex("CityId");
+
+                    b.HasIndex("CityId1");
+
+                    b.HasIndex("HospitalTypeId");
+
+                    b.HasIndex("Name")
+                        .HasDatabaseName("IX_Hospital_Title")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.HasIndex("PhoneNumber1")
+                        .HasDatabaseName("IX_Hospital_PhoneNumber1")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.HasIndex("PhoneNumber2")
+                        .HasDatabaseName("IX_Hospital_PhoneNumber2")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.HasIndex("PhoneNumber3")
+                        .HasDatabaseName("IX_Hospital_PhoneNumber3")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.ToTable("Hospital", "Main");
                 });
 
-            modelBuilder.Entity("HealthTourist.Domain.AboutUsPage.OfficeLocation", b =>
-                {
-                    b.Property<int>("OfficeId")
-                        .HasColumnType("integer");
-
-                    b.Property<Guid>("LocationId")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("LocationName")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("OfficeName")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("OfficeId", "LocationId");
-
-                    b.HasIndex("LocationId");
-
-                    b.ToTable("OfficeLocation", "Interface");
-                });
-
-            modelBuilder.Entity("HealthTourist.Domain.AboutUsPage.TeamMember", b =>
+            modelBuilder.Entity("HealthTourist.Domain.Main.HospitalType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -226,9 +1240,6 @@ namespace HealthTourist.Persistence.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CareerPosition")
-                        .HasColumnType("integer");
-
                     b.Property<DateTime>("CreationDateTime")
                         .HasColumnType("timestamp with time zone");
 
@@ -250,241 +1261,36 @@ namespace HealthTourist.Persistence.Migrations
 
                     b.Property<string>("ModifierId")
                         .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<long>("PersonId")
-                        .HasColumnType("bigint");
-
-                    b.Property<int>("Prefix")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("RemoverId")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PersonId")
-                        .IsUnique();
-
-                    b.ToTable("TeamMember", "Main");
-                });
-
-            modelBuilder.Entity("HealthTourist.Domain.AboutUsPage.TeamMemberSocialMedia", b =>
-                {
-                    b.Property<int>("TeamMemberId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("SocialMedia")
-                        .HasColumnType("integer");
-
-                    b.HasKey("TeamMemberId", "SocialMedia");
-
-                    b.ToTable("TeamMemberSocialMedia", "Interface");
-                });
-
-            modelBuilder.Entity("HealthTourist.Domain.AboutUsPage.TeamMemberState", b =>
-                {
-                    b.Property<int>("TeamMemberId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("StateId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("TeamMemberId", "StateId");
-
-                    b.HasIndex("StateId");
-
-                    b.ToTable("TeamMemberState", "Interface");
-                });
-
-            modelBuilder.Entity("HealthTourist.Domain.Account.Person", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
-
-                    b.Property<string>("Address")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("BirthDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("CreationDateTime")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("CreatorId")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("DeletionDateTime")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.Property<string>("FirstName")
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.Property<byte>("Gender")
-                        .HasColumnType("smallint");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("IsDisabled")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("LastName")
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.Property<DateTime>("ModificationDateTime")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("ModifierId")
-                        .HasColumnType("text");
-
-                    b.Property<string>("NationalCode")
-                        .IsRequired()
-                        .HasMaxLength(12)
-                        .HasColumnType("character varying(12)");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasMaxLength(13)
-                        .HasColumnType("character varying(13)");
-
-                    b.Property<string>("RemoverId")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Person", "Identity");
-                });
-
-            modelBuilder.Entity("HealthTourist.Domain.Account.PersonAttachment", b =>
-                {
-                    b.Property<long>("PersonId")
-                        .HasColumnType("bigint");
-
-                    b.Property<Guid>("AttachmentId")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("ExtensionType")
-                        .HasColumnType("integer");
-
-                    b.HasKey("PersonId", "AttachmentId");
-
-                    b.HasIndex("AttachmentId");
-
-                    b.ToTable("PersonAttachment", "Interface");
-                });
-
-            modelBuilder.Entity("HealthTourist.Domain.Common.Attachment", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("CreationDateTime")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("CreatorId")
-                        .HasColumnType("text");
-
-                    b.Property<byte[]>("Data")
-                        .IsRequired()
-                        .HasColumnType("bytea");
-
-                    b.Property<DateTime>("DeletionDateTime")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("FileExtension")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("character varying(10)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("IsDisabled")
-                        .HasColumnType("boolean");
-
-                    b.Property<DateTime>("ModificationDateTime")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("ModifierId")
-                        .HasColumnType("text");
-
-                    b.Property<string>("RemoverId")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Attachment", "dbo");
-                });
-
-            modelBuilder.Entity("HealthTourist.Domain.Common.Location", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("CreationDateTime")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("CreatorId")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("DeletionDateTime")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("IsDisabled")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("Latitude")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("character varying(255)");
-
-                    b.Property<string>("Longitude")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("character varying(255)");
-
-                    b.Property<DateTime>("ModificationDateTime")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("ModifierId")
                         .HasColumnType("text");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.Property<string>("RemoverId")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Location", "dbo");
+                    b.HasIndex("Name")
+                        .HasDatabaseName("IX_HospitalType_Name")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.HasIndex("Title")
+                        .HasDatabaseName("IX_HospitalType_Title")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.ToTable("HospitalType", "Main");
                 });
 
-            modelBuilder.Entity("HealthTourist.Domain.Common.State", b =>
+            modelBuilder.Entity("HealthTourist.Domain.Main.Hotel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -492,52 +1298,22 @@ namespace HealthTourist.Persistence.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreationDateTime")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
 
-                    b.Property<string>("CreatorId")
-                        .HasColumnType("text");
+                    b.Property<TimeOnly>("CheckInTime")
+                        .HasColumnType("time without time zone");
 
-                    b.Property<DateTime>("DeletionDateTime")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<TimeOnly>("CheckOutTime")
+                        .HasColumnType("time without time zone");
 
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("IsDisabled")
-                        .HasColumnType("boolean");
-
-                    b.Property<DateTime>("ModificationDateTime")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("ModifierId")
-                        .HasColumnType("text");
-
-                    b.Property<int?>("ParentId")
+                    b.Property<int>("CityId")
                         .HasColumnType("integer");
 
-                    b.Property<string>("RemoverId")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ParentId");
-
-                    b.ToTable("State", "dbo");
-                });
-
-            modelBuilder.Entity("HealthTourist.Domain.Department.Patient", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+                    b.Property<int?>("CityId1")
+                        .HasColumnType("integer");
 
                     b.Property<DateTime>("CreationDateTime")
                         .HasColumnType("timestamp with time zone");
@@ -551,7 +1327,551 @@ namespace HealthTourist.Persistence.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<DateOnly>("EstablishmentDate")
+                        .HasColumnType("date");
+
+                    b.Property<int>("HotelRankId")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsDisabled")
+                        .HasColumnType("boolean");
+
+                    b.Property<long>("Lat")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("Long")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("ModificationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("ModifierId")
+                        .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<int>("NumberOfRooms")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("PhoneNumber1")
+                        .IsRequired()
+                        .HasMaxLength(13)
+                        .HasColumnType("character varying(13)");
+
+                    b.Property<string>("PhoneNumber2")
+                        .IsRequired()
+                        .HasMaxLength(13)
+                        .HasColumnType("character varying(13)");
+
+                    b.Property<string>("PhoneNumber3")
+                        .IsRequired()
+                        .HasMaxLength(13)
+                        .HasColumnType("character varying(13)");
+
+                    b.Property<string>("PostalCode")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("character varying(10)");
+
+                    b.Property<string>("RemoverId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("Website")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Address")
+                        .HasDatabaseName("IX_Hotel_Address")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.HasIndex("CityId");
+
+                    b.HasIndex("CityId1");
+
+                    b.HasIndex("Email")
+                        .HasDatabaseName("IX_Hotel_Email")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.HasIndex("HotelRankId");
+
+                    b.HasIndex("Name")
+                        .HasDatabaseName("IX_Hotel_Name")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.HasIndex("PhoneNumber1")
+                        .HasDatabaseName("IX_Hotel_PhoneNumber1")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.HasIndex("PhoneNumber2")
+                        .HasDatabaseName("IX_Hotel_PhoneNumber2")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.HasIndex("PhoneNumber3")
+                        .HasDatabaseName("IX_Hotel_PhoneNumber3")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.HasIndex("PostalCode")
+                        .HasDatabaseName("IX_Hotel_PostalCode")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.HasIndex("Title")
+                        .HasDatabaseName("IX_Hotel_Title")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.HasIndex("Website")
+                        .HasDatabaseName("IX_Hotel_Website")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.ToTable("Hotel", "Main");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.HotelRank", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CreatorId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("DeletionDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("HotelTypeId")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsDisabled")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("ModificationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("ModifierId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("RemoverId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HotelTypeId");
+
+                    b.ToTable("HotelRank", "Main");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.HotelType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CreatorId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("DeletionDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsDisabled")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("ModificationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("ModifierId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("RemoverId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .HasDatabaseName("IX_HotelType_Name")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.HasIndex("Title")
+                        .HasDatabaseName("IX_HotelType_Title")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.ToTable("HotelType", "Main");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.Invoice", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTime>("CreationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CreatorId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("DeletionDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid>("HealthId")
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsDisabled")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("ModificationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("ModifierId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("RemoverId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("TotalPrice")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<Guid>("TravelId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HealthId");
+
+                    b.HasIndex("TravelId");
+
+                    b.ToTable("Invoice", "Main");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.InvoiceCost", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Cost")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<int>("CostDetailsId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("CostDetailsId1")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("CreationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CreatorId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("DeletionDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<long>("InvoiceId")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsDisabled")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("ModificationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("ModifierId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("RemoverId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CostDetailsId");
+
+                    b.HasIndex("CostDetailsId1");
+
+                    b.HasIndex("InvoiceId");
+
+                    b.ToTable("InvoiceCost", "Main");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.Office", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<int>("CityId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("CityId1")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("CountryId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("CountryId1")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("CreationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CreatorId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("DeletionDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsDisabled")
+                        .HasColumnType("boolean");
+
+                    b.Property<long>("Lat")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("Long")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("ModificationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("ModifierId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("OwnerCommission")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<string>("PhoneNumber1")
+                        .IsRequired()
+                        .HasMaxLength(13)
+                        .HasColumnType("character varying(13)");
+
+                    b.Property<string>("PhoneNumber2")
+                        .IsRequired()
+                        .HasMaxLength(13)
+                        .HasColumnType("character varying(13)");
+
+                    b.Property<string>("PhoneNumber3")
+                        .IsRequired()
+                        .HasMaxLength(13)
+                        .HasColumnType("character varying(13)");
+
+                    b.Property<string>("PostalCode")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("character varying(10)");
+
+                    b.Property<string>("PresentedCommission")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<string>("RemoverId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Address")
+                        .HasDatabaseName("IX_Office_Address")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.HasIndex("CityId");
+
+                    b.HasIndex("CityId1");
+
+                    b.HasIndex("CountryId");
+
+                    b.HasIndex("CountryId1");
+
+                    b.HasIndex("Name")
+                        .HasDatabaseName("IX_Office_Title")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.HasIndex("PhoneNumber1")
+                        .HasDatabaseName("IX_Office_PhoneNumber1")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.HasIndex("PhoneNumber2")
+                        .HasDatabaseName("IX_Office_PhoneNumber2")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.HasIndex("PhoneNumber3")
+                        .HasDatabaseName("IX_Office_PhoneNumber3")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.ToTable("Office", "Main");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.OfficeManager", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTime>("CreationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CreatorId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("DeletionDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsDisabled")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("ModificationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("ModifierId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("OfficeId")
+                        .HasColumnType("integer");
+
+                    b.Property<long>("PersonId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("RemoverId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OfficeId")
+                        .IsUnique();
+
+                    b.HasIndex("PersonId")
+                        .IsUnique();
+
+                    b.ToTable("OfficeManager", "Main");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.Patient", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTime>("CreationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CreatorId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("DeletionDateTime")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Height")
                         .IsRequired()
@@ -591,222 +1911,1136 @@ namespace HealthTourist.Persistence.Migrations
                     b.ToTable("Patient", "Main");
                 });
 
-            modelBuilder.Entity("HealthTourist.Domain.Department.PatientAttachment", b =>
+            modelBuilder.Entity("HealthTourist.Domain.Main.Sightseen", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CityId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("CityId1")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("CreationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CreatorId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("DeletionDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsDisabled")
+                        .HasColumnType("boolean");
+
+                    b.Property<long>("Lat")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("Long")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("ModificationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("ModifierId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("RemoverId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CityId");
+
+                    b.HasIndex("CityId1");
+
+                    b.HasIndex("Name")
+                        .HasDatabaseName("IX_Sightseen_Name")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.HasIndex("Title")
+                        .HasDatabaseName("IX_Sightseen_Title")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.ToTable("Sightseen", "Main");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.Tag", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CreatorId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("DeletionDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsDisabled")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("ModificationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("ModifierId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("RemoverId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Tag", "Main");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.TeamMember", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTime>("CreationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CreatorId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("DeletionDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<long>("DoctorId")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsDisabled")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("ModificationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("ModifierId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<long>("PersonId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("RemoverId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("TreatmentId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DoctorId");
+
+                    b.HasIndex("PersonId")
+                        .IsUnique();
+
+                    b.HasIndex("TreatmentId");
+
+                    b.ToTable("TeamMember", "Main");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.Travel", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("AirLineId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Cost")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<DateTime>("CreationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CreatorId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("DeletionDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<int>("HotelId")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsDisabled")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("ModificationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("ModifierId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<long>("PatientId")
                         .HasColumnType("bigint");
 
-                    b.Property<Guid>("AttachmentId")
+                    b.Property<string>("RemoverId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("TriageNo")
                         .HasColumnType("uuid");
 
-                    b.HasKey("PatientId", "AttachmentId");
+                    b.HasKey("Id");
 
-                    b.HasIndex("AttachmentId");
+                    b.HasIndex("AirLineId");
 
-                    b.ToTable("PatientAttachment", "Interface");
+                    b.HasIndex("HotelId");
+
+                    b.HasIndex("PatientId");
+
+                    b.ToTable("Travel", "Main");
                 });
 
-            modelBuilder.Entity("HealthTourist.Domain.AboutUsPage.AboutUsAttachment", b =>
+            modelBuilder.Entity("HealthTourist.Domain.Main.TravelCost", b =>
                 {
-                    b.HasOne("HealthTourist.Domain.AboutUsPage.AboutUs", "AboutUs")
-                        .WithMany("AboutUsAttachments")
-                        .HasForeignKey("AboutUsId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
 
-                    b.HasOne("HealthTourist.Domain.Common.Attachment", "Attachment")
-                        .WithMany("AboutUsAttachments")
-                        .HasForeignKey("AttachmentId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Navigation("AboutUs");
+                    b.Property<string>("Cost")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
 
-                    b.Navigation("Attachment");
+                    b.Property<int>("CostDetailsId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("CostDetailsId1")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("CreationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CreatorId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("DeletionDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsDisabled")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("ModificationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("ModifierId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("RemoverId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("TravelId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CostDetailsId");
+
+                    b.HasIndex("CostDetailsId1");
+
+                    b.HasIndex("TravelId");
+
+                    b.ToTable("TravelCost", "Main");
                 });
 
-            modelBuilder.Entity("HealthTourist.Domain.AboutUsPage.AboutUsOffice", b =>
+            modelBuilder.Entity("HealthTourist.Domain.Main.Treatment", b =>
                 {
-                    b.HasOne("HealthTourist.Domain.AboutUsPage.AboutUs", "AboutUs")
-                        .WithMany("AboutUsOffices")
-                        .HasForeignKey("AboutUsId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
 
-                    b.HasOne("HealthTourist.Domain.AboutUsPage.Office", "Office")
-                        .WithMany("AboutUsOffices")
-                        .HasForeignKey("OfficeId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Navigation("AboutUs");
+                    b.Property<DateTime>("CreationDateTime")
+                        .HasColumnType("timestamp with time zone");
 
-                    b.Navigation("Office");
+                    b.Property<string>("CreatorId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("DeletionDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsDisabled")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("ModificationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("ModifierId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("RemoverId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<int>("TreatmentTypeId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .HasDatabaseName("IX_Treatment_Title")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.HasIndex("TreatmentTypeId");
+
+                    b.ToTable("Treatment", "Main");
                 });
 
-            modelBuilder.Entity("HealthTourist.Domain.AboutUsPage.AboutUsTeamMember", b =>
+            modelBuilder.Entity("HealthTourist.Domain.Main.TreatmentType", b =>
                 {
-                    b.HasOne("HealthTourist.Domain.AboutUsPage.AboutUs", "AboutUs")
-                        .WithMany("AboutUsTeamMembers")
-                        .HasForeignKey("AboutUsId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
 
-                    b.HasOne("HealthTourist.Domain.AboutUsPage.TeamMember", "TeamMember")
-                        .WithMany("AboutUsTeamMembers")
-                        .HasForeignKey("TeamMemberId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Navigation("AboutUs");
+                    b.Property<DateTime>("CreationDateTime")
+                        .HasColumnType("timestamp with time zone");
 
-                    b.Navigation("TeamMember");
+                    b.Property<string>("CreatorId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("DeletionDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsDisabled")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("ModificationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("ModifierId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("RemoverId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .HasDatabaseName("IX_TreatmentType_Title")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.ToTable("TreatmentType", "Main");
                 });
 
-            modelBuilder.Entity("HealthTourist.Domain.AboutUsPage.OfficeLocation", b =>
+            modelBuilder.Entity("HealthTourist.Domain.Main.Triage", b =>
                 {
-                    b.HasOne("HealthTourist.Domain.Common.Location", "Location")
-                        .WithMany("OfficeLocations")
-                        .HasForeignKey("LocationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
 
-                    b.HasOne("HealthTourist.Domain.AboutUsPage.Office", "Office")
-                        .WithMany("OfficeLocations")
-                        .HasForeignKey("OfficeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Property<DateTime>("CreationDateTime")
+                        .HasColumnType("timestamp with time zone");
 
-                    b.Navigation("Location");
+                    b.Property<string>("CreatorId")
+                        .IsRequired()
+                        .HasColumnType("text");
 
-                    b.Navigation("Office");
+                    b.Property<DateTime>("DeletionDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsDisabled")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("ModificationDateTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("ModifierId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<long>("PatientId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("RemoverId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("TreatmentId")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("TriageNo")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PatientId");
+
+                    b.HasIndex("TreatmentId");
+
+                    b.ToTable("Triage", "Main");
                 });
 
-            modelBuilder.Entity("HealthTourist.Domain.AboutUsPage.TeamMember", b =>
-                {
-                    b.HasOne("HealthTourist.Domain.Account.Person", "Person")
-                        .WithOne("TeamMember")
-                        .HasForeignKey("HealthTourist.Domain.AboutUsPage.TeamMember", "PersonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Person");
-                });
-
-            modelBuilder.Entity("HealthTourist.Domain.AboutUsPage.TeamMemberSocialMedia", b =>
-                {
-                    b.HasOne("HealthTourist.Domain.AboutUsPage.TeamMember", "TeamMember")
-                        .WithMany("TeamMemberSocialMedias")
-                        .HasForeignKey("TeamMemberId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("TeamMember");
-                });
-
-            modelBuilder.Entity("HealthTourist.Domain.AboutUsPage.TeamMemberState", b =>
+            modelBuilder.Entity("HealthTourist.Domain.Common.City", b =>
                 {
                     b.HasOne("HealthTourist.Domain.Common.State", "State")
-                        .WithMany("TeamMemberStates")
+                        .WithMany("Cities")
                         .HasForeignKey("StateId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("HealthTourist.Domain.AboutUsPage.TeamMember", "TeamMember")
-                        .WithMany("TeamMemberStates")
-                        .HasForeignKey("TeamMemberId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("State");
-
-                    b.Navigation("TeamMember");
-                });
-
-            modelBuilder.Entity("HealthTourist.Domain.Account.PersonAttachment", b =>
-                {
-                    b.HasOne("HealthTourist.Domain.Common.Attachment", "Attachment")
-                        .WithMany("PersonAttachments")
-                        .HasForeignKey("AttachmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("HealthTourist.Domain.Account.Person", "Person")
-                        .WithMany("PersonAttachments")
-                        .HasForeignKey("PersonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Attachment");
-
-                    b.Navigation("Person");
                 });
 
             modelBuilder.Entity("HealthTourist.Domain.Common.State", b =>
                 {
-                    b.HasOne("HealthTourist.Domain.Common.State", "Parent")
-                        .WithMany()
-                        .HasForeignKey("ParentId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                    b.HasOne("HealthTourist.Domain.Common.Country", "Country")
+                        .WithMany("States")
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("Parent");
+                    b.Navigation("Country");
                 });
 
-            modelBuilder.Entity("HealthTourist.Domain.Department.Patient", b =>
+            modelBuilder.Entity("HealthTourist.Domain.Interface.HealthAttachment", b =>
+                {
+                    b.HasOne("HealthTourist.Domain.Common.Attachment", "Attachment")
+                        .WithMany("HealthAttachments")
+                        .HasForeignKey("AttachmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HealthTourist.Domain.Main.Health", "Health")
+                        .WithMany("HealthAttachments")
+                        .HasForeignKey("HealthId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Attachment");
+
+                    b.Navigation("Health");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Interface.HospitalAttachment", b =>
+                {
+                    b.HasOne("HealthTourist.Domain.Common.Attachment", "Attachment")
+                        .WithMany("HospitalAttachments")
+                        .HasForeignKey("AttachmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HealthTourist.Domain.Main.Hospital", "Hospital")
+                        .WithMany("HospitalAttachments")
+                        .HasForeignKey("HospitalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Attachment");
+
+                    b.Navigation("Hospital");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Interface.HospitalGallery", b =>
+                {
+                    b.HasOne("HealthTourist.Domain.Common.Attachment", "Attachment")
+                        .WithMany("HospitalGalleries")
+                        .HasForeignKey("AttachmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HealthTourist.Domain.Main.Hospital", "Hospital")
+                        .WithMany("HospitalGalleries")
+                        .HasForeignKey("HospitalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Attachment");
+
+                    b.Navigation("Hospital");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Interface.HospitalTag", b =>
+                {
+                    b.HasOne("HealthTourist.Domain.Main.Hospital", "Hospital")
+                        .WithMany("HospitalTags")
+                        .HasForeignKey("HospitalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HealthTourist.Domain.Main.Tag", "Tag")
+                        .WithMany("HospitalTags")
+                        .HasForeignKey("TagId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Hospital");
+
+                    b.Navigation("Tag");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Interface.HotelAttachment", b =>
+                {
+                    b.HasOne("HealthTourist.Domain.Common.Attachment", "Attachment")
+                        .WithMany("HotelAttachments")
+                        .HasForeignKey("AttachmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HealthTourist.Domain.Main.Hotel", "Hotel")
+                        .WithMany("HotelAttachments")
+                        .HasForeignKey("HotelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Attachment");
+
+                    b.Navigation("Hotel");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Interface.HotelGallery", b =>
+                {
+                    b.HasOne("HealthTourist.Domain.Common.Attachment", "Attachment")
+                        .WithMany("HotelGalleries")
+                        .HasForeignKey("AttachmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HealthTourist.Domain.Main.Hotel", "Hotel")
+                        .WithMany("HotelGalleries")
+                        .HasForeignKey("HotelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Attachment");
+
+                    b.Navigation("Hotel");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Interface.HotelTag", b =>
+                {
+                    b.HasOne("HealthTourist.Domain.Main.Hotel", "Hotel")
+                        .WithMany("HotelTags")
+                        .HasForeignKey("HotelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HealthTourist.Domain.Main.Tag", "Tag")
+                        .WithMany("HotelTags")
+                        .HasForeignKey("TagId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Hotel");
+
+                    b.Navigation("Tag");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Interface.OfficeAttachment", b =>
+                {
+                    b.HasOne("HealthTourist.Domain.Common.Attachment", "Attachment")
+                        .WithMany("OfficeAttachments")
+                        .HasForeignKey("AttachmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HealthTourist.Domain.Main.Office", "Office")
+                        .WithMany("OfficeAttachments")
+                        .HasForeignKey("OfficeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Attachment");
+
+                    b.Navigation("Office");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Interface.SightseenAttachment", b =>
+                {
+                    b.HasOne("HealthTourist.Domain.Common.Attachment", "Attachment")
+                        .WithMany("SightseenAttachments")
+                        .HasForeignKey("AttachmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HealthTourist.Domain.Main.Sightseen", "Sightseen")
+                        .WithMany("SightseenAttachments")
+                        .HasForeignKey("SightseenId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Attachment");
+
+                    b.Navigation("Sightseen");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Interface.SightseenCategory", b =>
+                {
+                    b.HasOne("HealthTourist.Domain.Main.Category", "Category")
+                        .WithMany("SightseenCategories")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HealthTourist.Domain.Main.Sightseen", "Sightseen")
+                        .WithMany("SightseenCategories")
+                        .HasForeignKey("SightseenId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+
+                    b.Navigation("Sightseen");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Interface.TravelAttachment", b =>
+                {
+                    b.HasOne("HealthTourist.Domain.Common.Attachment", "Attachment")
+                        .WithMany("TravelAttachments")
+                        .HasForeignKey("AttachmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HealthTourist.Domain.Main.Travel", "Travel")
+                        .WithMany("TravelAttachments")
+                        .HasForeignKey("TravelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Attachment");
+
+                    b.Navigation("Travel");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Interface.TravelGuest", b =>
+                {
+                    b.HasOne("HealthTourist.Domain.Main.Guest", "Guest")
+                        .WithMany("TravelGuests")
+                        .HasForeignKey("GuestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HealthTourist.Domain.Main.Travel", "Travel")
+                        .WithMany("TravelGuests")
+                        .HasForeignKey("TravelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Guest");
+
+                    b.Navigation("Travel");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Interface.TriageAttachment", b =>
+                {
+                    b.HasOne("HealthTourist.Domain.Common.Attachment", "Attachment")
+                        .WithMany("TriageAttachments")
+                        .HasForeignKey("AttachmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HealthTourist.Domain.Main.Triage", "Triage")
+                        .WithMany("TriageAttachments")
+                        .HasForeignKey("TriageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Attachment");
+
+                    b.Navigation("Triage");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.Doctor", b =>
+                {
+                    b.HasOne("HealthTourist.Domain.Main.Hospital", "Hospital")
+                        .WithMany("Doctors")
+                        .HasForeignKey("HospitalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HealthTourist.Domain.Account.Person", "Person")
+                        .WithOne("Doctor")
+                        .HasForeignKey("HealthTourist.Domain.Main.Doctor", "PersonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HealthTourist.Domain.Main.Treatment", "Treatment")
+                        .WithMany("Doctors")
+                        .HasForeignKey("TreatmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Hospital");
+
+                    b.Navigation("Person");
+
+                    b.Navigation("Treatment");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.Faq", b =>
+                {
+                    b.HasOne("HealthTourist.Domain.Main.FaqType", "FaqType")
+                        .WithMany("Faqs")
+                        .HasForeignKey("FaqTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("FaqType");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.Guest", b =>
                 {
                     b.HasOne("HealthTourist.Domain.Account.Person", "Person")
-                        .WithOne("Patient")
-                        .HasForeignKey("HealthTourist.Domain.Department.Patient", "PersonId")
+                        .WithOne("Guest")
+                        .HasForeignKey("HealthTourist.Domain.Main.Guest", "PersonId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Person");
                 });
 
-            modelBuilder.Entity("HealthTourist.Domain.Department.PatientAttachment", b =>
+            modelBuilder.Entity("HealthTourist.Domain.Main.Health", b =>
                 {
-                    b.HasOne("HealthTourist.Domain.Common.Attachment", "Attachment")
-                        .WithMany("PatientAttachments")
-                        .HasForeignKey("AttachmentId")
+                    b.HasOne("HealthTourist.Domain.Main.Doctor", "Doctor")
+                        .WithMany()
+                        .HasForeignKey("DoctorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("HealthTourist.Domain.Department.Patient", "Patient")
-                        .WithMany("PatientAttachments")
+                    b.HasOne("HealthTourist.Domain.Main.Doctor", null)
+                        .WithMany("Healths")
+                        .HasForeignKey("DoctorId1");
+
+                    b.HasOne("HealthTourist.Domain.Main.Hospital", "Hospital")
+                        .WithMany("Healths")
+                        .HasForeignKey("HospitalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Doctor");
+
+                    b.Navigation("Hospital");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.HealthCost", b =>
+                {
+                    b.HasOne("HealthTourist.Domain.Main.CostDetails", "CostDetails")
+                        .WithMany()
+                        .HasForeignKey("CostDetailsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HealthTourist.Domain.Main.CostDetails", null)
+                        .WithMany("HealthCosts")
+                        .HasForeignKey("CostDetailsId1");
+
+                    b.HasOne("HealthTourist.Domain.Main.Health", "Health")
+                        .WithMany("HealthCosts")
+                        .HasForeignKey("HealthId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CostDetails");
+
+                    b.Navigation("Health");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.Hospital", b =>
+                {
+                    b.HasOne("HealthTourist.Domain.Common.City", "City")
+                        .WithMany()
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HealthTourist.Domain.Common.City", null)
+                        .WithMany("Hospitals")
+                        .HasForeignKey("CityId1");
+
+                    b.HasOne("HealthTourist.Domain.Main.HospitalType", "HospitalType")
+                        .WithMany("Hospitals")
+                        .HasForeignKey("HospitalTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("City");
+
+                    b.Navigation("HospitalType");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.Hotel", b =>
+                {
+                    b.HasOne("HealthTourist.Domain.Common.City", "City")
+                        .WithMany()
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HealthTourist.Domain.Common.City", null)
+                        .WithMany("Hotels")
+                        .HasForeignKey("CityId1");
+
+                    b.HasOne("HealthTourist.Domain.Main.HotelRank", "HotelRank")
+                        .WithMany("Hotels")
+                        .HasForeignKey("HotelRankId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("City");
+
+                    b.Navigation("HotelRank");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.HotelRank", b =>
+                {
+                    b.HasOne("HealthTourist.Domain.Main.HotelType", "HotelType")
+                        .WithMany("HotelRanks")
+                        .HasForeignKey("HotelTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("HotelType");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.Invoice", b =>
+                {
+                    b.HasOne("HealthTourist.Domain.Main.Health", "Health")
+                        .WithMany("Invoices")
+                        .HasForeignKey("HealthId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HealthTourist.Domain.Main.Travel", "Travel")
+                        .WithMany("Invoices")
+                        .HasForeignKey("TravelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Health");
+
+                    b.Navigation("Travel");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.InvoiceCost", b =>
+                {
+                    b.HasOne("HealthTourist.Domain.Main.CostDetails", "CostDetails")
+                        .WithMany()
+                        .HasForeignKey("CostDetailsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HealthTourist.Domain.Main.CostDetails", null)
+                        .WithMany("InvoiceCosts")
+                        .HasForeignKey("CostDetailsId1");
+
+                    b.HasOne("HealthTourist.Domain.Main.Invoice", "Invoice")
+                        .WithMany("InvoiceCosts")
+                        .HasForeignKey("InvoiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CostDetails");
+
+                    b.Navigation("Invoice");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.Office", b =>
+                {
+                    b.HasOne("HealthTourist.Domain.Common.City", "City")
+                        .WithMany()
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HealthTourist.Domain.Common.City", null)
+                        .WithMany("Offices")
+                        .HasForeignKey("CityId1");
+
+                    b.HasOne("HealthTourist.Domain.Common.Country", "Country")
+                        .WithMany()
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HealthTourist.Domain.Common.Country", null)
+                        .WithMany("Offices")
+                        .HasForeignKey("CountryId1");
+
+                    b.Navigation("City");
+
+                    b.Navigation("Country");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.OfficeManager", b =>
+                {
+                    b.HasOne("HealthTourist.Domain.Main.Office", "Office")
+                        .WithOne("OfficeManager")
+                        .HasForeignKey("HealthTourist.Domain.Main.OfficeManager", "OfficeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HealthTourist.Domain.Account.Person", "Person")
+                        .WithOne("OfficeManager")
+                        .HasForeignKey("HealthTourist.Domain.Main.OfficeManager", "PersonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Office");
+
+                    b.Navigation("Person");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.Patient", b =>
+                {
+                    b.HasOne("HealthTourist.Domain.Account.Person", "Person")
+                        .WithOne("Patient")
+                        .HasForeignKey("HealthTourist.Domain.Main.Patient", "PersonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Person");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.Sightseen", b =>
+                {
+                    b.HasOne("HealthTourist.Domain.Common.City", "City")
+                        .WithMany()
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HealthTourist.Domain.Common.City", null)
+                        .WithMany("Sightseens")
+                        .HasForeignKey("CityId1");
+
+                    b.Navigation("City");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.TeamMember", b =>
+                {
+                    b.HasOne("HealthTourist.Domain.Main.Doctor", "Doctor")
+                        .WithMany("TeamMembers")
+                        .HasForeignKey("DoctorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HealthTourist.Domain.Account.Person", "Person")
+                        .WithOne("TeamMember")
+                        .HasForeignKey("HealthTourist.Domain.Main.TeamMember", "PersonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HealthTourist.Domain.Main.Treatment", "Treatment")
+                        .WithMany("TeamMembers")
+                        .HasForeignKey("TreatmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Doctor");
+
+                    b.Navigation("Person");
+
+                    b.Navigation("Treatment");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.Travel", b =>
+                {
+                    b.HasOne("HealthTourist.Domain.Main.AirLine", "AirLine")
+                        .WithMany("Travels")
+                        .HasForeignKey("AirLineId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HealthTourist.Domain.Main.Hotel", "Hotel")
+                        .WithMany("Travels")
+                        .HasForeignKey("HotelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HealthTourist.Domain.Main.Patient", "Patient")
+                        .WithMany("Travels")
                         .HasForeignKey("PatientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Attachment");
+                    b.Navigation("AirLine");
+
+                    b.Navigation("Hotel");
 
                     b.Navigation("Patient");
                 });
 
-            modelBuilder.Entity("HealthTourist.Domain.AboutUsPage.AboutUs", b =>
+            modelBuilder.Entity("HealthTourist.Domain.Main.TravelCost", b =>
                 {
-                    b.Navigation("AboutUsAttachments");
+                    b.HasOne("HealthTourist.Domain.Main.CostDetails", "CostDetails")
+                        .WithMany()
+                        .HasForeignKey("CostDetailsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("AboutUsOffices");
+                    b.HasOne("HealthTourist.Domain.Main.CostDetails", null)
+                        .WithMany("TravelCosts")
+                        .HasForeignKey("CostDetailsId1");
 
-                    b.Navigation("AboutUsTeamMembers");
+                    b.HasOne("HealthTourist.Domain.Main.Travel", "Travel")
+                        .WithMany("TravelCosts")
+                        .HasForeignKey("TravelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CostDetails");
+
+                    b.Navigation("Travel");
                 });
 
-            modelBuilder.Entity("HealthTourist.Domain.AboutUsPage.Office", b =>
+            modelBuilder.Entity("HealthTourist.Domain.Main.Treatment", b =>
                 {
-                    b.Navigation("AboutUsOffices");
+                    b.HasOne("HealthTourist.Domain.Main.TreatmentType", "TreatmentType")
+                        .WithMany("Treatments")
+                        .HasForeignKey("TreatmentTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("OfficeLocations");
+                    b.Navigation("TreatmentType");
                 });
 
-            modelBuilder.Entity("HealthTourist.Domain.AboutUsPage.TeamMember", b =>
+            modelBuilder.Entity("HealthTourist.Domain.Main.Triage", b =>
                 {
-                    b.Navigation("AboutUsTeamMembers");
+                    b.HasOne("HealthTourist.Domain.Main.Patient", "Patient")
+                        .WithMany("Triages")
+                        .HasForeignKey("PatientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("TeamMemberSocialMedias");
+                    b.HasOne("HealthTourist.Domain.Main.Treatment", "Treatment")
+                        .WithMany("Triages")
+                        .HasForeignKey("TreatmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("TeamMemberStates");
+                    b.Navigation("Patient");
+
+                    b.Navigation("Treatment");
                 });
 
             modelBuilder.Entity("HealthTourist.Domain.Account.Person", b =>
                 {
-                    b.Navigation("Patient")
+                    b.Navigation("Doctor")
                         .IsRequired();
 
-                    b.Navigation("PersonAttachments");
+                    b.Navigation("Guest")
+                        .IsRequired();
+
+                    b.Navigation("OfficeManager")
+                        .IsRequired();
+
+                    b.Navigation("Patient")
+                        .IsRequired();
 
                     b.Navigation("TeamMember")
                         .IsRequired();
@@ -814,26 +3048,194 @@ namespace HealthTourist.Persistence.Migrations
 
             modelBuilder.Entity("HealthTourist.Domain.Common.Attachment", b =>
                 {
-                    b.Navigation("AboutUsAttachments");
+                    b.Navigation("HealthAttachments");
 
-                    b.Navigation("PatientAttachments");
+                    b.Navigation("HospitalAttachments");
 
-                    b.Navigation("PersonAttachments");
+                    b.Navigation("HospitalGalleries");
+
+                    b.Navigation("HotelAttachments");
+
+                    b.Navigation("HotelGalleries");
+
+                    b.Navigation("OfficeAttachments");
+
+                    b.Navigation("SightseenAttachments");
+
+                    b.Navigation("TravelAttachments");
+
+                    b.Navigation("TriageAttachments");
                 });
 
-            modelBuilder.Entity("HealthTourist.Domain.Common.Location", b =>
+            modelBuilder.Entity("HealthTourist.Domain.Common.City", b =>
                 {
-                    b.Navigation("OfficeLocations");
+                    b.Navigation("Hospitals");
+
+                    b.Navigation("Hotels");
+
+                    b.Navigation("Offices");
+
+                    b.Navigation("Sightseens");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Common.Country", b =>
+                {
+                    b.Navigation("Offices");
+
+                    b.Navigation("States");
                 });
 
             modelBuilder.Entity("HealthTourist.Domain.Common.State", b =>
                 {
-                    b.Navigation("TeamMemberStates");
+                    b.Navigation("Cities");
                 });
 
-            modelBuilder.Entity("HealthTourist.Domain.Department.Patient", b =>
+            modelBuilder.Entity("HealthTourist.Domain.Main.AirLine", b =>
                 {
-                    b.Navigation("PatientAttachments");
+                    b.Navigation("Travels");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.Category", b =>
+                {
+                    b.Navigation("SightseenCategories");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.CostDetails", b =>
+                {
+                    b.Navigation("HealthCosts");
+
+                    b.Navigation("InvoiceCosts");
+
+                    b.Navigation("TravelCosts");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.Doctor", b =>
+                {
+                    b.Navigation("Healths");
+
+                    b.Navigation("TeamMembers");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.FaqType", b =>
+                {
+                    b.Navigation("Faqs");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.Guest", b =>
+                {
+                    b.Navigation("TravelGuests");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.Health", b =>
+                {
+                    b.Navigation("HealthAttachments");
+
+                    b.Navigation("HealthCosts");
+
+                    b.Navigation("Invoices");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.Hospital", b =>
+                {
+                    b.Navigation("Doctors");
+
+                    b.Navigation("Healths");
+
+                    b.Navigation("HospitalAttachments");
+
+                    b.Navigation("HospitalGalleries");
+
+                    b.Navigation("HospitalTags");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.HospitalType", b =>
+                {
+                    b.Navigation("Hospitals");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.Hotel", b =>
+                {
+                    b.Navigation("HotelAttachments");
+
+                    b.Navigation("HotelGalleries");
+
+                    b.Navigation("HotelTags");
+
+                    b.Navigation("Travels");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.HotelRank", b =>
+                {
+                    b.Navigation("Hotels");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.HotelType", b =>
+                {
+                    b.Navigation("HotelRanks");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.Invoice", b =>
+                {
+                    b.Navigation("InvoiceCosts");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.Office", b =>
+                {
+                    b.Navigation("OfficeAttachments");
+
+                    b.Navigation("OfficeManager")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.Patient", b =>
+                {
+                    b.Navigation("Travels");
+
+                    b.Navigation("Triages");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.Sightseen", b =>
+                {
+                    b.Navigation("SightseenAttachments");
+
+                    b.Navigation("SightseenCategories");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.Tag", b =>
+                {
+                    b.Navigation("HospitalTags");
+
+                    b.Navigation("HotelTags");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.Travel", b =>
+                {
+                    b.Navigation("Invoices");
+
+                    b.Navigation("TravelAttachments");
+
+                    b.Navigation("TravelCosts");
+
+                    b.Navigation("TravelGuests");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.Treatment", b =>
+                {
+                    b.Navigation("Doctors");
+
+                    b.Navigation("TeamMembers");
+
+                    b.Navigation("Triages");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.TreatmentType", b =>
+                {
+                    b.Navigation("Treatments");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Main.Triage", b =>
+                {
+                    b.Navigation("TriageAttachments");
                 });
 #pragma warning restore 612, 618
         }

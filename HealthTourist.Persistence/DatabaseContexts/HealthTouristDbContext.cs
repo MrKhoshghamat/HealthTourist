@@ -1,4 +1,8 @@
 using HealthTourist.Domain;
+using HealthTourist.Domain.Account;
+using HealthTourist.Domain.Common;
+using HealthTourist.Domain.Interface;
+using HealthTourist.Domain.Main;
 using Microsoft.EntityFrameworkCore;
 
 namespace HealthTourist.Persistence.DatabaseContexts;
@@ -11,6 +15,71 @@ public class HealthTouristDbContext : DbContext
 
     #region Dbsets
 
+    #region Account
+
+    public DbSet<Person> Persons { get; set; }
+
+    #endregion
+
+    #region Common
+
+    public DbSet<Attachment> Attachments { get; set; }
+    public DbSet<City> Cities { get; set; }
+    public DbSet<Country> Countries { get; set; }
+    public DbSet<State> States { get; set; }
+
+    #endregion
+
+    #region Main
+
+    public DbSet<AirLine> AirLines { get; set; }
+    public DbSet<Category> Categories { get; set; }
+    public DbSet<CostDetails> CostDetailsDbset { get; set; }
+    public DbSet<Doctor> Doctors { get; set; }
+    public DbSet<Faq> Faqs { get; set; }
+    public DbSet<FaqType> FaqTypes { get; set; }
+    public DbSet<Guest> Guests { get; set; }
+    public DbSet<Health> Healths { get; set; }
+    public DbSet<HealthCost> HealthCosts { get; set; }
+    public DbSet<Hospital> Hospitals { get; set; }
+    public DbSet<HospitalType> HospitalTypes { get; set; }
+    public DbSet<Hotel> Hotels { get; set; }
+    public DbSet<HotelRank> HotelRanks { get; set; }
+    public DbSet<HotelType> HotelTypes { get; set; }
+    public DbSet<Invoice> Invoices { get; set; }
+    public DbSet<InvoiceCost> InvoiceCosts { get; set; }
+    public DbSet<Office> Offices { get; set; }
+    public DbSet<OfficeManager> OfficeManagers { get; set; }
+    public DbSet<Patient> Patients { get; set; }
+    public DbSet<Sightseen> Sightseens { get; set; }
+    public DbSet<Tag> Tags { get; set; }
+    public DbSet<TeamMember> TeamMembers { get; set; }
+    public DbSet<Travel> Travels { get; set; }
+    public DbSet<TravelCost> TravelCosts { get; set; }
+    public DbSet<Treatment> Treatments { get; set; }
+    public DbSet<TreatmentType> TreatmentTypes { get; set; }
+    public DbSet<Triage> Triages { get; set; }
+
+    #endregion
+
+    #region Interface
+
+    public DbSet<HealthAttachment> HealthAttachments { get; set; }
+    public DbSet<HospitalAttachment> HospitalAttachments { get; set; }
+    public DbSet<HospitalGallery> HospitalGalleries { get; set; }
+    public DbSet<HospitalTag> HospitalTags { get; set; }
+    public DbSet<HotelAttachment> HotelAttachments { get; set; }
+    public DbSet<HotelGallery> HotelGalleries { get; set; }
+    public DbSet<HotelTag> HotelTags { get; set; }
+    public DbSet<OfficeAttachment> OfficeAttachments { get; set; }
+    public DbSet<SightseenAttachment> SightseenAttachments { get; set; }
+    public DbSet<SightseenCategory> SightseenCategories { get; set; }
+    public DbSet<TravelAttachment> TravelAttachments { get; set; }
+    public DbSet<TravelGuest> TravelGuests { get; set; }
+    public DbSet<TriageAttachment> TriageAttachments { get; set; }
+
+    #endregion
+    
     #endregion
 
     #region Configurations
