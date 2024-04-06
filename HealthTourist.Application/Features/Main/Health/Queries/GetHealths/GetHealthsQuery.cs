@@ -1,6 +1,5 @@
+using MediatR;
+
 namespace HealthTourist.Application.Features.Main.Health.Queries.GetHealths;
 
-public class GetHealthsQuery
-{
-    
-}
+public record GetHealthsQuery : IRequest<List<GetHealthsDto>>;

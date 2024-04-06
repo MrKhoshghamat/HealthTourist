@@ -24,23 +24,15 @@
       <Folder Include="Features\Common\Attachment\Commands\CreateAttachment\" />
       <Folder Include="Features\Common\Attachment\Commands\DeleteAttachment\" />
       <Folder Include="Features\Common\Attachment\Commands\UpdateAttachment\" />
-      <Folder Include="Features\Common\Attachment\Queries\GetAttachmentDetails\" />
-      <Folder Include="Features\Common\Attachment\Queries\GetAttachments\" />
       <Folder Include="Features\Common\City\Commands\CreateCity\" />
       <Folder Include="Features\Common\City\Commands\DeleteCity\" />
       <Folder Include="Features\Common\City\Commands\UpdateCity\" />
-      <Folder Include="Features\Common\City\Queries\GetCities\" />
-      <Folder Include="Features\Common\City\Queries\GetCityDetails\" />
       <Folder Include="Features\Common\Country\Commands\CreateCountry\" />
       <Folder Include="Features\Common\Country\Commands\DeleteCountry\" />
       <Folder Include="Features\Common\Country\Commands\UpdateCountry\" />
-      <Folder Include="Features\Common\Country\Queries\GetCountries\" />
-      <Folder Include="Features\Common\Country\Queries\GetCountryDetails\" />
       <Folder Include="Features\Common\State\Commands\CreateState\" />
       <Folder Include="Features\Common\State\Commands\DeleteState\" />
       <Folder Include="Features\Common\State\Commands\UpdateState\" />
-      <Folder Include="Features\Common\State\Queries\GetStateDetails\" />
-      <Folder Include="Features\Common\State\Queries\GetStates\" />
       <Folder Include="Features\Interface\" />
       <Folder Include="Features\Main\AirLine\Commands\CreateAirLine\" />
       <Folder Include="Features\Main\AirLine\Commands\DeleteAirLine\" />
@@ -116,9 +108,6 @@
       <Folder Include="Features\Main\Travel\Commands\CreateTravel\" />
       <Folder Include="Features\Main\Travel\Commands\DeleteTravel\" />
       <Folder Include="Features\Main\Travel\Commands\UpdateTravel\" />
-      <Folder Include="Features\Main\TreatmentCost\Commands\CreateTreatmentCost\" />
-      <Folder Include="Features\Main\TreatmentCost\Commands\DeleteTreatmentCost\" />
-      <Folder Include="Features\Main\TreatmentCost\Commands\UpdateTreatmentCost\" />
       <Folder Include="Features\Main\TreatmentType\Commands\CreateTreatmentType\" />
       <Folder Include="Features\Main\TreatmentType\Commands\DeleteTreatmentType\" />
       <Folder Include="Features\Main\TreatmentType\Commands\UpdateTreatmentType\" />
@@ -128,8 +117,6 @@
       <Folder Include="Features\Main\Triage\Commands\CreateTriage\" />
       <Folder Include="Features\Main\Triage\Commands\DeleteTriage\" />
       <Folder Include="Features\Main\Triage\Commands\UpdateTriage\" />
-      <Folder Include="MappingProfiles\Account\" />
-      <Folder Include="MappingProfiles\Common\" />
       <Folder Include="MappingProfiles\Interface\" />
     </ItemGroup>
 

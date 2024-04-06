@@ -23,11 +23,11 @@ namespace HealthTourist.Api.Controllers
             var hospitals = await mediator.Send(new GetHospitalsQuery());
             var hotels = await mediator.Send(new GetHotelsQuery());
 
-            getHomeDto.FaqTypes = faqTypes;
-            getHomeDto.TreatmentTypes = treatmentTypes;
-            getHomeDto.Doctors = doctors;
-            getHomeDto.Hospitals = hospitals;
-            getHomeDto.Hotels = hotels;
+            // getHomeDto.FaqTypes = faqTypes;
+            // getHomeDto.TreatmentTypes = treatmentTypes;
+            // getHomeDto.Doctors = doctors;
+            // getHomeDto.Hospitals = hospitals;
+            // getHomeDto.Hotels = hotels;
 
             return getHomeDto;
         }

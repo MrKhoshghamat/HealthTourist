@@ -23,7 +23,7 @@ public class TreatmentTypeConfiguration : IEntityTypeConfiguration<TreatmentType
         // Configure indexes
         builder.HasIndex(tt => tt.Name).IsClustered(false)
             .HasName(TreatmentTypeConfigurationConstants.NameIndex);
-        builder.HasIndex(tt => tt.Name).IsClustered(false)
+        builder.HasIndex(tt => tt.Title).IsClustered(false)
             .HasName(TreatmentTypeConfigurationConstants.TitleIndex);
 
         // Configure relationships
