@@ -64,6 +64,7 @@ public class HealthTouristDbContext : DbContext
 
     #region Interface
 
+    public DbSet<FaqTypeAttachment> FaqTypeAttachments { get; set; }
     public DbSet<HealthAttachment> HealthAttachments { get; set; }
     public DbSet<HospitalAttachment> HospitalAttachments { get; set; }
     public DbSet<HospitalGallery> HospitalGalleries { get; set; }
@@ -76,10 +77,11 @@ public class HealthTouristDbContext : DbContext
     public DbSet<SightseenCategory> SightseenCategories { get; set; }
     public DbSet<TravelAttachment> TravelAttachments { get; set; }
     public DbSet<TravelGuest> TravelGuests { get; set; }
+    public DbSet<TreatmentTypeAttachment> TreatmentTypeAttachments { get; set; }
     public DbSet<TriageAttachment> TriageAttachments { get; set; }
 
     #endregion
-    
+
     #endregion
 
     #region Configurations

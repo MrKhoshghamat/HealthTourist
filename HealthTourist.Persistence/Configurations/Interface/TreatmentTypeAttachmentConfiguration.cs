@@ -1,4 +1,4 @@
-using HealthTourist.Common.Constants.Main.TreatmentType;
+using HealthTourist.Common.Constants.Interface;
 using HealthTourist.Domain.Interface;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -10,7 +10,7 @@ public class TreatmentTypeAttachmentConfiguration : IEntityTypeConfiguration<Tre
     public void Configure(EntityTypeBuilder<TreatmentTypeAttachment> builder)
     {
         // Configure table name and schema name
-        builder.ToTable(TreatmentTypeConfigurationConstants.TableName, TreatmentTypeConfigurationConstants.SchemaName);
+        builder.ToTable(TreatmentTypeAttachmentConfigurationConstants.TableName, TreatmentTypeAttachmentConfigurationConstants.SchemaName);
         
         // Configure composite primary key
         builder.HasKey(tta => new { tta.TreatmentTypeId, tta.AttachmentId });

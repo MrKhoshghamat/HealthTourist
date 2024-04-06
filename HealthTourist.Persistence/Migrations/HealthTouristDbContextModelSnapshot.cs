@@ -368,6 +368,24 @@ namespace HealthTourist.Persistence.Migrations
                     b.ToTable("State", "dbo");
                 });
 
+            modelBuilder.Entity("HealthTourist.Domain.Interface.FaqTypeAttachment", b =>
+                {
+                    b.Property<int>("FaqTypeId")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("AttachmentId")
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("IsSelected")
+                        .HasColumnType("boolean");
+
+                    b.HasKey("FaqTypeId", "AttachmentId");
+
+                    b.HasIndex("AttachmentId");
+
+                    b.ToTable("FaqTypeAttachment", "Interface");
+                });
+
             modelBuilder.Entity("HealthTourist.Domain.Interface.HealthAttachment", b =>
                 {
                     b.Property<Guid>("HealthId")
@@ -546,6 +564,21 @@ namespace HealthTourist.Persistence.Migrations
                     b.HasIndex("GuestId");
 
                     b.ToTable("TravelGuest", "Interface");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Interface.TreatmentTypeAttachment", b =>
+                {
+                    b.Property<int>("TreatmentTypeId")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("AttachmentId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("TreatmentTypeId", "AttachmentId");
+
+                    b.HasIndex("AttachmentId");
+
+                    b.ToTable("TreatmentTypeAttachment", "Interface");
                 });
 
             modelBuilder.Entity("HealthTourist.Domain.Interface.TriageAttachment", b =>
@@ -2324,6 +2357,10 @@ namespace HealthTourist.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("Name")
+                        .HasDatabaseName("IX_TreatmentType_Name")
+                        .HasAnnotation("SqlServer:Clustered", false);
+
+                    b.HasIndex("Title")
                         .HasDatabaseName("IX_TreatmentType_Title")
                         .HasAnnotation("SqlServer:Clustered", false);
 
@@ -2406,6 +2443,25 @@ namespace HealthTourist.Persistence.Migrations
                         .IsRequired();
 
                     b.Navigation("Country");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Interface.FaqTypeAttachment", b =>
+                {
+                    b.HasOne("HealthTourist.Domain.Common.Attachment", "Attachment")
+                        .WithMany("FaqTypeAttachments")
+                        .HasForeignKey("AttachmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HealthTourist.Domain.Main.FaqType", "FaqType")
+                        .WithMany("FaqTypeAttachments")
+                        .HasForeignKey("FaqTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Attachment");
+
+                    b.Navigation("FaqType");
                 });
 
             modelBuilder.Entity("HealthTourist.Domain.Interface.HealthAttachment", b =>
@@ -2634,6 +2690,25 @@ namespace HealthTourist.Persistence.Migrations
                     b.Navigation("Guest");
 
                     b.Navigation("Travel");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Interface.TreatmentTypeAttachment", b =>
+                {
+                    b.HasOne("HealthTourist.Domain.Common.Attachment", "Attachment")
+                        .WithMany("TreatmentTypeAttachments")
+                        .HasForeignKey("AttachmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HealthTourist.Domain.Main.TreatmentType", "TreatmentType")
+                        .WithMany("TreatmentTypeAttachments")
+                        .HasForeignKey("TreatmentTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Attachment");
+
+                    b.Navigation("TreatmentType");
                 });
 
             modelBuilder.Entity("HealthTourist.Domain.Interface.TriageAttachment", b =>
@@ -3048,6 +3123,8 @@ namespace HealthTourist.Persistence.Migrations
 
             modelBuilder.Entity("HealthTourist.Domain.Common.Attachment", b =>
                 {
+                    b.Navigation("FaqTypeAttachments");
+
                     b.Navigation("HealthAttachments");
 
                     b.Navigation("HospitalAttachments");
@@ -3063,6 +3140,8 @@ namespace HealthTourist.Persistence.Migrations
                     b.Navigation("SightseenAttachments");
 
                     b.Navigation("TravelAttachments");
+
+                    b.Navigation("TreatmentTypeAttachments");
 
                     b.Navigation("TriageAttachments");
                 });
@@ -3118,6 +3197,8 @@ namespace HealthTourist.Persistence.Migrations
 
             modelBuilder.Entity("HealthTourist.Domain.Main.FaqType", b =>
                 {
+                    b.Navigation("FaqTypeAttachments");
+
                     b.Navigation("Faqs");
                 });
 
@@ -3230,6 +3311,8 @@ namespace HealthTourist.Persistence.Migrations
 
             modelBuilder.Entity("HealthTourist.Domain.Main.TreatmentType", b =>
                 {
+                    b.Navigation("TreatmentTypeAttachments");
+
                     b.Navigation("Treatments");
                 });
 

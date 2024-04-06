@@ -1,6 +1,5 @@
+using MediatR;
+
 namespace HealthTourist.Application.Features.Main.AirLine.Queries.GetAirLines;
 
-public class GetAirLinesQuery
-{
-    
-}
+public record GetAirLinesQuery : IRequest<List<GetAirLinesDto>>;
