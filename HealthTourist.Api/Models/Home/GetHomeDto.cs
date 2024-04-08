@@ -8,9 +8,9 @@ namespace HealthTourist.Api.Models.Home;
 
 public class GetHomeDto
 {
-    // public List<GetFaqTypesDto> FaqTypes { get; set; }
-    // public List<GetTreatmentTypesDto> TreatmentTypes { get; set; }
-    // public List<GetDoctorsDto> Doctors { get; set; }
-    // public List<GetHospitalsDto> Hospitals { get; set; }
-    // public List<GetHotelsDto> Hotels { get; set; }
+    public List<GetFaqTypesDto> FaqTypes { get; set; }
+    public List<GetTreatmentTypesDto> TreatmentTypes { get; set; }
+    public List<GetDoctorsDto> Doctors { get; set; }
+    public List<GetHospitalsDto> Hospitals { get; set; }
+    public List<GetHotelsDto> Hotels { get; set; }
 }
