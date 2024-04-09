@@ -8,6 +8,7 @@ public class GetHotelsDto
 {
     #region Properties
 
+    public int Id { get; set; }
     public int HotelRankId { get; set; }
     public string Name { get; set; }
     public string Title { get; set; }

@@ -1,4 +1,5 @@
 using HealthTourist.Domain.Account;
+using HealthTourist.Domain.Interface;
 
 namespace HealthTourist.Domain.Main;
 
@@ -19,6 +20,8 @@ public class Doctor : BaseEntity<long>
     public virtual Treatment Treatment { get; set; }
     public virtual ICollection<Health> Healths { get; set; }
     public virtual ICollection<TeamMember> TeamMembers { get; set; }
+    public virtual ICollection<DoctorSocialMedia> DoctorSocialMediae { get; set; }
+    public virtual ICollection<DoctorAttachment> DoctorAttachments { get; set; }
 
     #endregion
 }

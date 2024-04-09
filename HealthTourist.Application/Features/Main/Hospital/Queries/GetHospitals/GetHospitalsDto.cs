@@ -8,6 +8,7 @@ public class GetHospitalsDto
 {
     #region Properties
 
+    public int Id { get; set; }
     public int HospitalTypeId { get; set; }
     public string Name { get; set; }
     public string Title { get; set; }

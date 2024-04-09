@@ -41,5 +41,13 @@ public class DoctorConfiguration : IEntityTypeConfiguration<Doctor>
         builder.HasMany(d => d.TeamMembers)
             .WithOne(tm => tm.Doctor)
             .HasForeignKey(tm => tm.DoctorId);
+        
+        builder.HasMany(d => d.DoctorSocialMediae)
+            .WithOne(dsl => dsl.Doctor)
+            .HasForeignKey(dsl => dsl.DoctorId);
+        
+        builder.HasMany(d => d.DoctorAttachments)
+            .WithOne(da => da.Doctor)
+            .HasForeignKey(da => da.DoctorId);
     }
 }

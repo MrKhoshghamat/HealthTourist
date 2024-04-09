@@ -7,6 +7,7 @@ public class GetDoctorsDto
 {
     #region Properties
 
+    public long Id { get; set; }
     public long PersonId { get; set; }
     public int HospitalId { get; set; }
     public int TreatmentId { get; set; }

@@ -1,6 +1,5 @@
+using MediatR;
+
 namespace HealthTourist.Application.Features.Main.Tag.Queries.GetTagDetails;
 
-public class GetTagDetailsQuery
-{
-    
-}
+public record GetTagDetailsQuery(int Id) : IRequest<GetTagDetailsDto>;

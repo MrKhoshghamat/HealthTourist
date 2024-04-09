@@ -26,6 +26,7 @@ public class Attachment : BaseEntity<Guid>
     public virtual ICollection<TriageAttachment> TriageAttachments { get; set; }
     public virtual ICollection<FaqTypeAttachment> FaqTypeAttachments { get; set; }
     public virtual ICollection<TreatmentTypeAttachment> TreatmentTypeAttachments { get; set; }
+    public virtual ICollection<DoctorAttachment> DoctorAttachments { get; set; }
 
     #endregion
 }
