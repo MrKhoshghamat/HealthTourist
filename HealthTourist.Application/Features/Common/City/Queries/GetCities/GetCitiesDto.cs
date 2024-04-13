@@ -7,6 +7,7 @@ public class GetCitiesDto
 {
     #region Properties
 
+    public int Id { get; set; }
     public int StateId { get; set; }
     public string Name { get; set; }
     public string Title { get; set; }

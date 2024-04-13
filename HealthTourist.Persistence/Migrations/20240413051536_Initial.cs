@@ -1218,6 +1218,54 @@ namespace HealthTourist.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "DoctorAttachment",
+                schema: "Interface",
+                columns: table => new
+                {
+                    DoctorId = table.Column<long>(type: "bigint", nullable: false),
+                    AttachmentId = table.Column<Guid>(type: "uuid", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DoctorAttachment", x => new { x.DoctorId, x.AttachmentId });
+                    table.ForeignKey(
+                        name: "FK_DoctorAttachment_Attachment_AttachmentId",
+                        column: x => x.AttachmentId,
+                        principalSchema: "dbo",
+                        principalTable: "Attachment",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DoctorAttachment_Doctor_DoctorId",
+                        column: x => x.DoctorId,
+                        principalSchema: "Main",
+                        principalTable: "Doctor",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DoctorSocialMedia",
+                schema: "Interface",
+                columns: table => new
+                {
+                    DoctorId = table.Column<long>(type: "bigint", nullable: false),
+                    SocialMedia = table.Column<int>(type: "integer", nullable: false),
+                    Link = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DoctorSocialMedia", x => x.DoctorId);
+                    table.ForeignKey(
+                        name: "FK_DoctorSocialMedia_Doctor_DoctorId",
+                        column: x => x.DoctorId,
+                        principalSchema: "Main",
+                        principalTable: "Doctor",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Health",
                 schema: "Main",
                 columns: table => new
@@ -1651,6 +1699,12 @@ namespace HealthTourist.Persistence.Migrations
                 schema: "Main",
                 table: "Doctor",
                 column: "TreatmentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DoctorAttachment_AttachmentId",
+                schema: "Interface",
+                table: "DoctorAttachment",
+                column: "AttachmentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Faq_FaqTypeId",
@@ -2237,6 +2291,14 @@ namespace HealthTourist.Persistence.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "DoctorAttachment",
+                schema: "Interface");
+
+            migrationBuilder.DropTable(
+                name: "DoctorSocialMedia",
+                schema: "Interface");
+
             migrationBuilder.DropTable(
                 name: "Faq",
                 schema: "Main");

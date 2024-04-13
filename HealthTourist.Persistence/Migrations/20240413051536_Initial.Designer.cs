@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HealthTourist.Persistence.Migrations
 {
     [DbContext(typeof(HealthTouristDbContext))]
-    [Migration("20240406124153_Initial")]
+    [Migration("20240413051536_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -369,6 +369,38 @@ namespace HealthTourist.Persistence.Migrations
                         .HasAnnotation("SqlServer:Clustered", false);
 
                     b.ToTable("State", "dbo");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Interface.DoctorAttachment", b =>
+                {
+                    b.Property<long>("DoctorId")
+                        .HasColumnType("bigint");
+
+                    b.Property<Guid>("AttachmentId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("DoctorId", "AttachmentId");
+
+                    b.HasIndex("AttachmentId");
+
+                    b.ToTable("DoctorAttachment", "Interface");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Interface.DoctorSocialMedia", b =>
+                {
+                    b.Property<long>("DoctorId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Link")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("SocialMedia")
+                        .HasColumnType("integer");
+
+                    b.HasKey("DoctorId");
+
+                    b.ToTable("DoctorSocialMedia", "Interface");
                 });
 
             modelBuilder.Entity("HealthTourist.Domain.Interface.FaqTypeAttachment", b =>
@@ -2448,6 +2480,36 @@ namespace HealthTourist.Persistence.Migrations
                     b.Navigation("Country");
                 });
 
+            modelBuilder.Entity("HealthTourist.Domain.Interface.DoctorAttachment", b =>
+                {
+                    b.HasOne("HealthTourist.Domain.Common.Attachment", "Attachment")
+                        .WithMany("DoctorAttachments")
+                        .HasForeignKey("AttachmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HealthTourist.Domain.Main.Doctor", "Doctor")
+                        .WithMany("DoctorAttachments")
+                        .HasForeignKey("DoctorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Attachment");
+
+                    b.Navigation("Doctor");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Interface.DoctorSocialMedia", b =>
+                {
+                    b.HasOne("HealthTourist.Domain.Main.Doctor", "Doctor")
+                        .WithMany("DoctorSocialMediae")
+                        .HasForeignKey("DoctorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Doctor");
+                });
+
             modelBuilder.Entity("HealthTourist.Domain.Interface.FaqTypeAttachment", b =>
                 {
                     b.HasOne("HealthTourist.Domain.Common.Attachment", "Attachment")
@@ -3126,6 +3188,8 @@ namespace HealthTourist.Persistence.Migrations
 
             modelBuilder.Entity("HealthTourist.Domain.Common.Attachment", b =>
                 {
+                    b.Navigation("DoctorAttachments");
+
                     b.Navigation("FaqTypeAttachments");
 
                     b.Navigation("HealthAttachments");
@@ -3193,6 +3257,10 @@ namespace HealthTourist.Persistence.Migrations
 
             modelBuilder.Entity("HealthTourist.Domain.Main.Doctor", b =>
                 {
+                    b.Navigation("DoctorAttachments");
+
+                    b.Navigation("DoctorSocialMediae");
+
                     b.Navigation("Healths");
 
                     b.Navigation("TeamMembers");

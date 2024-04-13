@@ -5,6 +5,7 @@ public class HotelRank : BaseEntity<int>
     #region Properties
 
     public int HotelTypeId { get; set; }
+    public string Title { get; set; }
 
     #endregion
 

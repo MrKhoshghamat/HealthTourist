@@ -24,7 +24,7 @@ public class DoctorAttachmentConfiguration : IEntityTypeConfiguration<DoctorAtta
 
         builder.HasOne(da => da.Attachment)
             .WithMany(d => d.DoctorAttachments)
-            .HasForeignKey(a => a.DoctorId)
+            .HasForeignKey(a => a.AttachmentId)
             .OnDelete(DeleteBehavior.Cascade);
     }
 }

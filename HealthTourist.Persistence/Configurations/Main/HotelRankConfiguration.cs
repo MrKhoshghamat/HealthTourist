@@ -11,12 +11,13 @@ public class HotelRankConfiguration : IEntityTypeConfiguration<HotelRank>
     {
         // Configure table name and schema name
         builder.ToTable(HotelRankConfigurationConstants.TableName, HotelRankConfigurationConstants.SchemaName);
-        
+
         // Configure primary key
         builder.HasKey(hr => hr.Id);
 
         // Configure properties
         builder.Property(hr => hr.HotelTypeId).IsRequired();
+        builder.Property(hr => hr.Title).IsRequired().HasMaxLength(HotelRankConfigurationConstants.TitleMaxLength);
 
         // Configure relationships
         builder.HasOne(hr => hr.HotelType)

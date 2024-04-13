@@ -4,4 +4,6 @@ public abstract class HotelRankConfigurationConstants
 {
     public const string SchemaName = "Main";
     public const string TableName = "HotelRank";
+
+    public const int TitleMaxLength = 50;
 }

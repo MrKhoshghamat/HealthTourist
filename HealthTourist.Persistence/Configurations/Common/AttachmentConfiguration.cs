@@ -78,5 +78,9 @@ public class AttachmentConfiguration : IEntityTypeConfiguration<Attachment>
         builder.HasMany(a => a.DoctorAttachments)
             .WithOne(da => da.Attachment)
             .HasForeignKey(da => da.AttachmentId);
+        
+        builder.HasMany(a => a.CityAttachments)
+            .WithOne(ca => ca.Attachment)
+            .HasForeignKey(ca => ca.AttachmentId);
     }
 }

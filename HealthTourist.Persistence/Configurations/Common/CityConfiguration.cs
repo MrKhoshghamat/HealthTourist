@@ -45,5 +45,9 @@ public class CityConfiguration : IEntityTypeConfiguration<City>
         builder.HasMany(c => c.Sightseens)
             .WithOne(s => s.City)
             .HasForeignKey(s => s.CityId);
+        
+        builder.HasMany(c => c.CityAttachments)
+            .WithOne(ca => ca.City)
+            .HasForeignKey(ca => ca.CityId);
     }
 }

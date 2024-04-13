@@ -1,11 +1,13 @@
 using HealthTourist.Application.Contracts.Account;
 using HealthTourist.Application.Contracts.Common;
+using HealthTourist.Application.Contracts.Interface;
 using HealthTourist.Application.Contracts.Main;
 using HealthTourist.Application.Contracts.Persistence.Base;
 using HealthTourist.Persistence.DatabaseContexts;
 using HealthTourist.Persistence.Repositories.Account;
 using HealthTourist.Persistence.Repositories.Base;
 using HealthTourist.Persistence.Repositories.Common;
+using HealthTourist.Persistence.Repositories.Interface;
 using HealthTourist.Persistence.Repositories.Main;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -32,6 +34,24 @@ public static class PersistenceServiceRegistration
         services.AddScoped<ICityRepository, CityRepository>();
         services.AddScoped<ICountryRepository, CountryRepository>();
         services.AddScoped<IStateRepository, StateRepository>();
+
+        services.AddScoped<IDoctorAttachmentRepository, DoctorAttachmentRepository>();
+        services.AddScoped<IDoctorSocialMediaRepository, DoctorSocialMediaRepository>();
+        services.AddScoped<IFaqTypeAttachmentRepository, FaqTypeAttachmentRepository>();
+        services.AddScoped<IHealthAttachmentRepository, HealthAttachmentRepository>();
+        services.AddScoped<IHospitalAttachmentRepository, HospitalAttachmentRepository>();
+        services.AddScoped<IHospitalGalleryRepository, HospitalGalleryRepository>();
+        services.AddScoped<IHospitalTagRepository, HospitalTagRepository>();
+        services.AddScoped<IHotelAttachmentRepository, HotelAttachmentRepository>();
+        services.AddScoped<IHotelGalleryRepository, HotelGalleryRepository>();
+        services.AddScoped<IHotelTagRepository, HotelTagRepository>();
+        services.AddScoped<IOfficeAttachmentRepository, OfficeAttachmentRepository>();
+        services.AddScoped<ISightseenAttachmentRepository, SightseenAttachmentRepository>();
+        services.AddScoped<ISightseenCategoryRepository, SightseenCategoryRepository>();
+        services.AddScoped<ITravelAttachmentRepository, TravelAttachmentRepository>();
+        services.AddScoped<ITravelGuestRepository, TravelGuestRepository>();
+        services.AddScoped<ITreatmentTypeAttachmentRepository, TreatmentTypeAttachmentRepository>();
+        services.AddScoped<ITriageAttachmentRepository, TriageAttachmentRepository>();
 
         services.AddScoped<IAirLineRepository, AirLineRepository>();
         services.AddScoped<ICategoryRepository, CategoryRepository>();

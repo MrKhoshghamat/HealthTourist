@@ -33,7 +33,6 @@
       <Folder Include="Features\Common\State\Commands\CreateState\" />
       <Folder Include="Features\Common\State\Commands\DeleteState\" />
       <Folder Include="Features\Common\State\Commands\UpdateState\" />
-      <Folder Include="Features\Interface\" />
       <Folder Include="Features\Main\AirLine\Commands\CreateAirLine\" />
       <Folder Include="Features\Main\AirLine\Commands\DeleteAirLine\" />
       <Folder Include="Features\Main\AirLine\Commands\UpdateAirLine\" />
@@ -96,6 +95,7 @@
       <Folder Include="Features\Main\Sightseen\Commands\CreateSightseen\" />
       <Folder Include="Features\Main\Sightseen\Commands\DeleteSightseen\" />
       <Folder Include="Features\Main\Sightseen\Commands\UpdateSightseen\" />
+      <Folder Include="Features\Main\Sightseen\Queries\GetSightseenAttachmentsWithCityId\" />
       <Folder Include="Features\Main\Tag\Commands\CreateTag\" />
       <Folder Include="Features\Main\Tag\Commands\DeleteTag\" />
       <Folder Include="Features\Main\Tag\Commands\UpdateTag\" />

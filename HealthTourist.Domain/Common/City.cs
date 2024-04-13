@@ -1,3 +1,4 @@
+using HealthTourist.Domain.Interface;
 using HealthTourist.Domain.Main;
 
 namespace HealthTourist.Domain.Common;
@@ -19,6 +20,7 @@ public class City : BaseEntity<int>
     public virtual ICollection<Hotel> Hotels { get; set; }
     public virtual ICollection<Office> Offices { get; set; }
     public virtual ICollection<Sightseen> Sightseens { get; set; }
+    public virtual ICollection<CityAttachment> CityAttachments { get; set; }
 
     #endregion
 }
