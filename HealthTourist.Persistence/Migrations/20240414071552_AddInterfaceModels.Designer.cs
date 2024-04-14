@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HealthTourist.Persistence.Migrations
 {
     [DbContext(typeof(HealthTouristDbContext))]
-    [Migration("20240413051536_Initial")]
-    partial class Initial
+    [Migration("20240414071552_AddInterfaceModels")]
+    partial class AddInterfaceModels
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -369,6 +369,21 @@ namespace HealthTourist.Persistence.Migrations
                         .HasAnnotation("SqlServer:Clustered", false);
 
                     b.ToTable("State", "dbo");
+                });
+
+            modelBuilder.Entity("HealthTourist.Domain.Interface.CityAttachment", b =>
+                {
+                    b.Property<int>("CityId")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("AttachmentId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("CityId", "AttachmentId");
+
+                    b.HasIndex("AttachmentId");
+
+                    b.ToTable("CityAttachment", "Interface");
                 });
 
             modelBuilder.Entity("HealthTourist.Domain.Interface.DoctorAttachment", b =>
@@ -1555,6 +1570,11 @@ namespace HealthTourist.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("HotelTypeId");
@@ -2480,6 +2500,25 @@ namespace HealthTourist.Persistence.Migrations
                     b.Navigation("Country");
                 });
 
+            modelBuilder.Entity("HealthTourist.Domain.Interface.CityAttachment", b =>
+                {
+                    b.HasOne("HealthTourist.Domain.Common.Attachment", "Attachment")
+                        .WithMany("CityAttachments")
+                        .HasForeignKey("AttachmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HealthTourist.Domain.Common.City", "City")
+                        .WithMany("CityAttachments")
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Attachment");
+
+                    b.Navigation("City");
+                });
+
             modelBuilder.Entity("HealthTourist.Domain.Interface.DoctorAttachment", b =>
                 {
                     b.HasOne("HealthTourist.Domain.Common.Attachment", "Attachment")
@@ -3188,6 +3227,8 @@ namespace HealthTourist.Persistence.Migrations
 
             modelBuilder.Entity("HealthTourist.Domain.Common.Attachment", b =>
                 {
+                    b.Navigation("CityAttachments");
+
                     b.Navigation("DoctorAttachments");
 
                     b.Navigation("FaqTypeAttachments");
@@ -3215,6 +3256,8 @@ namespace HealthTourist.Persistence.Migrations
 
             modelBuilder.Entity("HealthTourist.Domain.Common.City", b =>
                 {
+                    b.Navigation("CityAttachments");
+
                     b.Navigation("Hospitals");
 
                     b.Navigation("Hotels");

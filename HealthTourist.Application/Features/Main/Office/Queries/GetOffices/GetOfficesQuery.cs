@@ -1,6 +1,5 @@
+using MediatR;
+
 namespace HealthTourist.Application.Features.Main.Office.Queries.GetOffices;
 
-public class GetOfficesQuery
-{
-    
-}
+public record GetOfficesQuery : IRequest<List<GetOfficesDto>>;

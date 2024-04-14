@@ -35,6 +35,7 @@ public static class PersistenceServiceRegistration
         services.AddScoped<ICountryRepository, CountryRepository>();
         services.AddScoped<IStateRepository, StateRepository>();
 
+        services.AddScoped<ICityAttachmentRepository, CityAttachmentRepository>();
         services.AddScoped<IDoctorAttachmentRepository, DoctorAttachmentRepository>();
         services.AddScoped<IDoctorSocialMediaRepository, DoctorSocialMediaRepository>();
         services.AddScoped<IFaqTypeAttachmentRepository, FaqTypeAttachmentRepository>();
@@ -48,6 +49,7 @@ public static class PersistenceServiceRegistration
         services.AddScoped<IOfficeAttachmentRepository, OfficeAttachmentRepository>();
         services.AddScoped<ISightseenAttachmentRepository, SightseenAttachmentRepository>();
         services.AddScoped<ISightseenCategoryRepository, SightseenCategoryRepository>();
+        services.AddScoped<ITeamMemberSocialMediaRepository, TeamMemberSocialMediaRepository>();
         services.AddScoped<ITravelAttachmentRepository, TravelAttachmentRepository>();
         services.AddScoped<ITravelGuestRepository, TravelGuestRepository>();
         services.AddScoped<ITreatmentTypeAttachmentRepository, TreatmentTypeAttachmentRepository>();

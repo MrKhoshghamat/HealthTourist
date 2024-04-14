@@ -64,6 +64,9 @@ public class HealthTouristDbContext : DbContext
 
     #region Interface
 
+    public DbSet<CityAttachment> CityAttachments { get; set; }
+    public DbSet<DoctorAttachment> DoctorAttachments { get; set; }
+    public DbSet<DoctorSocialMedia> DoctorSocialMediae { get; set; }
     public DbSet<FaqTypeAttachment> FaqTypeAttachments { get; set; }
     public DbSet<HealthAttachment> HealthAttachments { get; set; }
     public DbSet<HospitalAttachment> HospitalAttachments { get; set; }

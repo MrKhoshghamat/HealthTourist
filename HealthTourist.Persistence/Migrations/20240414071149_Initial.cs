@@ -390,6 +390,7 @@ namespace HealthTourist.Persistence.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     HotelTypeId = table.Column<int>(type: "integer", nullable: false),
+                    Title = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                     CreatorId = table.Column<string>(type: "text", nullable: false),
                     CreationDateTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     ModifierId = table.Column<string>(type: "text", nullable: false),
@@ -594,6 +595,33 @@ namespace HealthTourist.Persistence.Migrations
                         column: x => x.TreatmentId,
                         principalSchema: "Main",
                         principalTable: "Treatment",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CityAttachment",
+                schema: "Interface",
+                columns: table => new
+                {
+                    CityId = table.Column<int>(type: "integer", nullable: false),
+                    AttachmentId = table.Column<Guid>(type: "uuid", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CityAttachment", x => new { x.CityId, x.AttachmentId });
+                    table.ForeignKey(
+                        name: "FK_CityAttachment_Attachment_AttachmentId",
+                        column: x => x.AttachmentId,
+                        principalSchema: "dbo",
+                        principalTable: "Attachment",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CityAttachment_City_CityId",
+                        column: x => x.CityId,
+                        principalSchema: "dbo",
+                        principalTable: "City",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -1652,6 +1680,12 @@ namespace HealthTourist.Persistence.Migrations
                 column: "StateId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_CityAttachment_AttachmentId",
+                schema: "Interface",
+                table: "CityAttachment",
+                column: "AttachmentId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_CostDetails_Name",
                 schema: "Main",
                 table: "CostDetails",
@@ -2291,6 +2325,10 @@ namespace HealthTourist.Persistence.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "CityAttachment",
+                schema: "Interface");
+
             migrationBuilder.DropTable(
                 name: "DoctorAttachment",
                 schema: "Interface");
