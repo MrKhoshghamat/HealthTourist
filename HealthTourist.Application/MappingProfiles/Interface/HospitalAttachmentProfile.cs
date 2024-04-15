@@ -13,10 +13,7 @@ public class HospitalAttachmentProfile : Profile
                 dest.HospitalId, opt =>
                 opt.MapFrom(src => src.HospitalId))
             .ForMember(dest =>
-                dest.AttachmentId, opt =>
-                opt.MapFrom(src => src.AttachmentId))
-            .ForMember(dest =>
-                dest.Content, opt =>
+                dest.Contents, opt =>
                 opt.MapFrom(src => src.Attachment.Content)).ReverseMap();
     }
 }

@@ -13,10 +13,7 @@ public class HospitalTagProfile : Profile
                 dest.HospitalId, opt =>
                 opt.MapFrom(src => src.HospitalId))
             .ForMember(dest =>
-                dest.TagId, opt =>
-                opt.MapFrom(src => src.TagId))
-            .ForMember(dest =>
-                dest.Title, opt =>
+                dest.Tags, opt =>
                 opt.MapFrom(src => src.Tag.Title)).ReverseMap();
     }
 }

@@ -6,7 +6,7 @@ using HealthTourist.Application.Features.Interface.SightseenCategory.Queries.Get
 using HealthTourist.Application.Features.Main.Hotel.Queries.GetHotelAttachmentsByHotelId;
 using HealthTourist.Application.Features.Main.Hotel.Queries.GetHotelsByCityName;
 using HealthTourist.Application.Features.Main.Hotel.Queries.GetHotelTagsByHotelId;
-using HealthTourist.Application.Features.Main.Sightseen.Queries.GetSightseensByCityName;
+using HealthTourist.Application.Features.Main.Sightseen.Queries.GetSightseenAttachmentsByCityName;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,7 +22,6 @@ namespace HealthTourist.Api.Controllers
 
             var cities = await mediator.Send(new GetCitiesQuery());
             var hotels = await mediator.Send(new GetHotelsByCityNameQuery(cityName));
-            var sightseens = await mediator.Send(new GetSightseensByCityNameQuery(cityName));
 
             foreach (var city in cities)
             {
@@ -59,16 +58,26 @@ namespace HealthTourist.Api.Controllers
                 ];
             }
 
-            foreach (var sightseen in sightseens)
-            {
-                var sightseenCategories = await mediator.Send(new GetSightseenCategoriesQuery());
+            var sightseenCategories = await mediator.Send(new GetSightseenCategoriesQuery());
+            var sightseenCategoriesNameList = sightseenCategories
+                .Select(sightseenCategory => sightseenCategory.Category.Title).ToList();
+            var sightseenAttachments = await mediator.Send(new GetSightseenAttachmentsByCityNameQuery(cityName));
 
+            foreach (var sightseenAttachment in sightseenAttachments)
+            {
                 getHotelDto.CitySightseens =
                 [
                     new HotelCitySightseenDto()
                     {
-                        SightseenCategories = sightseenCategories,
-                        Pictures = sightseens
+                        SightseenCategories = sightseenCategoriesNameList,
+                        Pictures =
+                        [
+                            new HotelCitySightseenPictureDto()
+                            {
+                                Title = sightseenAttachment.Title,
+                                Picture = sightseenAttachment.Content
+                            }
+                        ]
                     }
                 ];
             }

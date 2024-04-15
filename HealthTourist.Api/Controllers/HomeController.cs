@@ -99,8 +99,8 @@ namespace HealthTourist.Api.Controllers
                         Name = hospital.Name,
                         Title = hospital.Title,
                         Description = hospital.Description,
-                        Tags = hospitalTag,
-                        Pictures = hospitalAttachment
+                        Tags = hospitalTag.Tags,
+                        Pictures = hospitalAttachment.Contents
                     }
                 ];
             }

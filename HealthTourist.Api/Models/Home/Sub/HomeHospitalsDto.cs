@@ -8,6 +8,6 @@ public class HomeHospitalsDto
     public string Name { get; set; }
     public string Title { get; set; }
     public string Description { get; set; }
-    public List<GetHospitalTagsByHospitalIdDto> Tags { get; set; }
-    public List<GetHospitalAttachmentByHospitalIdDto> Pictures { get; set; }
+    public List<string> Tags { get; set; }
+    public List<byte[]> Pictures { get; set; }
 }

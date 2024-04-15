@@ -5,6 +5,6 @@ namespace HealthTourist.Api.Models.Hotel.Sub;
 
 public class HotelCitySightseenDto
 {
-    public List<GetSightseenCategoriesDto> SightseenCategories { get; set; }
-    public List<GetSightseensByCityNameDto> Pictures { get; set; }
+    public List<string> SightseenCategories { get; set; }
+    public List<HotelCitySightseenPictureDto> Pictures { get; set; }
 }
