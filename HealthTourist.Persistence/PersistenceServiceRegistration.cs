@@ -49,6 +49,7 @@ public static class PersistenceServiceRegistration
         services.AddScoped<IOfficeAttachmentRepository, OfficeAttachmentRepository>();
         services.AddScoped<ISightseenAttachmentRepository, SightseenAttachmentRepository>();
         services.AddScoped<ISightseenCategoryRepository, SightseenCategoryRepository>();
+        services.AddScoped<ITeamMemberAttachmentRepository, TeamMemberAttachmentRepository>();
         services.AddScoped<ITeamMemberSocialMediaRepository, TeamMemberSocialMediaRepository>();
         services.AddScoped<ITravelAttachmentRepository, TravelAttachmentRepository>();
         services.AddScoped<ITravelGuestRepository, TravelGuestRepository>();

@@ -36,5 +36,9 @@ public class TeamMemberConfiguration : IEntityTypeConfiguration<TeamMember>
         builder.HasMany(tm => tm.TeamMemberSocialMediae)
             .WithOne(tmsm => tmsm.TeamMember)
             .HasForeignKey(tmsm => tmsm.TeamMemberId);
+        
+        builder.HasMany(tm => tm.TeamMemberAttachments)
+            .WithOne(tma => tma.TeamMember)
+            .HasForeignKey(tma => tma.TeamMemberId);
     }
 }
