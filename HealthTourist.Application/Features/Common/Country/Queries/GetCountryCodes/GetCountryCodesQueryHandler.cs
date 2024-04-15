@@ -14,7 +14,11 @@ public class GetCountryCodesQueryHandler(ICountryRepository countryRepository, I
         var countryCodes = await countryRepository.GetAllAsync();
         if (countryCodes == null) throw new NotFoundException(nameof(List<Domain.Common.Country>), request);
 
-        var result = mapper.Map<GetCountryCodesDto>(countryCodes);
+        var result = new GetCountryCodesDto()
+        {
+            Codes = countryCodes.Select(code => code.Code).ToList()
+        };
+        
         return result;
     }
 }

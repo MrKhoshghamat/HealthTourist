@@ -1,4 +1,4 @@
-using HealthTourist.Common.Constants.Main.TeamMember;
+using HealthTourist.Common.Constants.Interface;
 using HealthTourist.Domain.Interface;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -10,8 +10,8 @@ public class TeamMemberAttachmentConfiguration : IEntityTypeConfiguration<TeamMe
     public void Configure(EntityTypeBuilder<TeamMemberAttachment> builder)
     {
         // Configure table name and schema name
-        builder.ToTable(TeamMemberConfigurationConstants.TableName,
-            TeamMemberConfigurationConstants.SchemaName);
+        builder.ToTable(TeamMemberAttachmentConfigurationConstants.TableName,
+            TeamMemberAttachmentConfigurationConstants.SchemaName);
         
         // Configure composite primary key if needed
         builder.HasKey(tma => new { tma.TeamMemberId, tma.AttachmentId });

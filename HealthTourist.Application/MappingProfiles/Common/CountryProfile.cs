@@ -1,5 +1,6 @@
 using AutoMapper;
 using HealthTourist.Application.Features.Common.Country.Queries.GetCountries;
+using HealthTourist.Application.Features.Common.Country.Queries.GetCountryCodes;
 using HealthTourist.Application.Features.Common.Country.Queries.GetCountryDetails;
 using HealthTourist.Domain.Common;
 
@@ -11,5 +12,10 @@ public class CountryProfile : Profile
     {
         CreateMap<Country, GetCountriesDto>().ReverseMap();
         CreateMap<Country, GetCountryDetailsDto>().ReverseMap();
+
+        CreateMap<Country, GetCountryCodesDto>()
+            .ForMember(dest =>
+                dest.Codes, opt =>
+                opt.MapFrom(src => src.Code)).ReverseMap();
     }
 }
