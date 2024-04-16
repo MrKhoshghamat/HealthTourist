@@ -28,6 +28,8 @@ namespace HealthTourist.Api.Controllers
                 var medicalCenterTags = await mediator.Send(new GetHospitalTagsByHospitalIdQuery(medicalCenter.Id));
                 var medicalCenterPictures =
                     await mediator.Send(new GetHospitalAttachmentByHospitalIdQuery(medicalCenter.Id));
+                var medicalCenterPicturesFileContentResults = medicalCenterPictures
+                    .Contents.Select(content => File(content, "img/jpeg")).ToList();
 
                 getMedicalCenterDto.MedicalCenters =
                 [
@@ -39,7 +41,7 @@ namespace HealthTourist.Api.Controllers
                         Description = medicalCenter.Description,
                         HospitalType = medicalCenter.HospitalType.Title,
                         Tags = medicalCenterTags.Tags,
-                        Pictures = medicalCenterPictures.Contents
+                        Pictures = medicalCenterPicturesFileContentResults
                     }
                 ];
             }
@@ -54,7 +56,7 @@ namespace HealthTourist.Api.Controllers
                     {
                         Name = hotel.Name,
                         Title = hotel.Title,
-                        Picture = hotelAttachment.Content
+                        Picture = File(hotelAttachment.Content, "img/jpeg")
                     }
                 ];
             }

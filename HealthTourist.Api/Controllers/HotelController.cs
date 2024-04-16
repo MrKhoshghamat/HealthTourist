@@ -33,7 +33,7 @@ namespace HealthTourist.Api.Controllers
                     {
                         Name = city.Name,
                         Title = city.Title,
-                        picture = cityAttachment.Content
+                        picture = File(cityAttachment.Content, "img/jpeg")
                     }
                 ];
             }
@@ -42,6 +42,8 @@ namespace HealthTourist.Api.Controllers
             {
                 var hotelTags = await mediator.Send(new GetHotelTagsByHotelIdQuery(hotel.Id));
                 var hotelAttachments = await mediator.Send(new GetHotelAttachmentsByHotelIdQuery(hotel.Id));
+                var hotelAttachmentsFileContentResults =
+                    hotelAttachments.Contents.Select(content => File(content, "img/jpeg")).ToList();
 
                 getHotelDto.Hotels =
                 [
@@ -52,7 +54,7 @@ namespace HealthTourist.Api.Controllers
                         Description = hotel.Description,
                         HotelRank = hotel.HotelRank.Title,
                         HotelType = hotel.HotelRank.HotelType.Title,
-                        Pictures = hotelAttachments.Contents,
+                        Pictures = hotelAttachmentsFileContentResults,
                         Tags = hotelTags.TagTitles
                     }
                 ];
@@ -75,7 +77,7 @@ namespace HealthTourist.Api.Controllers
                             new HotelCitySightseenPictureDto()
                             {
                                 Title = sightseenAttachment.Title,
-                                Picture = sightseenAttachment.Content
+                                Picture = File(sightseenAttachment.Content, "img/jpeg")
                             }
                         ]
                     }

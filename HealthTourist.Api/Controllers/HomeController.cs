@@ -36,7 +36,7 @@ namespace HealthTourist.Api.Controllers
             {
                 var faqTypeIcon = await mediator.Send(new GetFaqTypeIconByFaqTypeIdQuery(faqType.Id));
                 var selectedFaqTypeIcon =
-                    await mediator.Send(new GetFaqTypeSelectedIconByFaqTypeIdQuery(faqType.Id, true));
+                    await mediator.Send(new GetFaqTypeSelectedIconByFaqTypeIdQuery(faqType.Id, IsSelected: true));
 
                 getHomeDto.FaqTypes =
                 [
@@ -46,8 +46,8 @@ namespace HealthTourist.Api.Controllers
                         Title = faqType.Title,
                         Description = faqType.Description,
                         Priority = faqType.Priority,
-                        Icon = faqTypeIcon.Content,
-                        SelectedIcon = selectedFaqTypeIcon.Content
+                        Icon = File(faqTypeIcon.Content, "img/jpeg"),
+                        SelectedIcon = File(selectedFaqTypeIcon.Content, "img/jpeg")
                     }
                 ];
             }
@@ -63,7 +63,7 @@ namespace HealthTourist.Api.Controllers
                     {
                         Name = treatmentType.Name,
                         Title = treatmentType.Title,
-                        Icon = treatmentTypeIcon.Content
+                        Icon = File(treatmentTypeIcon.Content, "img/jpeg")
                     }
                 ];
             }
@@ -82,7 +82,7 @@ namespace HealthTourist.Api.Controllers
                         Treatment = doctor.Treatment.Title,
                         SocialMedias = doctorSocialMedia.SocialMediae,
                         SocialMediaLinks = doctorSocialMedia.Links,
-                        Picture = doctorAttachment.Content
+                        Picture = File(doctorAttachment.Content, "img/jpeg")
                     }
                 ];
             }
@@ -91,6 +91,8 @@ namespace HealthTourist.Api.Controllers
             {
                 var hospitalTag = await mediator.Send(new GetHospitalTagsByHospitalIdQuery(hospital.Id));
                 var hospitalAttachment = await mediator.Send(new GetHospitalAttachmentByHospitalIdQuery(hospital.Id));
+                var hospitalAttachmentFileContentResults =
+                    hospitalAttachment.Contents.Select(content => File(content, "img/jpeg")).ToList();
 
                 getHomeDto.Hospitals =
                 [
@@ -100,7 +102,7 @@ namespace HealthTourist.Api.Controllers
                         Title = hospital.Title,
                         Description = hospital.Description,
                         Tags = hospitalTag.Tags,
-                        Pictures = hospitalAttachment.Contents
+                        Pictures = hospitalAttachmentFileContentResults
                     }
                 ];
             }
@@ -116,7 +118,7 @@ namespace HealthTourist.Api.Controllers
                         Name = hotel.Name,
                         Title = hotel.Title,
                         Description = hotel.Description,
-                        Picture = hotelAttachment.Content
+                        Picture = File(hotelAttachment.Content, "img/jpeg")
                     }
                 ];
             }

@@ -35,7 +35,7 @@ namespace HealthTourist.Api.Controllers
                     {
                         Name = treatmentType.Name,
                         Title = treatmentType.Title,
-                        Icon = treatmentTypeIcon.Content
+                        Icon = File(treatmentTypeIcon.Content, "img/jpeg")
                     }
                 ];
             }
@@ -52,7 +52,7 @@ namespace HealthTourist.Api.Controllers
                         FirstName = doctor.Person.FirstName,
                         LastName = doctor.Person.LastName,
                         Treatment = doctor.Treatment.Title,
-                        Picture = doctorAttachment.Content,
+                        Picture = File(doctorAttachment.Content, "img/jpeg"),
                         SocialMediae = doctorSocialMedia.SocialMediae,
                         SocialMediaLinks = doctorSocialMedia.Links
                     }
@@ -72,7 +72,7 @@ namespace HealthTourist.Api.Controllers
                             FirstName = teamMember.FirstName,
                             LastName = teamMember.LastName,
                             Treatment = teamMember.Treatment,
-                            Picture = teamMemberAttachment.Content
+                            Picture = File(teamMemberAttachment.Content, "img/jpeg")
                         }
                     ];
                 }

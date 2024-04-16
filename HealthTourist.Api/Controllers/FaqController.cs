@@ -33,8 +33,8 @@ namespace HealthTourist.Api.Controllers
                         Name = faqType.Name,
                         Title = faqType.Title,
                         Description = faqType.Description,
-                        Icon = faqTypeIcon.Content,
-                        SelectedIcon = selectedFaqTypeIcon.Content
+                        Icon = File(faqTypeIcon.Content, "img/jpeg"),
+                        SelectedIcon = File(selectedFaqTypeIcon.Content, "img/jpeg")
                     }
                 ];
             }
