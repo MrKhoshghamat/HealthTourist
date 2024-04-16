@@ -48,8 +48,4 @@
       <ProjectReference Include="..\HealthTourist.Persistence\HealthTourist.Persistence.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Controllers\" />
-    </ItemGroup>
-
 </Project>
