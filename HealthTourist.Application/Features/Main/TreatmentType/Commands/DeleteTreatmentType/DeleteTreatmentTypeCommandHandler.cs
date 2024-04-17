@@ -13,4 +13,11 @@ public class DeleteTreatmentTypeCommandHandler(ITreatmentTypeRepository treatmen
         await treatmentTypeRepository.DeleteAsync(treatmentType);
         return Unit.Value;
     }
+    
+    public async Task<Unit> Handle(DeleteTreatmentTypeByIdCommand request, CancellationToken cancellationToken)
+    {
+        var treatmentType = mapper.Map<Domain.Main.TreatmentType>(request);
+        await treatmentTypeRepository.DeleteAsync(treatmentType);
+        return Unit.Value;
+    }
 }

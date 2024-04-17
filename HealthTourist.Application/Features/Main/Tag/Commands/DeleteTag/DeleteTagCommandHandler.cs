@@ -13,4 +13,10 @@ public class DeleteTagCommandHandler(ITagRepository tagRepository, IMapper mappe
         await tagRepository.DeleteAsync(tag);
         return Unit.Value;
     }
+
+    public async Task<Unit> Handle(DeleteTagByIdCommand request, CancellationToken cancellationToken)
+    {
+        await tagRepository.DeleteAsync(request.Id);
+        return Unit.Value;
+    }
 }

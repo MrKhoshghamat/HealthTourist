@@ -13,4 +13,10 @@ public class DeleteCategoryCommandHandler(ICategoryRepository categoryRepository
         await categoryRepository.DeleteAsync(category);
         return Unit.Value;
     }
+    
+    public async Task<Unit> Handle(DeleteCategoryByIdCommand request, CancellationToken cancellationToken)
+    {
+        await categoryRepository.DeleteAsync(request.Id);
+        return Unit.Value;
+    }
 }

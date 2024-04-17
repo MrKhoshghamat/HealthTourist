@@ -6,8 +6,6 @@ namespace HealthTourist.Application.Features.Account.Person.Commands.DeletePerso
 
 public class DeletePersonCommand : IRequest<Unit>
 {
-    #region Properties
-
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public DateTime BirthDate { get; set; }
@@ -19,16 +17,6 @@ public class DeletePersonCommand : IRequest<Unit>
     public bool IsGuest { get; set; }
     public bool IsDoctor { get; set; }
     public bool IsAdmin { get; set; }
-
-    #endregion
-
-    #region Relations
-
-    public virtual Doctor Doctor { get; set; }
-    public virtual Guest Guest { get; set; }
-    public virtual Patient Patient { get; set; }
-    public virtual TeamMember TeamMember { get; set; }
-    public virtual OfficeManager OfficeManager { get; set; }
-
-    #endregion
 }
+
+public record DeletePersonByIdCommand(long Id) : IRequest<Unit>;

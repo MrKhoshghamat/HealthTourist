@@ -13,4 +13,10 @@ public class DeletePersonCommandHandler(IPersonRepository personRepository, IMap
         await personRepository.DeleteAsync(person);
         return Unit.Value;
     }
+    
+    public async Task<Unit> Handle(DeletePersonByIdCommand request, CancellationToken cancellationToken)
+    {
+        await personRepository.DeleteAsync(request.Id);
+        return Unit.Value;
+    }
 }

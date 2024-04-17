@@ -6,8 +6,6 @@ namespace HealthTourist.Application.Features.Main.Hotel.Commands.DeleteHotel;
 
 public class DeleteHotelCommand : IRequest<Unit>
 {
-    #region Properties
-
     public int HotelRankId { get; set; }
     public string Name { get; set; }
     public string Title { get; set; }
@@ -26,17 +24,6 @@ public class DeleteHotelCommand : IRequest<Unit>
     public int NumberOfRooms { get; set; }
     public string Description { get; set; }
     public DateOnly EstablishmentDate { get; set; }
-
-    #endregion
-
-    #region Relations
-
-    public virtual Domain.Main.HotelRank HotelRank { get; set; }
-    public virtual City City { get; set; }
-    public virtual ICollection<Domain.Main.Travel> Travels { get; set; }
-    public virtual ICollection<HotelAttachment> HotelAttachments { get; set; }
-    public virtual ICollection<HotelGallery> HotelGalleries { get; set; }
-    public virtual ICollection<HotelTag> HotelTags { get; set; }
-
-    #endregion
 }
+
+public record DeleteHotelByIdCommand(int Id) : IRequest<Unit>;

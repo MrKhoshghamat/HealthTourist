@@ -13,4 +13,11 @@ public class DeleteOfficeManagerCommandHandler(IOfficeManagerRepository officeMa
         await officeManagerRepository.DeleteAsync(officeManager);
         return Unit.Value;
     }
+
+    public async Task<Unit> Handle(DeleteOfficeManagerByIdCommand request, CancellationToken cancellationToken)
+    {
+        var officeManager = mapper.Map<Domain.Main.OfficeManager>(request);
+        await officeManagerRepository.DeleteAsync(officeManager);
+        return Unit.Value;
+    }
 }

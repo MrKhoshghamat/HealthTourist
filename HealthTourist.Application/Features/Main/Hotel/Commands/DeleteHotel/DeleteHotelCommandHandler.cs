@@ -13,4 +13,10 @@ public class DeleteHotelCommandHandler(IHotelRepository hotelRepository, IMapper
         await hotelRepository.DeleteAsync(hotel);
         return Unit.Value;
     }
+    
+    public async Task<Unit> Handle(DeleteHotelByIdCommand request, CancellationToken cancellationToken)
+    {
+        await hotelRepository.DeleteAsync(request.Id);
+        return Unit.Value;
+    }
 }

@@ -9,8 +9,16 @@ public class CreateTreatmentTypeCommandHandler(ITreatmentTypeRepository treatmen
 {
     public async Task<int> Handle(CreateTreatmentTypeCommand request, CancellationToken cancellationToken)
     {
-        var treatmentType = mapper.Map<Domain.Main.TreatmentType>(request);
-        await treatmentTypeRepository.CreateAsync(treatmentType);
-        return treatmentType.Id;
+        try
+        {
+            var treatmentType = mapper.Map<Domain.Main.TreatmentType>(request);
+            await treatmentTypeRepository.CreateAsync(treatmentType);
+            return treatmentType.Id;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
 }

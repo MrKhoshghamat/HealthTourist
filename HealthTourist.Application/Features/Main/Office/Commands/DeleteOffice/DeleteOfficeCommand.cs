@@ -6,8 +6,6 @@ namespace HealthTourist.Application.Features.Main.Office.Commands.DeleteOffice;
 
 public class DeleteOfficeCommand : IRequest<Unit>
 {
-    #region Properties
-
     public string Name { get; set; }
     public string Title { get; set; }
     public string Address { get; set; }
@@ -22,15 +20,6 @@ public class DeleteOfficeCommand : IRequest<Unit>
     public string Email { get; set; }
     public string OwnerCommission { get; set; }
     public string PresentedCommission { get; set; }
-
-    #endregion
-
-    #region Relations
-
-    public virtual Country Country { get; set; }
-    public virtual City City { get; set; }
-    public virtual Domain.Main.OfficeManager OfficeManager { get; set; }
-    public virtual ICollection<OfficeAttachment> OfficeAttachments { get; set; }
-
-    #endregion
 }
+
+public record DeleteOfficeByIdCommand(int Id) : IRequest<Unit>;

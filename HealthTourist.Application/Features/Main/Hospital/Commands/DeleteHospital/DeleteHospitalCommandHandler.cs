@@ -13,4 +13,10 @@ public class DeleteHospitalCommandHandler(IHospitalRepository hospitalRepository
         await hospitalRepository.DeleteAsync(hospital);
         return Unit.Value;
     }
+    
+    public async Task<Unit> Handle(DeleteHospitalByIdCommand request, CancellationToken cancellationToken)
+    {
+        await hospitalRepository.DeleteAsync(request.Id);
+        return Unit.Value;
+    }
 }

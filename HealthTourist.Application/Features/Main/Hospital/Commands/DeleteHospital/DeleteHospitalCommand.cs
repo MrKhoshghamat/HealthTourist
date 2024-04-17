@@ -38,3 +38,5 @@ public class DeleteHospitalCommand : IRequest<Unit>
 
     #endregion
 }
+
+public record DeleteHospitalByIdCommand(int Id) : IRequest<Unit>;

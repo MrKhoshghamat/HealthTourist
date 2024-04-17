@@ -21,4 +21,9 @@ public class LoggerAdapter<TEntity>(ILoggerFactory loggerFactory) : IAppLogger<T
     {
         _logger.LogError(message, args);
     }
+
+    public void LogError(Exception ex, string message, params object[] args)
+    {
+        _logger.LogError(ex, message, args);
+    }
 }

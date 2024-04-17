@@ -4,20 +4,7 @@ namespace HealthTourist.Application.Features.Main.Treatment.Commands.CreateTreat
 
 public class CreateTreatmentCommand : IRequest<int>
 {
-    #region Properties
-
     public int TreatmentTypeId { get; set; }
     public string Name { get; set; }
     public string Title { get; set; }
-
-    #endregion
-
-    #region Relations
-
-    public virtual Domain.Main.TreatmentType TreatmentType { get; set; }
-    public virtual ICollection<Domain.Main.Doctor> Doctors { get; set; }
-    public virtual ICollection<Domain.Main.TeamMember> TeamMembers { get; set; }
-    public virtual ICollection<Domain.Main.Triage> Triages { get; set; }
-
-    #endregion
 }

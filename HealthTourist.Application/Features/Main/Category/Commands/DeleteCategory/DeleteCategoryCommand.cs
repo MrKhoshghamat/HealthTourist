@@ -18,3 +18,5 @@ public class DeleteCategoryCommand : IRequest<Unit>
 
     #endregion
 }
+
+public record DeleteCategoryByIdCommand(int Id) : IRequest<Unit>;

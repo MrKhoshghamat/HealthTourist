@@ -1,4 +1,5 @@
 using AutoMapper;
+using HealthTourist.Application.Features.Main.TreatmentType.Commands.CreateTreatmentType;
 using HealthTourist.Application.Features.Main.TreatmentType.Queries.GetTreatmentTypeDetails;
 using HealthTourist.Application.Features.Main.TreatmentType.Queries.GetTreatmentTypes;
 using HealthTourist.Domain.Main;
@@ -11,5 +12,6 @@ public class TreatmentTypeProfile : Profile
     {
         CreateMap<TreatmentType, GetTreatmentTypesDto>().ReverseMap();
         CreateMap<TreatmentType, GetTreatmentTypeDetailsDto>().ReverseMap();
+        CreateMap<TreatmentType, CreateTreatmentTypeCommand>().ReverseMap();
     }
 }

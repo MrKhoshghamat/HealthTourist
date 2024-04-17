@@ -13,4 +13,10 @@ public class DeleteAirLineCommandHandler(IAirLineRepository airLineRepository, I
         await airLineRepository.DeleteAsync(airLine);
         return Unit.Value;
     }
+    
+    public async Task<Unit> Handle(DeleteAirLineByIdCommand request, CancellationToken cancellationToken)
+    {
+        await airLineRepository.DeleteAsync(request.Id);
+        return Unit.Value;
+    }
 }
